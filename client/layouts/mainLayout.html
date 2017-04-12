@@ -1,0 +1,16 @@
+<template name="mainLayout">
+  <nav>
+   <div class="nav-wrapper">
+     <a href="#" class="brand-logo right">Craft Work</a>
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="sass.html"><i class="material-icons left">search</i>Link with Left Icon</a></li>
+       <li><a href="sass.html">Sass</a></li>
+       <li><a href="badges.html">Components</a></li>
+       <li><a href="collapsible.html">JavaScript</a></li>
+     </ul>
+   </div>
+  </nav>
+  <div class="container">
+    {{> yield}}
+  </div>
+</template>
