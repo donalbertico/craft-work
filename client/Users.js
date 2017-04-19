@@ -59,5 +59,17 @@ Template.account.onRendered(function(){
    Materialize.updateTextFields();
 });
 
+Template.homeLayout.helpers({
+  users : function(){
+    return Meteor.users.find();
+  }
+});
+
+Template.profile.helpers({
+  user : function(){
+    return Meteor.users.findOne({_id : Router.current().params.id});
+  }
+});
+
 Template.registerHelper('currentUser',currentUser);
 Template.registerHelper('emailVerfified',emailVerfified);

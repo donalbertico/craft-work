@@ -1,0 +1,17 @@
+<template name="profile">
+  <style media="screen">
+    .online{
+      color : green
+    }
+    .offline{
+      color : grey
+    }
+  </style>
+  el verdico
+  {{user.emails}}
+  {{# if user.status.online}}
+      <i class="material-icons online">supervisor_account</i>
+  {{else}}
+      <i class="material-icons offline">supervisor_account</i>
+  {{/if}}
+</template>

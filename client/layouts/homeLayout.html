@@ -1,3 +1,6 @@
 <template name="homeLayout">
     {{> login}}
+    {{#each users}}
+    <a class="waves-effect waves-light btn" href="/user/{{_id}}">{{emails}}</a>
+    {{/each}}
 </template>
