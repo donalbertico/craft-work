@@ -1,3 +1,27 @@
 <template name="account">
-  <h4>Hola</h4>{{currentUser.profile.name}}
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card white darken-1">
+        <div class="card-content white">
+          <form class="" action="index.html" method="post">
+            <div class="row">
+              <div class="input-field col s12">
+                <input  id="first_name" type="text" class="validate" required name="name" value="{{currentUser.profile.name}}">
+                <label for="first_name">Nombre</label>
+              </div>
+            </div>
+          </form>
+          {{#if emailVerfified}}
+            Tu correo esta verificado
+          {{else}}
+            Tu correo electronico no esta verificado
+            <a class="waves-effect waves-light btn verify">Verificar</a>
+          {{/if}}
+        </div>
+        <div class="card-action">
+          <a href="#">Actualizar</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
