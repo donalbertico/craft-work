@@ -14,10 +14,10 @@ Template.register.events({
        const form = e.target;
        if(form.password.value !== form.repeatPass.value)return Materialize.toast('Las contraseñas no concuerdan', 4000);
        var captchaData = grecaptcha.getResponse();
-       console.log(captchaData);
        Meteor.call('checkRecaptcha',captchaData,function(err,result){
          grecaptcha.reset();
          console.log(err);
+         console.log('aqui aqui');
          if(err)return Materialize.toast('Comprueba que no eres robot', 4000);
          Accounts.createUser({
             email : form.email.value,
