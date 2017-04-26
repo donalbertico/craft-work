@@ -16,8 +16,6 @@ Template.register.events({
        var captchaData = grecaptcha.getResponse();
        Meteor.call('checkRecaptcha',captchaData,function(err,result){
          grecaptcha.reset();
-         console.log(err);
-         console.log('aqui aqui');
          if(err)return Materialize.toast('Comprueba que no eres robot', 4000);
          Accounts.createUser({
             email : form.email.value,
@@ -27,7 +25,6 @@ Template.register.events({
             }
          },function(error){
               if(error)return Materialize.toast(error.reason, 4000); // Output error if registration fails
-              console.log('redirectinh')
               Router.go('/account'); // Redirect user if registration succeeds
           });
        });
@@ -47,16 +44,44 @@ Template.login.events({
 
 Template.account.events({
     'click .verify': function(e){
-      console.log('enviar mail');
       Meteor.call('sendVerificationMail',function(err,response){
         if(err)return Materialize.toast('Error al enviar mail', 4000);
         return Materialize.toast('Revisa tu bandeja de entrada', 4000);
       });
-    }
+    },
+    'click a.userInfoButton': function(e){
+      $('#userInfoFormButton').click();
+    },
+    'click a.crafterInfoButton': function(e){
+      $('#crafterInfoFormButton').click();
+    },
+    'submit form#userInfoForm': function(e){
+      e.preventDefault();
+      var form = e.target;
+      Meteor.users.update({_id: Meteor.userId()},{ $set : {
+        'profile.name' : form.name.value,
+        'profile.lastName' : form.lastName.value
+      }},function(err){
+        if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
+        Materialize.toast('Información actualizada');
+      });
+    },
+    'submit form#craftInfoForm': function(e){
+      e.preventDefault();
+      var form = e.target;
+      Meteor.users.update({_id: Meteor.userId()},{ $set : {
+        'profile.craft.name' : form.name.value,
+        'profile.craft.city' : form.city.value,
+        'profile.craft.address' : form.address.value,
+      }},function(err){
+        if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
+        Materialize.toast('Información actualizada');
+      });
+    },
 });
 
 Template.account.onRendered(function(){
-   Materialize.updateTextFields();
+  //  Materialize.updateTextFields();
 });
 
 Template.homeLayout.helpers({
@@ -68,6 +93,9 @@ Template.homeLayout.helpers({
 Template.profile.helpers({
   user : function(){
     return Meteor.users.findOne({_id : Router.current().params.id});
+  },
+  email : function(){
+    return user().emails[0].address;
   }
 });
 

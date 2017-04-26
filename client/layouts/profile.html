@@ -1,17 +1,30 @@
 <template name="profile">
   <style media="screen">
     .online{
-      color : green
+      color : #8BC34A
     }
     .offline{
       color : grey
     }
   </style>
-  el verdico
-  {{user.emails}}
-  {{# if user.status.online}}
-      <i class="material-icons online">supervisor_account</i>
-  {{else}}
-      <i class="material-icons offline">supervisor_account</i>
-  {{/if}}
+  <div class="card white darken-1">
+    <div class="card-content white">
+      <h4>{{user.profile.craft.name}}</h4>
+      {{user.profile.craft.city}}
+      {{user.profile.craft.address}}
+    </div>
+  </div>
+  <div class="card white darken-1">
+    <div class="card-content white">
+      <h5>Contacto</h5>
+      <span>{{user.profile.name}}{{user.profile.lastName}}</span>
+        {{# if user.status.online}}
+          <a href="/messages/{{user._id}}"><i class="material-icons online">supervisor_account</i></a>
+        {{else}}
+            <i class="material-icons offline">supervisor_account</i>
+        {{/if}}
+
+    </div>
+  </div>
+
 </template>

@@ -3,13 +3,21 @@
     <div class="col s12 m6">
       <div class="card white darken-1">
         <div class="card-content white">
-          <form class="" action="index.html" method="post">
+          <h4>Informacion de Usuario</h4>
+          <form id="userInfoForm">
             <div class="row">
-              <div class="input-field col s12">
-                <input  id="first_name" type="text" class="validate" required name="name" value="{{currentUser.profile.name}}">
-                <label for="first_name">Nombre</label>
+              <div class="input-field ">
+                <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.name}}">
+                <label class="active" for="name">Nombre</label>
               </div>
             </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="lastName" type="text" class="validate" required name="lastName" value="{{currentUser.profile.lastName}}">
+                <label class="active" for="lastName">Apellidos</label>
+              </div>
+            </div>
+            <button id="userInfoFormButton" hidden type="submit" name="action">Submit</button>
           </form>
           {{#if emailVerfified}}
             Tu correo esta verificado
@@ -19,7 +27,36 @@
           {{/if}}
         </div>
         <div class="card-action">
-          <a href="#">Actualizar</a>
+          <a class="userInfoButton">Actualizar</a>
+        </div>
+      </div>
+      <div class="card white darken-1">
+        <div class="card-content white">
+          <h4>Informacion de Artesano</h4>
+          <form id="craftInfoForm">
+            <div class="row">
+              <div class="input-field ">
+                <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
+                <label class="active" for="name">Nombre artesanal / empresa</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
+                <label class="active" for="city">Ciudad</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
+                <label class="active" for="address">Direccion</label>
+              </div>
+            </div>
+            <button id="crafterInfoFormButton" hidden type="submit" name="action">Submit</button>
+          </form>
+        </div>
+        <div class="card-action">
+          <a class="crafterInfoButton">Actualizar</a>
         </div>
       </div>
     </div>
