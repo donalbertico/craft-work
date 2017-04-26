@@ -1,4 +1,9 @@
 <template name="account">
+  <style >
+    .verified{
+      color : green
+    }
+  </style>
   <div class="row">
     <div class="col s12 m6">
       <div class="card white darken-1">
@@ -19,12 +24,14 @@
             </div>
             <button id="userInfoFormButton" hidden type="submit" name="action">Submit</button>
           </form>
-          {{#if emailVerfified}}
-            Tu correo esta verificado
-          {{else}}
-            Tu correo electronico no esta verificado
-            <a class="waves-effect waves-light btn verify">Verificar</a>
-          {{/if}}
+          <div class="row">
+            {{#if email.verified}}
+            <span class="col verified">{{email.address}} está verificado <i class="material-icons">done</i></span>
+            {{else}}
+            <span class="col">{{email.address}}</span>
+            <span class="col">Tu correo electronico no esta verificado <a class="verify"><i class="material-icons">email</i></a></span>
+            {{/if}}
+          </div>
         </div>
         <div class="card-action">
           <a class="userInfoButton">Actualizar</a>

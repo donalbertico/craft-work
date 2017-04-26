@@ -3,10 +3,11 @@ const currentUser = function(){
   return Meteor.user();
 }
 
-const emailVerfified = function(){
+const userEmail = function(){
   const user = Meteor.user();
-  return user && user.emails && user.emails[0].verified;
+  return user && user.emails && user.emails[0];
 }
+
 
 Template.register.events({
     'submit form': function(e){
@@ -45,7 +46,7 @@ Template.login.events({
 Template.account.events({
     'click .verify': function(e){
       Meteor.call('sendVerificationMail',function(err,response){
-        if(err)return Materialize.toast('Error al enviar mail', 4000);
+        if(err)return Materialize.toast(err.reason, 4000);
         return Materialize.toast('Revisa tu bandeja de entrada', 4000);
       });
     },
@@ -99,5 +100,6 @@ Template.profile.helpers({
   }
 });
 
+
 Template.registerHelper('currentUser',currentUser);
-Template.registerHelper('emailVerfified',emailVerfified);
+Template.registerHelper('email',userEmail);

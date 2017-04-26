@@ -15,8 +15,12 @@ Meteor.startup(() => {
 
   Meteor.methods({
 	  sendVerificationMail :  () => {
-  		Accounts.sendVerificationEmail(Meteor.userId());
-  		return ;
+      if(!Meteor.user().services.email){
+        return Accounts.sendVerificationEmail(Meteor.userId());
+      }else if(Meteor.user().services.email.verificationTokens.length > 0){
+        throw new Meteor.Error('mail_sent', 'Ya hemos enviado un mail');
+      }
+      return Accounts.sendVerificationEmail(Meteor.userId());
 	  },
 
     checkRecaptcha: (captchaData) => {
