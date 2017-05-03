@@ -43,48 +43,6 @@ Template.login.events({
     }
 });
 
-Template.account.events({
-    'click .verify': function(e){
-      Meteor.call('sendVerificationMail',function(err,response){
-        if(err)return Materialize.toast(err.reason, 4000);
-        return Materialize.toast('Revisa tu bandeja de entrada', 4000);
-      });
-    },
-    'click a.userInfoButton': function(e){
-      $('#userInfoFormButton').click();
-    },
-    'click a.crafterInfoButton': function(e){
-      $('#crafterInfoFormButton').click();
-    },
-    'submit form#userInfoForm': function(e){
-      e.preventDefault();
-      var form = e.target;
-      Meteor.users.update({_id: Meteor.userId()},{ $set : {
-        'profile.name' : form.name.value,
-        'profile.lastName' : form.lastName.value
-      }},function(err){
-        if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-        Materialize.toast('Información actualizada');
-      });
-    },
-    'submit form#craftInfoForm': function(e){
-      e.preventDefault();
-      var form = e.target;
-      Meteor.users.update({_id: Meteor.userId()},{ $set : {
-        'profile.craft.name' : form.name.value,
-        'profile.craft.city' : form.city.value,
-        'profile.craft.address' : form.address.value,
-      }},function(err){
-        if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-        Materialize.toast('Información actualizada');
-      });
-    },
-});
-
-Template.account.onRendered(function(){
-  //  Materialize.updateTextFields();
-});
-
 Template.homeLayout.helpers({
   users : function(){
     return Meteor.users.find();
