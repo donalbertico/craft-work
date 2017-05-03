@@ -1,5 +1,15 @@
 var autocomplete ;
-
+var userPic = 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png';
+var uploader = new Slingshot.Upload("userPicUpolad");
+var currentPhoto = function(){
+  return Meteor.user().profile.photo;
+}
+// var pic = Meteor.user().profile.photo
+Template.account.helpers({
+  uploadProgress: function () {
+    return Math.round(uploader.progress() * 100);
+  }
+});
 
 Template.account.events({
     'click .verify': function(e){
@@ -20,22 +30,6 @@ Template.account.events({
     'submit form#userInfoForm': function(e){
       e.preventDefault();
       var form = e.target;
-      var uploader = new Slingshot.Upload("myFileUploads");
-
-      console.log(form.photo.files[0]);
-      uploader.send(form.photo.files[0], function (error, downloadUrl) {
-        if (error) {
-          // Log service detailed response.
-          console.log(error);
-          console.log(uploader.xhr);
-          console.error('Error uploading', uploader.xhr.response);
-          alert (error);
-        }
-        else {
-          console.log(downloadUrl);
-          // Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
-        }
-      });
       Meteor.users.update({_id: Meteor.userId()},{ $set : {
         'profile.name' : form.name.value,
         'profile.lastName' : form.lastName.value,
@@ -64,5 +58,36 @@ Template.account.events({
           Materialize.toast('Información actualizada');
         });
       }, 200);
-    }
+    },
+
+    'change input#picInput' : function(e){
+      uploader.send(e.target.files[0], function (error, downloadUrl) {
+        if (error) {
+          console.error('Error uploading', uploader.xhr.response);
+          alert (error);
+          return Materialize.toast('Hubo un error al subir la imagen', 4000);
+        }
+        Meteor.users.update({_id: Meteor.userId()},{ $set : {
+          'profile.photo' : downloadUrl
+        }},function(err){
+          if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
+          Materialize.toast('foto actualizada');
+        });
+      });
+    },
+
+    'click a.delete': function(e){
+      console.log(currentPhoto())
+      Meteor.call('deleteImage',currentPhoto(),function(response){
+        if(response){
+          console.log(response);
+          // Meteor.users.update({_id: Meteor.userId()},{ $set : {
+          //   'profile.photo' : 'https://craft-work.s3-us-east-2.amazonaws.com/nouser.png'
+          // }},function(err){
+          //   if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
+          //   Materialize.toast('foto actualizada');
+          // });
+        }
+      });
+    },
 });

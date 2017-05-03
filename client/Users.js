@@ -22,7 +22,7 @@ Template.register.events({
             email : form.email.value,
             password : form.password.value,
             profile : {
-              name : form.name.value
+              photo : 'https://craft-work.storage.googleapis.com/nouser.png'
             }
          },function(error){
               if(error)return Materialize.toast(error.reason, 4000); // Output error if registration fails
