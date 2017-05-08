@@ -32,17 +32,6 @@ Template.register.events({
     }
 });
 
-Template.login.events({
-    'submit form': function(e){
-       e.preventDefault();
-       const form = e.target;
-       Meteor.loginWithPassword(form.email.value, form.password.value, function(error){
-            if(error)return Materialize.toast(error.reason, 4000);
-            Router.go('/account');
-       });
-    }
-});
-
 Template.homeLayout.helpers({
   users : function(){
     return Meteor.users.find();

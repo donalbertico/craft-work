@@ -17,36 +17,64 @@
     .verified{
       color : green
     }
-    .userPic{
-      height: 8rem;
-    }
     .card-icon {
       position : absolute;
       left: 1rem;
     }
     .card {
-      padding-left: 3rem;
+      margin-top: 2rem;
+    }
+    .card-content {
+      margin-left: 3rem;
+    }
+    .card-action a{
+      margin-left: 3rem;
+    }
+    .to-delete{
+      filter: blur(6px);
+    }
+    .icon-delete{
+      position: relative;
+      top : -2rem;
+    }
+    div.img{
+      padding: 0px;
+      height: 10rem;
+    }
+    .userPic {
+      height: 10rem;
+      width: 9rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    form.user-info input{
+      margin-bottom: 0.5rem;
+    }
+    .file-field {
+      margin-bottom: 1rem;
     }
   </style>
   <div class="row">
-    <div class="col s12 m10">
+    <div class="col s12 m11 l9">
       <div class="card white darken-1">
-        <div class="card-content white">
-          <div class="col m8">
+        <div class="card-content white user">
+          <div class="col m8 s12">
             <i class="card-icon small material-icons">assignment_ind</i><h4>Informacion de Usuario</h4>
           </div>
-          <div class="col m4">
-            <img class="userPic" src="{{currentUser.profile.photo}}">
+          <div class="col m4 s12 img">
+            <div class="userPic" style="background-image : url('{{currentUser.profile.photo}}')"></div>
+            {{#if canDelete}}
+              <i class="material-icons icon-delete">delete</i>
+            {{/if}}
             {{#if uploadProgress}}
               <div class="progress">
                 <div class="determinate" style="width: {{uploadProgress}}%"></div>
               </div>
-              {{uploadProgress}}
             {{/if}}
           </div>
-          <a class="delete">borraloooo</a>
-          <form id="userInfoForm">
-            <div class="file-field input-field col m12">
+          <form id="userInfoForm" class="user-info">
+            <div class="file-field input-field col m12 s12">
                <div class="btn">
                  <span>Foto</span>
                  <input type="file" id="picInput" name="photo">
@@ -88,7 +116,16 @@
           <a class="userInfoButton">Actualizar</a>
         </div>
       </div>
-      <div class="card white darken-1">
+      Soy artesano
+      <div class="switch">
+        <label>
+          No
+          <input class="switch" type="checkbox" checked="{{craftMan}}">
+          <span class="lever"></span>
+          Si
+        </label>
+      </div>
+      <div id="craft" class="card white craft-card" >
         <div class="card-content white">
           <i class="card-icon small material-icons">work</i><h4>Informacion de Artesano</h4>
           <form id="craftInfoForm">

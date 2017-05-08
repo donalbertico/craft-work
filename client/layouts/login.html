@@ -1,4 +1,9 @@
 <template name="login">
+  <style media="screen">
+    i.mdi{
+      color : #3b5998;
+    }
+  </style>
   <div class="row">
       <form class="col s5 m4 l3 xl3 offset-s0 offset-m3 offset-l9 offset-xl9 ">
         <div class="row">
@@ -13,7 +18,10 @@
             <label for="password">Contraseña</label>
           </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+          o
+          ingresa con
+          <i class="mdi mdi-facebook-box small"></i>
       </form>
   </div>
 </template>
