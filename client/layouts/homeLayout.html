@@ -1,6 +1,14 @@
 <template name="homeLayout">
-  <div class="parallax-container">
-    <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+        <div class="caption center-align">
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+    </ul>
   </div>
   <div class="section white">
     <div class="row container">
@@ -10,9 +18,17 @@
     </div>
   </div>
   <div class="parallax-container">
+    <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header">Parallax</h2>
+      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+    </div>
+  </div>
+  <div class="parallax-container">
     <div class="parallax"><img src="https://image.shutterstock.com/z/stock-photo-hard-working-craftsman-working-with-planer-in-a-workshop-for-woodwork-handsome-man-with-tattoo-and-327061454.jpg"></div>
   </div>
-
     <!-- {{#each users}}
       <a class="waves-effect waves-light btn" href="/user/{{_id}}">{{profile.name}}</a>
     {{/each}} -->
