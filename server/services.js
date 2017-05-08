@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 
 Accounts.onCreateUser(function (options, user) {
     if (!user.services.facebook) {
@@ -7,7 +8,6 @@ Accounts.onCreateUser(function (options, user) {
         user.craft = {};
         return user;
     }
-    console.log(user.services.facebook);
     user.profile = {
       name : user.services.facebook.first_name,
       lastName : user.services.facebook.last_name,
@@ -19,7 +19,7 @@ Accounts.onCreateUser(function (options, user) {
 });
 
 Slingshot.createDirective("userPicUpolad", Slingshot.S3Storage, {
-  bucket: 'craft-work',
+  bucket: Meteor.settings.AWS_BUCKET,
   acl: "public-read",
   region : Meteor.settings.AWS_REGION,
   AWSAccessKeyId : Meteor.settings.AWS_ID,
