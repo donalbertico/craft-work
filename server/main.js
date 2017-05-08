@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 
 Meteor.startup(() => {
+  console.log(Meteor.settings)
   var ip;
 
   Meteor.onConnection(function(conn) {
