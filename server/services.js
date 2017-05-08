@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
+  console.log('a comenzado tio');
+    console.log(Meteor.settings);
   Accounts.onCreateUser(function (options, user) {
       if (!user.services.facebook) {
           user.profile = {
@@ -37,5 +39,5 @@ Meteor.startup(() => {
     key : function(file){
       return 'profile-'+this.userId;
     }
-  });  
+  });
 });
