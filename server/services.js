@@ -19,7 +19,7 @@ Accounts.onCreateUser(function (options, user) {
 });
 
 Slingshot.createDirective("userPicUpolad", Slingshot.S3Storage, {
-  bucket: Meteor.settings.AWS_BUCKET,
+  bucket: 'craft-work',
   acl: "public-read",
   region : Meteor.settings.AWS_REGION,
   AWSAccessKeyId : Meteor.settings.AWS_ID,
