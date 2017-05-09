@@ -34,7 +34,6 @@ Template.account.helpers({
     return new Date();
   },
   craftMan : function(){
-    // console.log(Meteor.userId().profile);
     if(Meteor.user() && Meteor.user().profile.craft && Meteor.user().profile.craft.name)return true;
     return false;
   }
@@ -110,7 +109,10 @@ Template.account.events({
     },
 
     'click .icon-delete' : function(e){
-      Meteor.call('deleteImage',Meteor.user().profile.photo);
+      Meteor.call('deleteImage',Meteor.user().profile.photo,function(err){
+        if(err)return Materialize.toast(err.reason, 4000);
+        Materialize.toast('foto eliminada', 4000);
+      });
     },
 
     'mouseover div.img' : function(e){

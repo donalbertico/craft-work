@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
-  console.log(process.env);
   reCAPTCHA.config({
     privatekey: process.env.RECAPTCHA_KEY
   });

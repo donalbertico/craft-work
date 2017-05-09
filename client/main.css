@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+.card-action a{
+  color : #263238 !important
+}

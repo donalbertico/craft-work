@@ -7,8 +7,9 @@ var ip = ()=>{
 };
 
 Meteor.startup(() => {
-  Accounts.onCreateUser(function (options, user) {
-      if (!user.services.facebook) {
+  Accounts.onCreateUser((options, user) => {
+      var fbProfile = user.services.facebook;
+      if (!fbProfile) {
           user.profile = {
             photo : "https://s3.us-east-2.amazonaws.com/craft-work/nouser.png"
           };
@@ -16,12 +17,18 @@ Meteor.startup(() => {
           return user;
       }
       user.profile = {
-        name : user.services.facebook.first_name,
-        lastName : user.services.facebook.last_name,
-        photo : user.services.facebook.picture,
-
+        name : fbProfile.first_name,
+        lastName : fbProfile.last_name,
       }
-      user.emails = [{address: user.services.facebook.email , verified : true}];
+      FBGraph.setAccessToken(fbProfile.accessToken);
+      var getSync = Meteor.wrapAsync(FBGraph.get,FBGraph);
+      try {
+        var result = getSync('/'+fbProfile.id+'/picture',{height :'400', width :'400'});
+        user.profile.photo = result.location || 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png';
+      } catch (e) {
+        user.profile.photo = 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png';
+      }
+      user.emails = [{address: fbProfile.email , verified : true}];
       return user;
   });
 
@@ -58,28 +65,31 @@ Meteor.methods({
   checkRecaptcha: (captchaData) => {
       var verifyCaptchaResponse = reCAPTCHA.verifyCaptcha(ip(), captchaData);
       if (!verifyCaptchaResponse.success) {
-          console.log('reCAPTCHA check failed!', verifyCaptchaResponse);
           throw new Meteor.Error(422, 'reCAPTCHA Failed: ' + verifyCaptchaResponse.error);
       } else{
-        console.log('reCAPTCHA verification passed!');
         return true;
       }
   },
   deleteImage : (img) => {
     var object = img.split(".com/")[1];
     var s3 = new AWS.S3();
-    var funs = Meteor.wrapAsync(s3.deleteObject,s3);
+    var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
     try{
-      var result = funs({Bucket: 'craft-work', Key : object});
+      var result = deleteSync({Bucket: 'craft-work', Key : object});
       if(result.DeleteMarker){
-        Meteor.users.update({_id: Meteor.userId},{ $set : {
+        Meteor.users.update({_id: Meteor.userId()},{ $set : {
           'profile.photo' : 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png'
         }},function(err){
           if(err)throw err;// Output error if registration fails
         });
       }
     }catch(err){
-      throw err;
+      return err;
     }
+  },
+  checkRecoverPassToken : (token) => {
+    var user = Meteor.users.findOne({'services.password.reset.token' : token});
+    if(user) return false;
+    return true;
   }
  });
