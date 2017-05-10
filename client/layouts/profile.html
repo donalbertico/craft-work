@@ -6,25 +6,95 @@
     .offline{
       color : grey
     }
+    span.ligth{
+      color : grey;
+    }
+    div.craft-card{
+      padding :0!important;
+    }
+    div.card-image {
+      width: 100%;
+      height: 23rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    div.card-content h3{
+      margin-top: -1rem;
+    }
+    div.card-content{
+      padding: 25px!important;
+    }
+    div.contact{
+      margin-bottom: -0.5rem!important;
+    }
+    img.craft-user{
+      height: 5rem;
+      width: 6.1rem!important;
+    }
+    div.user-profile{
+      margin-bottom: 0rem!important;
+    }
   </style>
-  <div class="card white darken-1">
-    <div class="card-content white">
-      <h4>{{user.profile.craft.name}}</h4>
-      {{user.profile.craft.city}}
-      {{user.profile.craft.address}}
+  <div class="row container">
+      {{#if userProfile.profile.craft.name}}
+        <div class="col m6 grey lighten-1">
+          <h4>Productos/Servicios</h4>
+        </div>
+        <div class="col m6">
+          {{> craftProfile}}
+          {{> userProfile}}
+        </div>
+      {{else}}
+        <div class="col m4 offset-m4">
+          {{> userProfile}}
+        </div>
+      {{/if}}
+  </div>
+</template>
+
+<template name="craftProfile">
+  <div class="card white darken-1 col s12 craft-card">
+    <div class="card-image" style="background-image : url('{{userProfile.profile.craft.photo}}')">
+    </div>
+    <div class="card-content">
+      <h3>{{userProfile.profile.craft.name}}</h3>
+      <h5>{{userProfile.profile.craft.city}}</h5>
+      <h6>{{userProfile.profile.craft.address}}</h6>
+      <span class="ligth">{{userProfile.profile.craft.description}}</span>
     </div>
   </div>
-  <div class="card white darken-1">
-    <div class="card-content white">
-      <h5>Contacto</h5>
-      <span>{{user.profile.name}}{{user.profile.lastName}}</span>
-        {{# if user.status.online}}
-          <a href="/messages/{{user._id}}"><i class="material-icons online">supervisor_account</i></a>
-        {{else}}
-            <i class="material-icons offline">supervisor_account</i>
-        {{/if}}
-
+  <div class="card white col s12">
+    <div class="card-content contact row">
+      <div class="m12">
+        <i class="material-icons">call</i>
+        <span class="">{{userProfile.profile.craft.movil}}</span>
+      </div>
+      {{#if userProfile.profile.craft.telephone}}
+        <div class="m12">
+          <i class="material-icons">stay_current_portrait</i>
+          <span class="">{{userProfile.profile.craft.telephone}}</span>
+        </div>
+      {{/if}}
+      <div class="m12">
+        <i class="material-icons">language</i>
+        <span class="">{{userProfile.profile.craft.webPage}}</span>
+      </div>
     </div>
   </div>
-
+</template>
+<template name="userProfile">
+  <div class="card white darken-1 col s12">
+    <div class="card-content white small row user-profile">
+      <div class="col m9 s12" >
+        <span class="col m12 card-title">{{userProfile.profile.name}}{{userProfile.profile.lastName}}</span>
+        <span class="col m12">{{userProfileEmail}}</span>
+        <span class="col m12 ligth">{{userProfile.profile.telephone}}</span>
+      </div>
+      <img src="{{userProfile.profile.photo}}" class="circle  col m3 craft-user">
+    </div>
+    <div class="card-action">
+      <a href="/messages/{{userProfile._id}}" class="btn-flat">Enviar Mensaje</a>
+    </div>
+  </div>
 </template>

@@ -1,12 +1,15 @@
 var autocomplete ;
 var userPic = 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png';
 var uploader = new Slingshot.Upload("userPicUpolad");
+var craftUploader = new Slingshot.Upload("craftPicUpolad");
 var canDeleteDep = new Tracker.Dependency;
 var progBarDep = new Tracker.Dependency;
+var craftProgBarDep = new Tracker.Dependency;
 var canDelete = false;
 var uploadComplete = false;
 
 Template.account.onRendered(function(){
+  $('input#input_text, textarea#textarea1').characterCounter();
   this.autorun(function(c) {
     var user = Meteor.user()
     var craftMan = user && user.profile && user.profile.craft && user.profile.craft.name;
@@ -15,6 +18,7 @@ Template.account.onRendered(function(){
         $('#craft').removeClass('animated bounceInLeft');
         $('#craft').addClass('animated bounceOutLeft');
       }
+      canDeleteDep.depend();
       c.stop();
     }
   });
@@ -26,9 +30,19 @@ Template.account.helpers({
     if(uploadComplete)return false;
     return Math.round(uploader.progress() * 100);
   },
+  uploadCraftProgress: function () {
+    craftProgBarDep.depend();
+    if(uploadComplete)return false;
+    return Math.round(craftUploader.progress() * 100);
+  },
   canDelete : function(){
     canDeleteDep.depend();
     return canDelete;
+  },
+  canDeleteCraft : function(){
+    canDeleteDep.depend();
+    if(!Meteor.user())return false;
+    return (Meteor.user().profile.craft.photo !== 'https://s3.us-east-2.amazonaws.com/craft-work/clem-onojeghuo-90396.jpg');
   },
   actualDate : function(){
     return new Date();
@@ -75,6 +89,7 @@ Template.account.events({
         if(!form.placeId.value)return Materialize.toast('Vuelva a seleccionar la ciudad', 4000);
         Meteor.users.update({_id: Meteor.userId()},{ $set : {
           'profile.craft.name' : form.name.value,
+          'profile.craft.description' : form.description.value,
           'profile.craft.city' : form.city.value,
           'profile.craft.address' : form.address.value,
           'profile.craft.placeId' : form.placeId.value,
@@ -90,6 +105,7 @@ Template.account.events({
 
     'change input#picInput' : function(e){
       uploadComplete = false;
+      console.log('user');
       progBarDep.changed();
       uploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {
@@ -108,12 +124,41 @@ Template.account.events({
       });
     },
 
+    'change input#craftPhotoInput' : function(e){
+      uploadComplete = false;
+      console.log('craft');
+      craftProgBarDep.changed();
+      craftUploader.send(e.target.files[0], function (error, downloadUrl) {
+        if (error) {
+          console.error('Error uploading', uploader.xhr.response);
+          alert (error);
+          return Materialize.toast('Hubo un error al subir la imagen', 4000);
+        }
+        Meteor.users.update({_id: Meteor.userId()},{ $set : {
+          'profile.craft.photo' : downloadUrl
+        }},function(err){
+          if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
+          Materialize.toast('foto actualizada');
+          uploadComplete = true;
+          craftProgBarDep.changed();
+        });
+      });
+    },
+
     'click .icon-delete' : function(e){
       Meteor.call('deleteImage',Meteor.user().profile.photo,function(err){
         if(err)return Materialize.toast(err.reason, 4000);
         Materialize.toast('foto eliminada', 4000);
       });
     },
+
+
+    'click a.delete-craftPhoto' : function(e){
+        Meteor.call('deleteCraftImage',Meteor.user().profile.craft.photo,function(err){
+          if(err)return Materialize.toast(err.reason, 4000);
+          Materialize.toast('foto eliminada', 4000);
+        });
+      },
 
     'mouseover div.img' : function(e){
       if(Meteor.user().profile.photo == 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png')return;
