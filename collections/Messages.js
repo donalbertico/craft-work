@@ -15,9 +15,6 @@ messages.allow({
 messages.schema = new SimpleSchema({
   user : {
     type : String,
-    autoValue : function(){
-      return this.userId;
-    },
     regEx: SimpleSchema.RegEx.Id
   },
   room:{
@@ -34,7 +31,7 @@ Meteor.methods({
     var reciver = Meteor.users.findOne(reciverId);
     if(!this.userId || !reciver)throw new Meteor.Error('no_user', 'there is no users');
     var room = Meteor.call('verifyRoom', this.userId, reciverId);
-    messages.insert({content : text, room : room});
+    messages.insert({content : text, room : room, user : this.userId});
   },
 
 	check : function(obj){

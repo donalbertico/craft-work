@@ -2,17 +2,16 @@
 	  <div id="modal" class="bottom-sheet">
         <div class="content">
           <div class="row">
-            <div>Mensaje para {{submiter}}</div>
-            <form class="col s12">
-              <div class="input-field col s12">
+            <form class="row new-message">
+              <div class="input-field col m8">
                   <textarea id="textarea" class="materialize-textarea"></textarea>
-                  <label for="mensaje">Textarea</label>
+                  <label for="mensaje">mensaje</label>
               </div>
+							<div class="col 3">
+								<button class="waves-effect waves-green btn" type="submit">Enviar</button>
+							</div>
             </form>
          </div>
-        </div>
-        <div class="footer">
-          <a class=" action waves-effect waves-green btn-flat">Enviar</a>
         </div>
     </div>
 </template>

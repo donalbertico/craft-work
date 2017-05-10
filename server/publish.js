@@ -13,3 +13,7 @@ Meteor.publish('rooms',function (){
 Meteor.publish('messages',function (){
 	return messages.find();
 });
+
+// Meteor.publish('rooms',function (){
+// 	return rooms.find({room : {users : Meteor.userId()} });
+// });
