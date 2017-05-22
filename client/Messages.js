@@ -46,6 +46,6 @@ Template.messages.helpers({
 Template.newMessage.events({
   'submit form.new-message' : function(e){
     e.preventDefault();
-    Meteor.call('createMessage',Router.current().params.id , $("#textarea").val());
+    Meteor.call('createMessage',Router.current().params.id , e.target.message.value);
   }
 })
