@@ -1,0 +1,234 @@
+<template name="userInfo">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjTF6xXTHgzP9UoIcq_abU1Gb8smcybbA&libraries=places&callback=initAutocomplete"
+    async defer></script>
+  <script type="text/javascript">
+    var placeSearch, autocomplete;
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),{types: ['(cities)'],componentRestrictions: {country: "ec"}});
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+    function fillInAddress() {
+      var place = autocomplete.getPlace();
+      if(!place.geometry)return document.getElementById('placeId').value = null;
+      document.getElementById('placeId').value = place.place_id;
+    }
+  </script>
+  <style >
+    .verified{
+      /*color : green*/
+    }
+    .card-icon {
+      position : absolute;
+      left: 1rem;
+    }
+    .card {
+      margin-top: 2rem;
+    }
+    div.craft-card .card-content {
+      margin-left: 3rem;
+    }
+    .card-action a.crafterInfoButton{
+      margin-left: 0.5rem;
+    }
+    .to-delete{
+      filter: blur(6px);
+    }
+    .icon-delete{
+      position: relative;
+      top : -2rem;
+      padding: 0px;
+      height: 0rem;
+    }
+    div.userPic {
+      height: 7rem;
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      margin: 0px
+    }
+    div.craft-img {
+      height: 14rem;
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      margin-bottom: 1rem;
+    }
+    form.user-info input{
+      margin-bottom: 0.5rem;
+    }
+    form.user-info{
+      padding: 1rem;
+    }
+    .file-field {
+      margin-bottom: 1rem;
+    }
+    div.verified{
+      margin-bottom: 0px;
+    }
+    div.options{
+      height: 80rem;
+    }
+    span.photo{
+      font-size: 86%;
+    }
+    div.craft-photo{
+      margin-top: -1rem;
+      margin-bottom: -1.5rem;
+    }
+    div.craft-photo div.upload-craftPhoto{
+      margin-top: -1.1rem;
+      height: 2.5rem;
+    }
+  </style>
+  <div class="row">
+      <div class="card white darken-1 col s12 m12 l7 xl6">
+        <div class="card-content user row">
+          <div class="col m9 s12">
+            <h4>Información de Usuario</h4>
+            <div class="file-field input-field row">
+               <div class="btn-flat col">
+                 <span >Cambiar Foto</span>
+                 <input  type="file" id="picInput" name="photo">
+               </div>
+               <div class="file-path-wrapper col" hidden>
+                 <input class="file-path validate" type="text">
+               </div>
+            </div>
+          </div>
+          <div class="col m3 s12 ">
+              <div class="userPic img" style="background-image : url('{{currentUser.profile.photo}}')"></div>
+              {{#if canDelete}}
+                <div class="icon-delete img">
+                  <i class="material-icons">delete</i>
+                </div>
+              {{/if}}
+              {{#if uploadProgress}}
+                <div class="progress">
+                  <div class="determinate" style="width: {{uploadProgress}}%"></div>
+                </div>
+              {{/if}}
+          </div>
+          <form id="userInfoForm" class="user-info">
+            <div class="row">
+              <div class="input-field col m12">
+                <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.name}}">
+                <label class="active" for="name">Nombre</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col m12">
+                <input id="lastName" type="text" class="validate" required name="lastName" value="{{currentUser.profile.lastName}}">
+                <label class="active" for="lastName">Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col m12">
+                <input id="telephone" type="tel" class="validate" name="telephone" value="{{currentUser.profile.telephone}}" pattern="[0-9]{1,10}">
+                <label class="active" for="telephone" data-error="solo números" data-success="correcto">Teléfono</label>
+              </div>
+            </div>
+            <button id="userInfoFormButton" hidden type="submit" name="action">Submit</button>
+            <div class="row verified">
+              {{#if email.verified}}
+              <span class="col verified light-green-text text-lighten-1">{{email.address}} está verificado <i class="material-icons">done</i></span>
+              {{else}}
+              <span class="col">{{email.address}}</span>
+              <span class="col">Tu correo electronico no esta verificado <a class="verify"><i class="material-icons">email</i></a></span>
+              {{/if}}
+            </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <a class="userInfoButton waves-effect waves-teal btn-flat">Actualizar</a>
+        </div>
+      </div>
+      <div class="switch col l12">
+        <span>Soy artesano</span>
+        <label>
+          No
+          <input class="switch" type="checkbox" checked="{{craftMan}}">
+          <span class="lever"></span>
+          Si
+        </label>
+      </div>
+      <div id="craft" class="card white craft-card col s12 m12 l7 xl6" >
+        <div class="card-content white darken-1">
+          <i class="card-icon small material-icons">work</i><h4>Informacion de Artesano</h4>
+          <form id="craftInfoForm">
+            <div class="row">
+              <div class="input-field ">
+                <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
+                <label class="active" for="name">Nombre artesanal / empresa</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <textarea id="description" type="text" class="materialize-textarea" required name="description" data-length="120" value="{{currentUser.profile.craft.description}}"></textarea>
+                <label class="active" for="description">Describelo</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
+                <label class="active" for="city">Ciudad</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
+                <label class="active" for="address">Direccion</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="movil" type="tel" class="validate" required name="movil" value="{{currentUser.profile.craft.movil}}" pattern="[0-9]{1,10}">
+                <label class="active" for="movil" data-error="solo números" data-success="correcto">Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="telephone" type="tel" class="validate" name="telephone" value="{{currentUser.profile.craft.telephone}}" pattern="[0-9]{1,10}">
+                <label class="active" for="telephone" data-error="solo números" data-success="correcto">Teléfono secundario</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field ">
+                <input id="webPage" type="tel" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
+                <label class="active" for="webPage">P@gina web</label>
+              </div>
+            </div>
+            <div class="row craft-photo">
+              <span class="ligth grey-text photo">Foto</span>
+              <div class="col s12 craft-img center-align" style="background-image : url('{{currentUser.profile.craft.photo}}')"></div>
+              {{#if uploadCraftProgress}}
+                <div class="progress class s12">
+                  <div class="determinate" style="width: {{uploadCraftProgress}}%"></div>
+                </div>
+              {{/if}}
+              <div class="row s12">
+                <div class="file-field input-field col s4">
+                   <div class="btn col upload-craftPhoto">
+                     <span>Cambiar</span>
+                     <input  type="file" id="craftPhotoInput" name="photo">
+                   </div>
+                   <div class="file-path-wrapper col" hidden>
+                     <input class="file-path validate" type="text">
+                   </div>
+                </div>
+                {{#if canDeleteCraft}}
+                  <a class="waves-effect waves-light orange darken-3 btn col s3 delete-craftPhoto">borrar</a>
+                {{/if}}
+              </div>
+            </div>
+            <input type="text" name="placeId" hidden id="placeId" class="validate" value="{{currentUser.profile.craft.placeId}}">
+            <button id="crafterInfoFormButton" hidden type="submit" name="action">Submit</button>
+          </form>
+        </div>
+        <div class="card-action">
+          <a class="crafterInfoButton waves-effect waves-teal btn-flat">Actualizar</a>
+        </div>
+      </div>
+  </div>
+</template>

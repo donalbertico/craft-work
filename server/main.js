@@ -12,6 +12,9 @@ Meteor.startup(() => {
       if (!fbProfile) {
           user.profile = {
             photo : "https://s3.us-east-2.amazonaws.com/craft-work/nouser.png",
+            craft : {
+              photo : "https://s3.us-east-2.amazonaws.com/craft-work/clem-onojeghuo-90396.jpg"
+            }
           };
           return user;
       }

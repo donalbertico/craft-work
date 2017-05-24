@@ -39,6 +39,14 @@
     div.hack{
       height:0px;
     }
+    span.unseen{
+      position: relative;
+      top: 1.2rem;
+      left: -0.5rem;
+    }
+    li.unseen{
+      margin-bottom: 0px!important;
+    }
   </style>
   <nav>
    <div class="nav-wrapper">
@@ -49,6 +57,7 @@
          <li>
           {{> accountButtonTemplate}}
          </li>
+         <li class="row unseen"><a href="/messages" ><i class="large material-icons col ">email</i>{{#if unSeenRooms}}<span class="new badge col unseen">{{unSeenRooms.length}}</span>{{/if}}</a></li>
        {{else}}
          <li><a href="#loginModal">Ingresar</a></li>
          <li><a href="/register">Registrarse</a></li>
@@ -60,6 +69,12 @@
        {{#if currentUser}}
          <li class="row side">
            {{> accountButtonTemplateSide}}
+         </li>
+         <li class="row unseen">
+           <a href="/messages" class="row">
+             <i class="large material-icons col left">email</i>
+             <div class="col">Mensajes{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}</div>
+           </a>
          </li>
        {{else}}
          <li><a href="#loginModal">Ingresar</a></li>

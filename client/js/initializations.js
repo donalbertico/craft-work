@@ -14,9 +14,18 @@ Template.accountButtonTemplate.onRendered(function(){
    $('.dropdown-button').dropdown();
 });
 
-Template.newMessage.onRendered(function(){
-    var scroller = $('#messagesDiv');
-    scroller.scrollTop(scroller.prop("scrollHeight"));
-    console.log(scroller.scrollHeight);
-    console.log(scroller.prop("scrollHeight"));
+function messagesGet(){
+  return messages.find();
+}
+
+Template.messages.onRendered(function(){
+  this.autorun(_.bind(function(){
+    var messages = messagesGet();
+    messages.forEach(function(message){});
+    Meteor.setTimeout(function(){
+      var scroller = $('#messagesDiv');
+      scroller.scrollTop(scroller.prop("scrollHeight"));
+      $('.message-card').tooltip({delay: 50});
+    }, 250);
+  },this));
 });

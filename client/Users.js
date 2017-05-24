@@ -17,12 +17,18 @@ const userProfileEmail = function(){
   return userProfile().emails[0].address;
 }
 
+const unSeenRooms = function(){
+  var current = Meteor.userId();
+  return rooms.find({$or : [{recivedA : current},{recivedB:current}]}).fetch();
+}
+
 Template.test.helpers({
   users : function(){
     return Meteor.users.find();
   }
 });
 
+Template.registerHelper('unSeenRooms',unSeenRooms);
 Template.registerHelper('currentUser',currentUser);
 Template.registerHelper('email',userEmail);
 Template.registerHelper('userProfile',userProfile);
