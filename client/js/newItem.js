@@ -32,6 +32,6 @@ Template.newItem.events({
   },
   'submit #postForm' : function(e){
     e.preventDefault();
-    console.log('enviado')
+    console.log();
   }
 });
