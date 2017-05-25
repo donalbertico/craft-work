@@ -2,3 +2,10 @@
 .card-action a{
   color : #263238 !important
 }
+div.main{
+  min-height: 66vh;
+}
+ul.autocomplete-content{
+  position: relative;
+  z-index: 1;
+}

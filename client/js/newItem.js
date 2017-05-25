@@ -1,14 +1,16 @@
-var labels = [];
-var labelsDep = new Tracker.Dependency;
-
-Template.newItem.onRendered(function(){
+Template.productFirstForm.onRendered(function(){
   $('.chips-autocomplete').material_chip({
     autocompleteOptions: {
       data: {
         'accesorios': null,
         'joyas': null,
         'ropa': null,
-        'camisetas': null
+        'camisetas': null,
+        'alimentos': null,
+        'bebidas' : null,
+        'muebles' : null,
+        'medicina' : null,
+        'cuidado personal' : null
       },
       limit: Infinity,
       minLength: 1
@@ -17,21 +19,28 @@ Template.newItem.onRendered(function(){
   });
 });
 
-Template.newItem.helpers({
+Template.productFirstForm.helpers({
   selectedLabels : function(){
     labelsDep.depend();
     return labels
   }
 });
 
-Template.newItem.events({
+Template.productFirstForm.events({
   'click a.btn' : function(e){
-    console.log('asdf',$('.chips-autocomplete')[0].textContent);
-    console.log('asdf',$('.chips-autocomplete')[0].textContent.split('close'));
+    var selectedLabels = $('.chips-autocomplete')[0].textContent.split('close');
+    selectedLabels.pop();
+    console.log('asdf',selectedLabels);
     $('.form-button').click();
   },
   'submit #postForm' : function(e){
     e.preventDefault();
     console.log();
+  }
+});
+
+Template.itemType.events({
+  'click a.btn-large' : function(e){
+    console.log(e);
   }
 });
