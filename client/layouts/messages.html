@@ -18,13 +18,27 @@
     div.main{
       min-height: 68vh;
     }
+    i.online{
+      background-color: none!important;
+      color: #9ccc65
+    }
   </style>
   <div class="row main">
     <div class="col m3 grey lighten-1 row">
       <div class="collection">
-        <i class="mdi mdi-octagon"></i>
-        {{#each userRooms}}
-          <a href="/messages/{{user._id}}" class="collection-item">{{#if unseen}}<span class="new badge"></span>{{/if}}<img src="{{user.profile.photo}}" class="circle user-room"> {{user.profile.name}} {{user.profile.lastName}}</a>
+          {{#each userRooms}}
+            <a href="/messages/{{user._id}}" class="collection-item">
+            {{#if unseen}}
+              <span class="new badge"></span>
+            {{/if}}
+              <img src="{{user.profile.photo}}" class="circle user-room">
+            {{user.profile.name}} {{user.profile.lastName}}
+            {{#if user.status.online}}
+              <i class="mdi mdi-octagon online"></i>
+            {{else}}
+              <i class="mdi mdi-octagon-outline "></i>
+            {{/if}}
+            </a>
         {{/each}}
       </div>
     </div>

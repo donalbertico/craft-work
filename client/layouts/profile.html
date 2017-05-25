@@ -35,6 +35,10 @@
     div.user-profile{
       margin-bottom: 0rem!important;
     }
+    i.online{
+      background-color: none!important;
+      color: #9ccc65 
+    }
   </style>
   <div class="row container">
       {{#if userProfile.profile.craft.name}}
@@ -87,7 +91,14 @@
   <div class="card white darken-1 col s12">
     <div class="card-content white small row user-profile">
       <div class="col m9 s12" >
-        <span class="col m12 card-title">{{userProfile.profile.name}}{{userProfile.profile.lastName}}</span>
+        <div class="row">
+          <span class="col card-title">{{userProfile.profile.name}}{{userProfile.profile.lastName}}</span>
+          {{#if userProfile.status.online}}
+            <i class="mdi mdi-octagon online"></i>
+          {{else}}
+            <i class="mdi mdi-octagon-outline"></i>
+          {{/if}}
+        </div>
         <span class="col m12">{{userProfileEmail}}</span>
         <span class="col m12 ligth">{{userProfile.profile.telephone}}</span>
       </div>

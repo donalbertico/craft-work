@@ -35,7 +35,9 @@ Template.messages.helpers({
       }else if(room.users[1]==Meteor.userId()){
         current['user'] = Meteor.users.findOne({_id: room.users[0]});
       }
+      console.log(Meteor.users.findOne({_id: room.users[1]}));
       if(room.recivedA == Meteor.userId() || room.recivedB == Meteor.userId())current['unseen'] = true;
+      console.log(current);
       userRooms.push(current);
     });
   	return userRooms;
