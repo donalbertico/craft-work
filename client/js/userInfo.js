@@ -105,7 +105,6 @@ Template.userInfo.events({
 
     'change input#picInput' : function(e){
       uploadComplete = false;
-      console.log('user');
       progBarDep.changed();
       uploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {

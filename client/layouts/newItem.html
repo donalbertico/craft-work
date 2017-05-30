@@ -1,45 +1,3 @@
-<template name="productFirstForm">
-  <style media="screen">
-    div.chips-autocomplete{
-      margin-left: 0.7rem!important;
-    }
-    div.card-content{
-      height: 30rem;
-    }
-    span.ligth{
-      color : #bdbdbd;
-    }
-    form.first-form{
-      margin-top: 2rem;
-    }
-  </style>
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Nuevo producto</span>
-          <form id="postForm" class="col s12 row first-form">
-            <span class="col s5 ligth">Etiqueta</span>
-            <div class="col s8 chips chips-autocomplete"></div>
-            <div class="input-field col s12">
-              <input id="name" type="text" class="validate " required>
-              <label for="name">Nombre</label>
-            </div>
-            <div class="input-field col s12">
-              <textarea id="description" type="text" class="validate materialize-textarea" required></textarea>
-              <label for="description">descripcion</label>
-            </div>
-            <button class="form-button" type="submit" name="button" hidden></button>
-          </form>
-        </div>
-        <div class="card-action text-white">
-          <a type="button" name="button" class="btn">deyum</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="itemType">
   <style media="screen">
     div.item-type-buttons{
@@ -49,18 +7,320 @@
   <div class="row main">
     <h5 class="col m12">Que tipo de publicación ofreces ?</h5>
     <div class="row col m8 item-type-buttons">
-      <a id="productBtn" class="waves-effect waves-light btn-large col m4" href="/newItem/p"><i class="material-icons left">redeem</i>Producto</a>
+      <a id="productBtn" class="waves-effect waves-light btn-large col m4" href="newItem/p"><i class="material-icons left">redeem</i>Producto</a>
       <div class="col m2"></div>
-      <a id="serviceBtn" class="waves-effect orange darken-3 btn-large col m4" href="/newItem/s"><i class="material-icons right">work</i>Servicio</a>
+      <a id="serviceBtn" class="waves-effect orange darken-3 btn-large col m4" href="newItem/s"><i class="material-icons right">work</i>Servicio</a>
+    </div>
+  </div>
+</template>
+
+
+<template name="newProductForm">
+  <style media="screen">
+    div.chips-autocomplete{
+      margin-left: 0.7rem!important;
+    }
+    div.card-content{
+      height: 30rem;
+    }
+    form.first-form{
+      margin-top: 2rem;
+    }
+    div.card-content{
+      margin-bottom: -3rem;
+    }
+    div.labels{
+      margin-left: -0.77rem!important
+    }
+    div.chips-autocomplete{
+      margin-right: -0.8rem
+    }
+  </style>
+  <div class="main row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Nuevo producto</span>
+          <form id="postForm" class="col s12 row first-form">
+            <span class="col s5 ligth">Etiqueta/as</span>
+            <div class="col s12 labels"><div class="chips chips-autocomplete"></div></div>
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate " required>
+              <label for="name">Nombre</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="description" type="text" class="validate materialize-textarea" required></textarea>
+              <label for="description">Descripcion</label>
+            </div>
+            <button class="form-button" type="submit" name="button" hidden></button>
+          </form>
+        </div>
+        <div class="card-action">
+          <a type="button" name="button" class="waves-effect waves-light btn-flat"><i class="material-icons right">label</i>Siguiente</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="productFirstForm">
+  <style media="screen">
+    div.chips-autocomplete{
+      margin-left: 0.7rem!important;
+    }
+    div.card-content{
+      height: 30rem;
+    }
+    form.first-form{
+      margin-top: 2rem;
+    }
+    div.card-content{
+      margin-bottom: -3rem;
+    }
+    div.labels{
+      margin-left: -0.77rem!important
+    }
+    div.chips-autocomplete{
+      margin-right: -0.8rem
+    }
+  </style>
+  <div class="main row">
+    <nav class="col m8 progress-nav">
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="breadcrumb">Informacion general</a>
+        </div>
+      </div>
+    </nav>
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content">
+          <form id="postForm" class="col s12 row first-form">
+            <span class="col s5 ligth">Etiqueta/as</span>
+            <div class="col s12 labels"><div class="chips chips-autocomplete"></div></div>
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate " required value="{{post.name}}">
+              <label for="name">Nombre</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="description" type="text" class="validate materialize-textarea" required value="{{post.description}}"></textarea>
+              <label for="description">Descripcion</label>
+            </div>
+            <button class="form-button" type="submit" name="button" hidden></button>
+          </form>
+        </div>
+        <div class="card-action">
+          <a type="button" name="button" class="waves-effect waves-light btn-flat"><i class="material-icons right">label</i>Siguiente</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <template name="productSecondForm">
-  <div class="row">
-    <span class="col s5 ligth">Valor</span>
-    <p class="range-field col s8">
-      <input type="range" id="test5" min="0" max="100" required value={{product.price}}/>
-    </p>
+  <style>
+    div.card-content{
+      min-height: 20rem;
+    }
+    nav.progress-nav{
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    span.price-label{
+      margin-top: 0.5rem!important;
+    }
+    span.onsale-span{
+      margin-top: 1rem;
+    }
+    span.percentage-label{
+      margin-top: 1.2rem;
+    }
+    h5.percentaje-indicator{
+      margin-top: 2rem;
+      margin-left: -2rem;
+    }
+    h5.value-indicator{
+      margin-top: 2rem;
+      margin-right: -1rem;
+    }
+    .spaced{
+      margin-bottom: 2rem!important;
+    }
+    div.shipping-cost{
+      margin-top: -2.5rem;
+    }
+    span.quantity-sale{
+      margin-top: 2rem;
+    }
+  </style>
+  <div class="main row">
+    <nav class="col m8 progress-nav">
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="breadcrumb">Informacion general</a>
+          <a href="#!" class="breadcrumb">Informacion del precio</a>
+        </div>
+      </div>
+    </nav>
+    <div class="col s12 m8">
+      <div class="card col m12">
+        <div class="card-content row">
+            <span class="card-title">Informacion del precio</span>
+          <form class="col m12 product-second-form">
+            <span class="ligth col m12">Precio unitario</span> 
+            <p class="range-field col m10 spaced">
+              <input class="price-range" type="range" min="0" name="price" max="300" value="{{currentPost.price}}"/>
+            </p>
+            <span class="col m1 price-label">${{currentPost.price}}</span>
+            <p class="col m12 spaced">
+              <input type="checkbox" id="negotiable" name="negotiable" checked="{{currentPost.negotiable}}"/>
+              <label for="negotiable">Es negociable</label>
+            </p>
+            <div class="input-field col s12 spaced">
+              <select id="saleSelect" name="onSale" value="{{currentPost.onSale}}">
+                <option value="0">No hay promocion</option>
+                <option value="1">En porcentaje</option>
+                <option value="2">En cantidad</option>
+              </select>
+              <label>Esta en promocion?</label>
+            </div>
+            <div id="percentageDiv"  hidden class="row animated col m12 spaced">
+              <div class="input-field col m3">
+                <input id="percentage" type="text" class="validate" name="percentage"  pattern="[0-9]{1,2}" value="{{currentPost.percentage}}">
+                <label for="percentage" data-error="el valor es incorrecto" data-success="correcto">porcentaje</label>
+              </div>
+              <h5 class="col percentaje-indicator">%</h5>
+              <span class="col m4 percentage-label">de descuento en compras mayores a</span>
+              <h5 class="col value-indicator">$</h5>
+              <div class="input-field col m3 row">
+                <input id="minValue" type="text" class="validate" name="minValue" pattern="[0-9]{1,4}" value="{{currentPost.percentage}}">
+                <label for="minValue" data-error="el valor es incorrecto" data-success="correcto">valor</label>
+              </div>
+            </div>
+            <div id="quantityDiv"  hidden class="row animated col m12 spaced">
+              <span class="col m2 quantity-sale">Paga</span>
+              <div class="input-field col m3">
+                  <select id="salePaySelect" name="salePay" value="{{currentPost.salePay}}" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                  <label>Cantidad</label>
+                </div>
+              <span class="col m2 quantity-sale">Lleva</span>
+              <div class="input-field col m3">
+                <select id="saleGetSelect" name="saleGet" value="{{currentPost.salePay}}">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                  </select>
+                  <label>Cantidad</label>
+              </div>
+            </div>
+            <span class="ligth col m12">Se realizan envios?</span>
+            <div class="switch col m12 spaced">
+              <label>
+                No
+                <input id="shippingInput" type="checkbox" checked="{{currentPost.shipping}}" name="shipping">
+                <span class="lever"></span>
+                Si
+              </label>
+            </div>
+            <div id="shippingDiv" class="col m12 animated">
+              <p class="col m6">
+                <input type="checkbox" id="shippingIncludedInput" name="shippingIncluded" checked="{{currentPost.shippingIncluded}}" />
+                <label for="shippingIncludedInput">El precio incluye envio</label>
+              </p>
+              <div id="shippingIncludedDiv" class="col m6 animated shipping-cost">
+                <div class="input-field">
+                  <input id="shippingCost" type="text" class="validate" name="shippingCost" pattern="[0-9]{1,4}" value="{{currentPost.shippingCost}}">
+                  <label for="shippingCost" data-error="el valor es incorrecto" data-success="correcto">Costo aproximado</label>
+                </div>
+              </div>
+            </div>
+            <button id="productSecondFormButton" type="submit" hidden></button>
+          </form>
+        </div>
+        <div class="card-action">
+          <a class="waves-effect waves-teal btn-flat next">Siguiente</a>
+          <a class="waves-effect waves-teal btn-flat">Atras</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="productThirdForm">
+  <div class="row main">
+    <nav class="col m8 progress-nav">
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="breadcrumb">Informacion general</a>
+          <a href="#!" class="breadcrumb">Informacion del precio</a>
+          <a href="#!" class="breadcrumb">Fotos</a>
+        </div>
+      </div>
+    </nav>
+    <div class="col m8 row">
+      <div class="card col m12">
+        <span class="card-title">Fotos</span>
+        <div class="card-content row">
+            {{#if currentPost.photos}}
+              <div class="carousel">
+                {{#each currentPost.photos}}
+                    <a class="carousel-item"><img src="{{this}}"></a>
+                {{/each}}
+              </div>
+            {{else}}
+              <h4>Debes subir almenos una foto</h4>
+            {{/if}}
+            <div class="row">
+              {{#if uploadProgress}}
+                <div class="progress">
+                  <div class="determinate" style="width: {{uploadProgress}}%"></div>
+                </div>
+              {{/if}}
+            </div>
+            <div class="row buttons">
+              <div class="file-field input-field row col m4 offset-m4">
+                 <div class="btn col">
+                   <span >Subir foto</span>
+                   <input  type="file" id="picInput" name="photo" class="photo-input">
+                 </div>
+                 <div class="file-path-wrapper col" hidden>
+                   <input class="file-path validate" type="text">
+                 </div>
+              </div>
+              {{#if currentPost.photos}}
+                <div class="row col m6 offset-m3">
+                  <a class="waves-effect waves-light orange darken-3 btn set-main col">establecer foto principal</a>
+                  <a class="waves-effect waves-light red btn delete col"><i class="material-icons right">delete</i>eliminar</a>
+                </div>
+              {{/if}}
+            </div>
+        </div>
+        <div class="card-action row">
+           <a class="waves-effect waves-light flat-btn col publish">Publicar</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

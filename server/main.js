@@ -76,6 +76,26 @@ Meteor.startup(() => {
       return 'carft-'+this.userId;
     }
   });
+
+  Slingshot.createDirective("postUpload", Slingshot.S3Storage, {
+    bucket: process.env.AWS_BUCKET,
+    acl: "public-read",
+    region : process.env.AWS_REGION,
+    AWSAccessKeyId : process.env.AWS_ID,
+    AWSSecretAccessKey : process.env.AWS_KEY,
+    allowedFileTypes: ["image/png", "image/jpeg"],
+    maxSize: 10 * 1024 * 1024,
+    authorize: function () {
+      if (!this.userId) {
+        var message = "Please login before posting files";
+        throw new Meteor.Error("Login Required", message);
+      }
+      return true;
+    },
+    key : function(file){
+      return file.name;
+    }
+  });
 });
 
 Meteor.methods({
@@ -133,5 +153,36 @@ Meteor.methods({
     var user = Meteor.users.findOne({'services.password.reset.token' : token});
     if(user) return false;
     return true;
+  },
+  deletePostImage : (post,img) =>{
+    var object = img.split(".com/")[1];
+    var s3 = new AWS.S3();
+    var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
+    try{
+      var result = deleteSync({Bucket: 'craft-work', Key : object});
+      if(result.DeleteMarker){
+        posts.update({_id: post},{ $pull : {
+          photos : img
+        }},function(err){
+          if(err)throw err;// Output error if registration fails
+        });
+      }
+    }catch(err){
+      return err;
+    }
+  },
+  deletePost : (post) => {
+    var photos = posts.findOne({_id : post}).photos;
+    var s3 = new AWS.S3();
+    var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
+    for(var photo in photos){
+      try{
+        var object = photos[photo].split(".com/")[1];
+        var result = deleteSync({Bucket: 'craft-work', Key : object});
+      }catch(err){
+        return err;
+      }
+    }
+    posts.remove(post);
   }
  });

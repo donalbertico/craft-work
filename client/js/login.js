@@ -24,7 +24,6 @@ Template.login.events({
     },
     'submit form.forgotPass' : function(e){
       e.preventDefault();
-      console.log('send');
       Accounts.forgotPassword({email : e.target.email.value}, function(err){
         if(err)return Materialize.toast(err.reason, 4000);
         Materialize.toast('Revisa tu bandeja', 4000);

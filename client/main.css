@@ -6,6 +6,20 @@ div.main{
   min-height: 66vh;
 }
 ul.autocomplete-content{
-  position: relative;
-  z-index: 1;
+  position: relative!important;
+  z-index: 1!important;
 }
+span.ligth{
+  color : #bdbdbd;
+}
+div.card-image {
+  width: 100%;
+  height: 23rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+div.craft-card{
+  padding :0!important;
+}
+	

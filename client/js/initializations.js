@@ -29,3 +29,51 @@ Template.messages.onRendered(function(){
     }, 250);
   },this));
 });
+
+Template.productSecondForm.onRendered(function(){
+  $('select').material_select();
+});
+
+Template.productThirdForm.onRendered(function(){   
+  $('.carousel').carousel();
+});
+
+Template.newProductForm.onRendered(function(){
+  $('.chips-autocomplete').material_chip({
+    autocompleteOptions: {
+      data: {
+        'accesorios': null,
+        'joyas': null,
+        'ropa': null,
+        'camisetas': null,
+        'alimentos': null,
+        'bebidas' : null,
+        'muebles' : null,
+        'medicina' : null,
+        'cuidado personal' : null
+      },
+      limit: Infinity,
+      minLength: 1
+    }
+  });
+});
+
+// Template.productFirstForm.onRendered(function(){
+//   $('.chips-autocomplete').material_chip({
+//     autocompleteOptions: {
+//       data: {
+//         'accesorios': null,
+//         'joyas': null,
+//         'ropa': null,
+//         'camisetas': null,
+//         'alimentos': null,
+//         'bebidas' : null,
+//         'muebles' : null,
+//         'medicina' : null,
+//         'cuidado personal' : null
+//       },
+//       limit: Infinity,
+//       minLength: 1
+//     }
+//   });
+// });

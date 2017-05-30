@@ -13,17 +13,17 @@ messages.allow({
 });
 
 messages.schema = new SimpleSchema({
-  user : {
-    type : String,
-    regEx: SimpleSchema.RegEx.Id
-  },
-  room:{
-    type: String,
-    regEx: SimpleSchema.RegEx.Id
-  },
-  content : {
-    type : String
-  },
+	user : {
+		type : String,
+		regEx: SimpleSchema.RegEx.Id
+	},
+	room:{
+		type: String,
+		regEx: SimpleSchema.RegEx.Id
+	},
+	content : {
+		type : String
+	},
 	createdAt : {
 		type : Date
 	},

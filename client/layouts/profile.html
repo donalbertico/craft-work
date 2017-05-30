@@ -9,16 +9,6 @@
     span.ligth{
       color : grey;
     }
-    div.craft-card{
-      padding :0!important;
-    }
-    div.card-image {
-      width: 100%;
-      height: 23rem;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-    }
     div.card-content h3{
       margin-top: -1rem;
     }
@@ -59,8 +49,7 @@
 
 <template name="craftProfile">
   <div class="card white darken-1 col s12 craft-card">
-    <div class="card-image" style="background-image : url('{{userProfile.profile.craft.photo}}')">
-    </div>
+    <div class="card-image" style="background-image : url('{{userProfile.profile.craft.photo}}')"></div>
     <div class="card-content">
       <h3>{{userProfile.profile.craft.name}}</h3>
       <h5>{{userProfile.profile.craft.city}}</h5>

@@ -14,6 +14,6 @@ Meteor.publish('messages',function (){
 	return messages.find();
 });
 
-// Meteor.publish('rooms',function (){
-// 	return rooms.find({room : {users : Meteor.userId()} });
-// });
+Meteor.publish('posts',function(){
+	return posts.find();
+});
