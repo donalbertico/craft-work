@@ -28,6 +28,10 @@ const userPosts = function(){
   return posts.find({user : Meteor.userId()}).fetch();
 };
 
+const checkOnSale = function(section,value){
+    return section == value;
+}
+
 Template.test.helpers({
   users : function(){
     return Meteor.users.find();
@@ -40,3 +44,4 @@ Template.registerHelper('email',userEmail);
 Template.registerHelper('userProfile',userProfile);
 Template.registerHelper('userProfileEmail',userProfileEmail);
 Template.registerHelper('userPosts',userPosts);
+Template.registerHelper('checkOnSale',checkOnSale);

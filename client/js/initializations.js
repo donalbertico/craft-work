@@ -34,7 +34,7 @@ Template.productSecondForm.onRendered(function(){
   $('select').material_select();
 });
 
-Template.productThirdForm.onRendered(function(){   
+Template.productThirdForm.onRendered(function(){
   $('.carousel').carousel();
 });
 
@@ -63,13 +63,9 @@ function postsGet(){
 }
 
 Template.post.onRendered(function(){
-  this.autorun(_.bind(function(){
-    var posts = postsGet();
-    posts.forEach(function(message){});
-    Meteor.setTimeout(function(){
-    $('.slider').slider(); 
-    }, 500);
-  },this));
+  Meteor.setTimeout(function(){
+  $('.slider').slider();
+}, 500);
 });
 
 // Template.productFirstForm.onRendered(function(){

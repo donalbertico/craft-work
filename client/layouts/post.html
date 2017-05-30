@@ -9,12 +9,19 @@
 		div.card-img{
 			height: 10rem;
 		}
-		img.circle{
+		img.craft-avatar{
 			height: 5.7rem;
 			width: 7rem;
 		}
 		i.mdi-octagon{
 			margin-top: 2rem;
+		}
+		div.slider{
+			margin-top: 1rem;
+			height: 38rem!important;
+		}
+		div.slider ul.slides{
+			height: 93%!important;
 		}
 	</style>
 	<div class="row main">
@@ -70,10 +77,9 @@
 	  	</div>
 
 	  	<div class="card col m11 row vendor-card">
-		    <!-- <div class="card-image" style="background-image : url('{{owner.profile.craft.photo}}')"></div> -->
 		    <div class="card-content">
 		      <div class="row">
-				  <img src="{{owner.profile.craft.photo}}" class="circle col">	      	
+				  	<img src="{{owner.profile.craft.photo}}" class="circle col craft-avatar">
 			      <h4 class="col">{{owner.profile.craft.name}}</h4>
            	      {{#if owner.status.online}}
 		            <i class="mdi mdi-octagon online"></i>
@@ -97,7 +103,7 @@
 				<div class="m12">
 					<i class="material-icons">language</i>
 					<span class="">{{owner.profile.craft.webPage}}</span>
-				</div>				      
+				</div>
 		      {{/if}}
 		    </div>
 	  		<div class="card-action">

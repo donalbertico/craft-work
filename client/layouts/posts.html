@@ -8,19 +8,29 @@
 	    }
 	    div.on-sale{
 	    	position: relative;
-			top: -0.2rem;
-			left: 7.6rem;
-	    	width: 0; 
-	    	height: 0; 
-	    	border-top: 10rem solid #cddc39 ; 
+				top: -0.2rem;
+				left: 10vw;
+	    	width: 0;
+	    	height: 0;
+	    	border-top: 10rem solid #cddc39 ;
 	    	border-left: 10rem solid transparent;
 	    }
-	    h4.promo{
-	    	position: relative;
-			top: -10rem;
-			left: -5.6rem;
-			width: 5rem;
-	    }
+			h4.promo{
+			  position: relative;
+			  top: -10rem;
+			  left: -5.6rem;
+			  width: 5rem;
+			}
+			span.small{
+			  font-size: 10px;
+			  margin-left: -0.7rem;
+			  width: 7rem;
+			}
+			div.promo{
+			  position: relative;
+			  top: -10rem;
+			  right: 5rem;
+			}
 	</style>
 	<div class="main row">
 		<h4>Mis publicaciones</h4>
@@ -33,9 +43,11 @@
 						</div>
 					{{/if}}
 					{{#if checkOnSale onSale 1}}
-						<div class="on-sale row white-text">
-							<h5 class="col 9">{{percentage}}%</h5>
-							<span class="col 12">en compras mayaores a ${{minValue}}</span>
+						<div class="on-sale row">
+							<div class="row promo">
+								<h5 class="col 9 promo">{{percentage}}%</h5>
+								<span class="col 12 small">en compras mayaores a ${{minValue}}</span>
+							</div>
 						</div>
 					{{/if}}
 				</div>
@@ -53,16 +65,16 @@
 					</div>
 					<span class="ligth col m12">{{description}}</span>
 					{{#if negotiable}}
-						<span class="col m12">Es negoaciable</span>
+						<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
 					{{/if}}
 					{{#if shipping}}
 						{{#if shippingIncluded}}
-							<span class="col m12">Envio incluido</span>
+							<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
 						{{else}}
-							<span class="col m12">Precio del envio ${{shippingCost}}</span>
+							<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
 						{{/if}}
 					{{else}}
-						<span class="col">No se realizan envios</span>
+						<span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
 					{{/if}}
 				</div>
 				<div class="card-action">
