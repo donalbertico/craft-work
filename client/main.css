@@ -22,4 +22,10 @@ div.card-image {
 div.craft-card{
   padding :0!important;
 }
-	
+ul.indicators li.active{
+  background-color: #e57373!important;
+}
+i.online{
+  background-color: none!important;
+  color: #9ccc65 
+}

@@ -1,0 +1,111 @@
+<template name="post">
+	<style>
+		h6.promo-text{
+			margin-top : 2rem;
+		}
+		div.vendor-card{
+			padding : 0px!important;
+		}
+		div.card-img{
+			height: 10rem;
+		}
+		img.circle{
+			height: 5.7rem;
+			width: 7rem;
+		}
+		i.mdi-octagon{
+			margin-top: 2rem;
+		}
+	</style>
+	<div class="row main">
+	  <div class="col m6">
+		  <div class="slider">
+		    <ul class="slides">
+		      {{#each post.photos}}
+	  		      <li>
+			        <img src="{{this}}">
+			      </li>
+		      {{/each}}
+		    </ul>
+		  </div>
+	  </div>
+	  <div class="col m6 row">
+	  	{{#if checkOnSale post.onSale 1}}
+	  		<div class="card col m11 blue-grey darken-1 white-text row">
+	  			<span class="card-title col m11"><i class="mdi mdi-gift medium left"></i>Promocion:</span>
+	  			<div class="row"><h4 class="col">{{post.percentage}}%</h4><h6 class="col promo-text">de descuento en compras mayores a</h6><h4 class="col">${{post.minValue}}</h4></div>
+	  		</div>
+	  	{{/if}}
+	  	{{#if checkOnSale post.onSale 2}}
+	  		 <div class="card col m11 blue-grey darken-1 white-text row">
+	  			<span class="card-title col m11"><i class="mdi mdi-gift medium left"></i>Promocion:</span>
+	  			<div class="row"><h6 class="col promo-text">Paga</h6><h4 class="col">{{post.salePay}}</h4><h6 class="col promo-text">lleva</h6><h4 class="col">{{post.saleGet}}</h4></div>
+	  		</div>
+	  	{{/if}}
+	  	<div class="card col m11 row">
+	  		<div class="card-content ">
+			  	<h4 class="col">{{post.name}}</h4>
+			  		{{#each post.labels}}
+			  			<div class="chip col">{{this}}</div>
+			  		{{/each}}
+			  	<span class="col m12">{{post.description}}</span>
+				<div class="divider col m12 row"></div>
+				<div class="section col m12 row">
+				<h5>Precio</h5>
+				<h6 class="col"><i class="material-icons left">payment</i>${{post.price}}</h6><span class="col">c/u</span>
+				{{#if post.negotiable}}
+					<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
+				{{/if}}
+				{{#if post.shipping}}
+					{{#if post.shippingIncluded}}
+						<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+					{{else}}
+						<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{post.shippingCost}}</span>
+					{{/if}}
+				{{else}}
+					<span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
+				{{/if}}
+				</div>
+	  		</div>
+	  	</div>
+
+	  	<div class="card col m11 row vendor-card">
+		    <!-- <div class="card-image" style="background-image : url('{{owner.profile.craft.photo}}')"></div> -->
+		    <div class="card-content">
+		      <div class="row">
+				  <img src="{{owner.profile.craft.photo}}" class="circle col">	      	
+			      <h4 class="col">{{owner.profile.craft.name}}</h4>
+           	      {{#if owner.status.online}}
+		            <i class="mdi mdi-octagon online"></i>
+		          {{else}}
+		            <i class="mdi mdi-octagon-outline"></i>
+		          {{/if}}
+		      </div>
+		      <h5>{{owner.profile.craft.city}}</h5>
+		      <h6>{{owner.profile.craft.address}}</h6>
+		      <div class="m12">
+		        <i class="material-icons">call</i>
+		        <span class="">{{owner.profile.craft.movil}}</span>
+		      </div>
+		      {{#if owner.profile.craft.telephone}}
+		        <div class="m12">
+		          <i class="material-icons">stay_current_portrait</i>
+		          <span class="">{{owner.profile.craft.telephone}}</span>
+		        </div>
+		      {{/if}}
+		      {{#if owner.profile.craft.webPage}}
+				<div class="m12">
+					<i class="material-icons">language</i>
+					<span class="">{{owner.profile.craft.webPage}}</span>
+				</div>				      
+		      {{/if}}
+		    </div>
+	  		<div class="card-action">
+	  			<a class="btn-flat" href="/user/{{owner._id}}">Perfil del vendedor</a>
+	  			<a class="btn-flat" href="/messages/{{owner._id}}">Enviar mensaje</a>
+	  		</div>
+	  	</div>
+
+	  </div>
+	</div>
+</template>

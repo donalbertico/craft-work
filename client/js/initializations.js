@@ -58,6 +58,20 @@ Template.newProductForm.onRendered(function(){
   });
 });
 
+function postsGet(){
+  return posts.find();
+}
+
+Template.post.onRendered(function(){
+  this.autorun(_.bind(function(){
+    var posts = postsGet();
+    posts.forEach(function(message){});
+    Meteor.setTimeout(function(){
+    $('.slider').slider(); 
+    }, 500);
+  },this));
+});
+
 // Template.productFirstForm.onRendered(function(){
 //   $('.chips-autocomplete').material_chip({
 //     autocompleteOptions: {

@@ -93,10 +93,20 @@ Meteor.startup(() => {
       return true;
     },
     key : function(file){
-      return file.name;
+      return randomString()+'-'+file.name;
     }
   });
 });
+
+var randomString = ()=>{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 3; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text+'creaft';
+}
 
 Meteor.methods({
   sendVerificationMail :  () => {
@@ -135,7 +145,7 @@ Meteor.methods({
   deleteCraftImage : (img) => {
     var object = img.split(".com/")[1];
     var s3 = new AWS.S3();
-    var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
+    var deleteSync= Meteor.wrapAsync(s3.deleteObject,s3);
     try{
       var result = deleteSync({Bucket: 'craft-work', Key : object});
       if(result.DeleteMarker){
