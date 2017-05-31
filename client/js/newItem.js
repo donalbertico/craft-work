@@ -180,6 +180,9 @@ Template.productThirdForm.events({
   'change input.photo-input' : function(e){
       uploadComplete = false;
       progBarDep.changed();
+      if(auxArray.length == 5){
+        return Materialize.toast('has llegado al limite de fotos',4000);
+      }
       var self = this;
       uploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {
