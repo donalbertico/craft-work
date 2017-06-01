@@ -1,6 +1,11 @@
 Template.posts.helpers({
-	checkOnSale : function(section,value){
-		return section == value;
+	noProducts : function(){
+		if(posts.find({type : 'p' }).fetch().length != 0) return false;
+		return true;
+	},
+	noServices : function(){
+		if(posts.find({type : 's' }).fetch().length != 0) return false;
+		return true;
 	}
 });
 

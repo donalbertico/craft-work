@@ -22,10 +22,16 @@ const unSeenRooms = function(){
   return rooms.find({$or : [{recivedA : current},{recivedB:current}]}).fetch();
 };
 
-const userPosts = function(){
+const userServices = function(){
   console.log('la notash');
-  console.log(posts.find({user : Meteor.userId()}).fetch());
-  return posts.find({user : Meteor.userId()}).fetch();
+  console.log(posts.find({type : 's' }).fetch());
+  return posts.find({type : 's' });
+};
+
+const userProducts = function(){
+  console.log('la notash');
+  console.log(posts.find({type : 'p' }).fetch());
+  return posts.find({type : 'p' });
 };
 
 const checkOnSale = function(section,value){
@@ -43,5 +49,6 @@ Template.registerHelper('currentUser',currentUser);
 Template.registerHelper('email',userEmail);
 Template.registerHelper('userProfile',userProfile);
 Template.registerHelper('userProfileEmail',userProfileEmail);
-Template.registerHelper('userPosts',userPosts);
+Template.registerHelper('userProducts',userProducts);
+Template.registerHelper('userServices',userServices);
 Template.registerHelper('checkOnSale',checkOnSale);

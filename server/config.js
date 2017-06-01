@@ -21,4 +21,9 @@ Meteor.startup(() => {
       appId: process.env.FACEBOOK_ID,
       secret: process.env.FACEBOOK_SECRET
   });
+
+  posts._ensureIndex({
+    'name': 'text',
+    'description' : 'text'
+  });
 });

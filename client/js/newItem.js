@@ -1,21 +1,24 @@
 var selectedLabels;
 var postDep = new Tracker.Dependency;
 var currentPost;
-var uploader = new Slingshot.Upload("postUpload");
+var uploader = new Slingshot.Upload('postUpload');
 var progBarDep = new Tracker.Dependency;
 var auxdep = new Tracker.Dependency;
 var uploadComplete = false;
 var auxArray;
-var self = this;
 
-Template.newProductForm.helpers({
+Template.newPostForm.helpers({
   selectedLabels : function(){
     labelsDep.depend();
     return labels
+  },
+  isProduct : function(){
+    if(Router.current().params.type == 'p')return true;
+    return false;
   }
 });
 
-Template.newProductForm.events({
+Template.newPostForm.events({
   'click a.btn-flat' : function(e){
     var autcomplete = $('.chips-autocomplete');
     selectedLabels = autcomplete[0].textContent.split('close');
@@ -29,8 +32,13 @@ Template.newProductForm.events({
   'submit #postForm' : function(e){
     var form = e.target;
     e.preventDefault();
-    var newPost = posts.insert({name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId()});
-    Router.go('/account/product/'+newPost+'/priceInfo');
+    if(Router.current().params.type == 'p'){
+      var newPost = posts.insert({type : 'p',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date()});
+      Router.go('/account/product/'+newPost+'/priceInfo');
+    }else{
+      var newPost = posts.insert({type : 's',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date()});
+      Router.go('/account/service/'+newPost+'/priceInfo');
+    }
   }
 });
 
@@ -60,7 +68,6 @@ Template.productFirstForm.onRendered(function(){
     for(var label in labels){
       selectedLabels.push({tag : labels[label]});
     };
-    console.log('yeyeey',selectedLabels);
     $('.chips-autocomplete').material_chip({
       autocompleteOptions: {
         data: {
@@ -136,7 +143,6 @@ Template.productSecondForm.events({
         if(parseInt(form.saleGet.value) <= parseInt(form.salePay.value))return Materialize.toast('La catnidad que pagas no puede ser mayor o igual a la que llevas',4000);
       break;
     };
-    console.log(form.saleGet.value,form.salePay.value);
     if(form.shipping.checked&&!form.shippingIncluded.checked&&!form.shippingCost.value)return Materialize.toast('Debes proveer un costo de envio aproximado',4000);
     posts.update({_id : currentPost._id},{$set :
       { price : form.price.value,
@@ -161,7 +167,7 @@ Template.productThirdForm.onRendered(function(){
     auxArray = currentPost.photos.slice()
   }else{
     auxArray = [];
-  } 
+  }
 });
 
 Template.productThirdForm.helpers({
@@ -174,6 +180,10 @@ Template.productThirdForm.helpers({
     if(uploadComplete)return false;
     return Math.round(uploader.progress() * 100);
   },
+  isProduct : function(){
+    if(this.post.type == 'p')return true;
+    return false;
+  }
 });
 
 Template.productThirdForm.events({
@@ -218,12 +228,12 @@ Template.productThirdForm.events({
     var aux = auxArray[0];
     auxArray[0] = auxArray[index];
     auxArray[index] = aux;
-    posts.update({_id:currentPost._id},{$set : { photos : auxArray}});
+    posts.update({_id:currentPost._id},{$set : { photos : auxArray }});
     setCurrentPostPhotos(this.post);
   },
   'click a.publish' : function(e){
     if(this.post.photos && this.post.photos.length > 0) {
-      posts.update({_id : this.post._id},{ $set : {publish : true}});
+      posts.update({_id : this.post._id},{ $set : {publish : true , link : $('#link')[0].value, link1: $('#link1')[0].value}});
       return Router.go('/account/posts');
     }
     Materialize.toast('Debes incluir almenos una foto',4000);
@@ -233,13 +243,13 @@ Template.productThirdForm.events({
 setCurrentPostPhotos = function(post){
   post.photos = [];
   auxdep.changed();
-    setTimeout(function(){
-  $('.carousel').carousel();
+  setTimeout(function(){
+    $('.carousel').carousel();
   },3000);
   setTimeout(function(){
-  post.photos = auxArray.slice();
-  auxdep.changed();
-  $('.carousel').carousel();
+    post.photos = auxArray.slice();
+    auxdep.changed();
+    $('.carousel').carousel();
   },1000);
 };
 
@@ -249,7 +259,7 @@ getSelectedPhotoIndex = function(){
   for(var item in items){
     if(items[item].className == 'carousel-item active')return index;
     index++;
-  } 
+  }
 };
 
 computeOnSaleSection = function(onSale){
@@ -261,7 +271,7 @@ computeOnSaleSection = function(onSale){
         percentageDiv.addClass('bounceOutLeft');
         quantityDiv.removeClass('bounceInLeft');
         quantityDiv.addClass('bounceOutLeft');
-        setTimeout(function(){ 
+        setTimeout(function(){
           percentageDiv.hide();
           quantityDiv.hide();
         }, 1000);
@@ -272,7 +282,7 @@ computeOnSaleSection = function(onSale){
         percentageDiv.addClass('bounceInLeft');
         quantityDiv.removeClass('bounceInLeft');
         quantityDiv.addClass('bounceOutLeft');
-        setTimeout(function(){ 
+        setTimeout(function(){
           quantityDiv.hide();
         }, 500);
       break;
@@ -282,7 +292,7 @@ computeOnSaleSection = function(onSale){
         quantityDiv.addClass('bounceInLeft');
         percentageDiv.removeClass('bounceInLeft');
         percentageDiv.addClass('bounceOutLeft');
-        setTimeout(function(){ 
+        setTimeout(function(){
           percentageDiv.hide();
         }, 500);
       break;
@@ -299,7 +309,7 @@ computeShippingDiv = function(shipping){
   }else{
     shippingDiv.removeClass('bounceInLeft');
     shippingDiv.addClass('bounceOutLeft');
-    setTimeout(function(){ 
+    setTimeout(function(){
       shippingDiv.hide();
     }, 1000);
   }
@@ -310,7 +320,7 @@ computeShippingIncludedDiv = function(shipping){
   if(shipping){
     shippingIncludedDiv.removeClass('bounceInLeft');
     shippingIncludedDiv.addClass('bounceOutLeft');
-    setTimeout(function(){ 
+    setTimeout(function(){
       shippingIncludedDiv.hide();
     }, 1000);
   }else{

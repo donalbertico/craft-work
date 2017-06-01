@@ -6,15 +6,16 @@ div.main{
   min-height: 66vh;
 }
 ul.autocomplete-content{
-  position: relative!important;
-  z-index: 1!important;
+  position: absolute;
+  width: 80%;
+  z-index: 10!important;
 }
 span.ligth{
   color : #bdbdbd;
 }
 div.card-image {
   width: 100%;
-  height: 23rem;
+  height: 17rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -28,4 +29,61 @@ ul.indicators li.active{
 i.online{
   background-color: none!important;
   color: #9ccc65
+}
+div.on-sale{
+  margin-right: -0.2vw;
+  border-top: 10rem solid #cddc39 ;
+  border-left: 10rem solid transparent;
+  width: 0;
+  height: 0;
+}
+.ribbon {
+  width: 11rem;
+  height: 12rem;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: none;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 17rem;
+  padding: 15px 0;
+  background-color: #00bfa5;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+  height: 4.5rem;
+}
+/* top right*/
+.ribbon-top-right {
+  top: -10px;
+  right: -10px;
+}
+.ribbon-top-right::before,
+.ribbon-top-right::after {
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.ribbon-top-right::before {
+  top: 0;
+  left: 0;
+}
+.ribbon-top-right::after {
+  bottom: 0;
+  right: 0;
+}
+.ribbon-top-right span {
+  left: -1rem;
+  top: 2rem;
+  transform: rotate(45deg);
 }

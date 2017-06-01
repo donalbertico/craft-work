@@ -165,7 +165,7 @@ Meteor.methods({
     return true;
   },
   deletePostImage : (post,img) =>{
-    var object = img.split(".com/")[1];
+    var object = img.split('.com/')[1];
     var s3 = new AWS.S3();
     var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
     try{
@@ -187,12 +187,17 @@ Meteor.methods({
     var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
     for(var photo in photos){
       try{
-        var object = photos[photo].split(".com/")[1];
+        var object = photos[photo].split('.com/')[1];
         var result = deleteSync({Bucket: 'craft-work', Key : object});
       }catch(err){
         return err;
       }
     }
     posts.remove(post);
+  },
+  search : (criteria) => {
+    var results = posts.find({$text : {$search : criteria} , publish : true});
+    console.log(results.fetch());
+    return 'hola';
   }
  });

@@ -1,0 +1,198 @@
+<template name="search">
+  <style>
+    nav.search{
+      margin-top: 1rem;
+    }
+    div.filter-buttons{
+      margin-bottom: 0px!important;
+    }
+    div.post-card{
+      height: 32rem;
+      margin-bottom: 4rem!important;
+    }
+  </style>
+  <div class="main row">
+    <div class="row col m3 grey lighten-1">
+      <div class="card row col m12">
+        <div class="card-content">
+          <form class="filters-form" action="index.html" method="post">
+            <span class="card-title m12">Filtrar</span>
+            <div class="input-field col s12">
+              <select id="typeSelect" value="{{query.type}}" name="type">
+                <option value="0">Todo</option>
+                <option value="1">Productos</option>
+                <option value="2">Servicio</option>
+              </select>
+              <label>Tipo</label>
+            </div>
+            <span>Etiquetas</span>
+            <div class="chips chips-autocomplete"></div>
+            <p>
+              <input type="checkbox" id="onSaleCheck" name="onSale" checked="{{query.onSale}}"/>
+              <label for="onSaleCheck">Solo promociones</label>
+            </p>
+            <p>
+              <input type="checkbox" id="shippingCheck" name="shipping" checked="{{query.shipping}}"/>
+              <label for="shippingCheck">Envio incluido</label>
+            </p>
+            <button type="submit" class="filters-form-button" hidden></button>
+          </form>
+        </div>
+        <div class="card-action row filter-buttons">
+          <a class="btn-flat filters-search col">Buscar</a>
+          <a class="btn-flat clear col">Limpiar</a>
+        </div>
+      </div>
+    </div>
+    <div class="col m9 row">
+      <div class="col m10">
+        <nav class="search">
+          <div class="nav-wrapper row">
+            <form class="search-form">
+              <div class="input-field">
+                <input id="search" type="search" name="searchInput" required placeholder="busca lo que sea que necesites. Ej:reparacion de muebles">
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+              <button type="submit" hidden name="button"></button>
+            </form>
+          </div>
+        </nav>
+      </div>
+      <div class="col m12 row">
+        {{#if noResults}}
+          <h5 class="col m10"> No se encontrar resultados, busca denuevo...</h5>
+        {{else}}
+          <h6 class="col m10"> Resultados de {{query.criteria}}</h6>
+        {{/if}}
+        {{#each lastSearch}}
+          <div class="row col m4 post-card">
+            {{> postCard post=this}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="postCard">
+  <style>
+    span.description {
+      margin-bottom: 1rem;
+    }
+    h4.promo{
+      position: relative;
+      top: -10rem;
+      left: -5.6rem;
+      width: 5rem;
+    }
+    span.small{
+      font-size: 10px;
+      margin-left: 0.1rem;
+      width: 7rem;
+      margin-top: -0.6rem;
+    }
+    div.promo{
+      position: relative;
+      top: -10rem;
+      right: 5rem;
+    }
+    a.post{
+      color: inherit;
+    }
+    h5.ribbon-header{
+      position: relative;
+      top: -0.3rem;
+      left: -1rem;
+    }
+    div.ribbon-header{
+      position: relative;
+      width: 9rem;
+      left: 3.5rem;
+      font-size: larger;
+    }
+    div.small-promo{
+      font-size: x-small;
+    }
+    span.post-type{
+      font-size: 0.6rem;
+      font-weight: bold;
+    }
+    div.labels{
+      margin-top: -1rem;
+    }
+    .align-pay-forms{
+      margin-left: 0.3rem!important;
+      margin-right: 1.3rem!important;
+    }
+    h5.name{
+      margin-top: 0;
+    }div.post-content{
+      margin-bottom: 0px!important;
+    }
+  </style>
+  <a class="post" href="/post/{{post._id}}">
+    <div class="card col m12 craft-card">
+      <div class="card-image" style="background-image : url('{{post.photos.[0]}}')">
+        {{#if checkOnSale post.onSale 2}}
+            <div class="ribbon ribbon-top-right"><span><h5 class="ribbon-header">{{post.saleGet}} * {{post.salePay}}</h5></span></div>
+        {{/if}}
+        {{#if checkOnSale post.onSale 1}}
+          <div class="ribbon ribbon-top-right row">
+            <span>
+              <div class="ribbon-header">
+                  {{post.percentage}}%
+              </div>
+              <div class="small-promo">
+                en compras mayaores a ${{post.minValue}}
+              </div>
+            </span>
+          </div>
+        {{/if}}
+      </div>
+      <div class="card-content row post-content">
+        {{#if checkOnSale post.type 's'}}
+          <h5 class="col m12 name row">{{post.name}}
+              <span class="post-type  yellow accent-3">servicio</span>
+          </h5>
+        {{else}}
+          <div class="col m12 row">
+            <h5 class="col m10 name">{{post.name}}
+                <span class="post-type  yellow accent-3">producto</span>
+            </h5>
+            <h5 class="col m2">${{post.price}}</h5>
+          </div>
+        {{/if}}
+        <div class="col m12 row labels">
+          {{#each post.labels}}
+           <div class="chip col">
+              {{this}}
+            </div>
+          {{/each}}
+        </div>
+        {{#if checkOnSale post.paymentType 0}}
+          <span>Pago por horas {{paymentFee}}</span>
+        {{/if}}
+        {{#if checkOnSale post.paymentType 1}}
+          <span class="col m12"><i class="mdi mdi-square-inc-cash left align-pay-forms"></i>Por contrato</span>
+        {{/if}}
+        {{#if checkOnSale post.paymentType 2}}
+          <span>Otro metodo de pago</span>
+        {{/if}}
+        <!-- <span class="ligth col m12 description">{{post.description}}</span> -->
+        {{#if post.negotiable}}
+          <span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
+        {{/if}}
+        <!-- {{#if post.shipping}}
+          {{#if post.shippingIncluded}}
+            <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+          {{else}}
+            <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{post.shippingCost}}</span>
+          {{/if}}
+        {{else}}
+          <span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
+        {{/if}} -->
+      </div>
+    </div>
+  </a>
+</template>

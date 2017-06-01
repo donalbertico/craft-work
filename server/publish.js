@@ -14,6 +14,23 @@ Meteor.publish('messages',function (){
 	return messages.find();
 });
 
-Meteor.publish('posts',function(){
-	return posts.find();
+Meteor.publish('userProfPosts',(id) => {
+	return posts.find({user : id, publish : true});
+});
+
+Meteor.publish('userPosts',function(){
+	return posts.find({user : this.userId});
+});
+
+Meteor.publish('post',(id)=>{
+	return posts.find({_id : id});
+});
+
+Meteor.publish('postSearch',(criteria)=>{
+  if(!criteria)return [];
+  return posts.find({$text : {$search : criteria} , publish : true});
+});
+
+Meteor.publish('lastPosts',()=>{
+  return posts.find({publish : true}, {sort: {$natural : -1}, limit: 3 });
 });

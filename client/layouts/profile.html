@@ -29,35 +29,6 @@
       background-color: none!important;
       color: #9ccc65
     }
-    h4.promo{
-      position: relative;
-      top: -10rem;
-      left: -5.6rem;
-      width: 5rem;
-    }
-    span.small{
-      font-size: 10px;
-      margin-left: 0.1rem;
-      width: 7rem;
-      margin-top: -0.6rem;
-    }
-    div.promo{
-      position: relative;
-      top: -10rem;
-      right: 5rem;
-    }
-    div.on-sale{
-      position: relative;
-      top: -0.2rem;
-      left: 22vw;
-      width: 0;
-      height: 0;
-      border-top: 10rem solid #cddc39 ;
-      border-left: 10rem solid transparent;
-    }
-    a.post{
-      color: inherit;
-    }
   </style>
   <div class="row container">
       {{#if userProfile.profile.craft.name}}
@@ -65,52 +36,7 @@
           <h4>Productos/Servicios</h4>
           <div class="col m12 row">
             {{#each posts}}
-              <a class="post" href="/post/{{_id}}">
-                <div class="card col m12 craft-card">
-                  <div class="card-image" style="background-image : url('{{photos.[0]}}')">
-                    {{#if checkOnSale onSale 2}}
-                      <div class="on-sale row">
-                        <h4 class="promo">{{saleGet}} * {{salePay}}</h4>
-                      </div>
-                    {{/if}}
-                    {{#if checkOnSale onSale 1}}
-                      <div class="on-sale row">
-                        <div class="row promo">
-                          <h5 class="col 9 promo">{{percentage}}%</h5>
-                          <span class="col 12 small">en compras mayaores a ${{minValue}}</span>
-                        </div>
-                      </div>
-                    {{/if}}
-                  </div>
-                  <div class="card-content row">
-                    <div class="col m12 row main-info">
-                      <h4 class="col m6">{{name}}</h4>
-                      <h5 class="col m3 offset-m3">${{price}}</h5>
-                    </div>
-                    <div class="col m12 row">
-                      {{#each labels}}
-                       <div class="chip col">
-                          {{this}}
-                        </div>
-                      {{/each}}
-                    </div>
-                    <span class="ligth col m12">{{description}}</span>
-                    {{#if negotiable}}
-                      <span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
-                    {{/if}}
-                    {{#if shipping}}
-                      {{#if shippingIncluded}}
-                        <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
-                      {{else}}
-                        <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
-                      {{/if}}
-                    {{else}}
-                      <span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
-                    {{/if}}
-                  </div>
-                </div>
-              </a>
-
+              {{> postCard post=this}}
             {{/each}}
           </div>
         </div>

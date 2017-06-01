@@ -15,13 +15,10 @@
 </template>
 
 
-<template name="newProductForm">
+<template name="newPostForm">
   <style media="screen">
     div.chips-autocomplete{
       margin-left: 0.7rem!important;
-    }
-    div.card-content{
-      height: 30rem;
     }
     form.first-form{
       margin-top: 2rem;
@@ -35,12 +32,19 @@
     div.chips-autocomplete{
       margin-right: -0.8rem
     }
+    div.card-action a.btn-flat{
+      z-index: 5;
+    }
   </style>
   <div class="main row">
     <div class="col s12 m6">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Nuevo producto</span>
+      <div class="card row">
+        <div class="card-content row">
+          {{#if isProduct}}
+            <span class="card-title">Nuevo producto</span>
+          {{else}}
+            <span class="card-title">Nuevo servicio</span>
+          {{/if}}
           <form id="postForm" class="col s12 row first-form">
             <span class="col s5 ligth">Etiqueta/as</span>
             <div class="col s12 labels"><div class="chips chips-autocomplete"></div></div>
@@ -167,7 +171,7 @@
         <div class="card-content row">
             <span class="card-title">Informacion del precio</span>
           <form class="col m12 product-second-form">
-            <span class="ligth col m12">Precio unitario</span> 
+            <span class="ligth col m12">Precio unitario</span>
             <p class="range-field col m10 spaced">
               <input class="price-range" type="range" min="0" name="price" max="300" value="{{currentPost.price}}"/>
             </p>
@@ -281,7 +285,11 @@
     </nav>
     <div class="col m8 row">
       <div class="card col m12">
-        <span class="card-title">Fotos</span>
+        {{#if isProduct}}
+          <span class="card-title">Fotos</span>
+        {{else}}
+          <span class="card-title">Imagenes</span>
+        {{/if}}
         <div class="card-content row">
             {{#if currentPost.photos}}
               <div class="carousel">
@@ -290,7 +298,11 @@
                 {{/each}}
               </div>
             {{else}}
-              <h4>Debes subir almenos una foto</h4>
+              {{#if isProduct}}
+                <h4>Debes subir almenos una foto</h4>
+              {{else}}
+                <h5>Puedes subir fotos de la muestra de tu trabajo, tambien logos o documentos que quieras mostrar</h5>
+              {{/if}}
             {{/if}}
             <div class="row">
               {{#if uploadProgress}}
@@ -316,6 +328,19 @@
                 </div>
               {{/if}}
             </div>
+            {{#unless isProduct}}
+              <div class="row">
+                <span class="ligth">Agrega enlaces que puedas mostrar (paginas web, documentos )</span>
+                <div class="input-field col s12">
+                 <input value="{{currentPost.link}}" id="link" type="text" class="validate">
+                 <label for="link">Enlace 1</label>
+               </div>
+               <div class="input-field col s12">
+                 <input value="{{currentPost.link1}}" id="link1" type="text" class="validate">
+                 <label for="link1">Enlace 2</label>
+               </div>
+              </div>
+            {{/unless}}
         </div>
         <div class="card-action row">
            <a class="waves-effect waves-light flat-btn col publish">Publicar</a>

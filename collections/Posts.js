@@ -38,10 +38,10 @@ posts.schema = new SimpleSchema({
 	publish : {
 		type : Boolean
 	},
+	type : {
+		type : String
+	},
 	createdAt : {
-		type : Date,
-		autoValue : function(){
-			return new Date();
-		}
+		type : Date
 	}
 });
