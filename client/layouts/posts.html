@@ -22,54 +22,63 @@
 			  top: -10rem;
 			  right: 5rem;
 			}
+			div.post-content{
+				margin-bottom: 0px!important;
+			}
+			div.card-action{
+				margin-bottom: 0px!important;
+			}
+			div.post-card{
+				height: 42rem;
+			}
 	</style>
 	<div class="main row">
 		<h4>Mis publicaciones</h4>
-		{{noProducts}}
-		{{noServices}}
 		{{#unless noServices}}
 			<h5 class="col m12">Servicios</h5>
 			{{#each userServices}}
-				<div class="card col m5 craft-card">
-					<div class="card-image" style="background-image : url('{{photos.[0]}}')">
-					</div>
-					<div class="card-content row">
-						<div class="col m12 row main-info">
-							<h4 class="col m10">{{name}}</h4>
+				<div class="post-card col m5">
+					<div class="card col m12 craft-card">
+						<div class="card-image" style="background-image : url('{{photos.[0]}}')">
 						</div>
-						<div class="col m12 row">
-							{{#each labels}}
-							 <div class="chip col">
-									{{this}}
-								</div>
-							{{/each}}
+						<div class="card-content post-content row">
+							<div class="col m12 row main-info">
+								<h4 class="col m10">{{name}}</h4>
+							</div>
+							<div class="col m12 row">
+								{{#each labels}}
+								 <div class="chip col">
+										{{this}}
+									</div>
+								{{/each}}
+							</div>
+							<span class="ligth col m12">{{description}}</span>
+							{{#if checkOnSale paymentType 0}}
+								<span>Pago por horas {{paymentFee}}</span>
+							{{/if}}
+							{{#if checkOnSale paymentType 1}}
+								<span>Pago por contratp</span>
+							{{/if}}
+							{{#if checkOnSale paymentType 2}}
+								<span>Otro metodo de pago</span>
+							{{/if}}
+							{{#if negotiable}}
+								<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
+							{{/if}}
+							{{#if link}}
+								<span class="ligth">Enlace</span>
+								<a href="{{link}}">{{link}}</a>
+							{{/if}}
+							{{#if link1}}
+								<span class="ligth">Enlace</span>
+								<a href="{{link1}}">{{link1}}</a>
+							{{/if}}
 						</div>
-						<span class="ligth col m12">{{description}}</span>
-						{{#if checkOnSale paymentType 0}}
-							<span>Pago por horas {{paymentFee}}</span>
-						{{/if}}
-						{{#if checkOnSale paymentType 1}}
-							<span>Pago por contratp</span>
-						{{/if}}
-						{{#if checkOnSale paymentType 2}}
-							<span>Otro metodo de pago</span>
-						{{/if}}
-						{{#if negotiable}}
-							<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
-						{{/if}}
-						{{#if link}}
-							<span class="ligth">Enlace</span>
-							<a href="{{link}}">{{link}}</a>
-						{{/if}}
-						{{#if link1}}
-							<span class="ligth">Enlace</span>
-							<a href="{{link1}}">{{link1}}</a>
-						{{/if}}
-					</div>
-					<div class="card-action">
-						<a class="btn-flat" href="/account/product/{{_id}}/basic">Editar</a>
-						<a class="btn-flat delete" id="{{_id}}">Eliminar</a>
-						<a class="btn-flat" href="/post/{{_id}}">Vista previa</a>
+						<div class="card-action row">
+							<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
+							<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
+							<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+						</div>
 					</div>
 				</div>
 			{{/each}}
@@ -78,52 +87,56 @@
 		{{#unless noProducts}}
 			<h5 class="col m12">Productos</h5>
 			{{#each userProducts}}
-				<div class="card col m5 craft-card">
-					<div class="card-image" style="background-image : url('{{photos.[0]}}')">
-						{{#if checkOnSale onSale 2}}
-							<div class="on-sale row">
-								<h4 class="promo">{{saleGet}} * {{salePay}}</h4>
-							</div>
-						{{/if}}
-						{{#if checkOnSale onSale 1}}
-							<div class="on-sale row">
-								<div class="row promo">
-									<h5 class="col 9 promo">{{percentage}}%</h5>
-									<span class="col 12 small">en compras mayaores a ${{minValue}}</span>
-								</div>
-							</div>
-						{{/if}}
-					</div>
-					<div class="card-content row">
-						<div class="col m12 row main-info">
-							<h4 class="col m10">{{name}}</h4>
-							<h5 class="col m2">${{price}}</h5>
+				<div class="col m5 row post-card">
+					<div class="card col m12 craft-card">
+						<div class="card-image" style="background-image : url('{{photos.[0]}}')">
+							{{#if checkOnSale onSale 2}}
+			            <div class="ribbon ribbon-top-right"><span><h5 class="ribbon-header">{{saleGet}} * {{salePay}}</h5></span></div>
+			        {{/if}}
+			        {{#if checkOnSale onSale 1}}
+			          <div class="ribbon ribbon-top-right row">
+			            <span>
+			              <div class="ribbon-header">
+			                  {{percentage}}%
+			              </div>
+			              <div class="small-promo">
+			                en compras mayaores a ${{minValue}}
+			              </div>
+			            </span>
+			          </div>
+			        {{/if}}
 						</div>
-						<div class="col m12 row">
-							{{#each labels}}
-							 <div class="chip col">
-							    {{this}}
-							  </div>
-							{{/each}}
-						</div>
-						<span class="ligth col m12">{{description}}</span>
-						{{#if negotiable}}
-							<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
-						{{/if}}
-						{{#if shipping}}
-							{{#if shippingIncluded}}
-								<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
-							{{else}}
-								<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
+						<div class="card-content post-content row">
+							<div class="col m12 row main-info">
+								<h4 class="col m10">{{name}}</h4>
+								<h5 class="col m2">${{price}}</h5>
+							</div>
+							<div class="col m12 row">
+								{{#each labels}}
+								 <div class="chip col">
+								    {{this}}
+								  </div>
+								{{/each}}
+							</div>
+							<span class="ligth col m12">{{description}}</span>
+							{{#if negotiable}}
+								<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
 							{{/if}}
-						{{else}}
-							<span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
-						{{/if}}
-					</div>
-					<div class="card-action">
-						<a class="btn-flat" href="/account/product/{{_id}}/basic">Editar</a>
-						<a class="btn-flat delete" id="{{_id}}">Eliminar</a>
-						<a class="btn-flat" href="/post/{{_id}}">Vista previa</a>
+							{{#if shipping}}
+								{{#if shippingIncluded}}
+									<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+								{{else}}
+									<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
+								{{/if}}
+							{{else}}
+								<span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
+							{{/if}}
+						</div>
+						<div class="card-action row">
+							<a class="btn-flat col" href="/account/product/{{_id}}/basic">Editar</a>
+							<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
+							<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+						</div>
 					</div>
 				</div>
 			{{/each}}

@@ -39,6 +39,9 @@
     div.search-section{
       height: 18rem;
     }
+    div.last-products{
+      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/brick-texture.jpg');
+    }
   </style>
   <div class="slider">
     <ul class="slides">
@@ -72,9 +75,9 @@
       {{> searchBar}}
     </div>
   </div>
-  <div class="section orange lighten-4 ">
+  <div class="section orange lighten-4 last-products">
     <div class="row container">
-      <h2 class="header m12">Ultimos productos</h2>
+      <h2 class="header m12 white-text">Ultimos productos</h2>
       {{#each lastProducts}}
         <div class="col m4">
           {{> postCard post=this}}
@@ -82,7 +85,13 @@
       {{/each}}
     </div>
   </div>
-  <div class="parallax-container">
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header m12 white-text">Ultimos productos</h2>
+      asdfsdf
+    </div>
+  </div>
+  <!-- <div class="parallax-container">
     <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
   </div>
   <div class="section white">
@@ -93,7 +102,7 @@
   </div>
   <div class="parallax-container">
     <div class="parallax"><img src="https://image.shutterstock.com/z/stock-photo-hard-working-craftsman-working-with-planer-in-a-workshop-for-woodwork-handsome-man-with-tattoo-and-327061454.jpg"></div>
-  </div>
+  </div> -->
   <div id="recoverPassModal" class="modal recoverPassModal">
     <div class="modal-content">
         {{#if tokenExpired}}
@@ -108,6 +117,11 @@
             <button class="waves-effect waves-light btn" type="submit">Cambiar</button>
           </form>
         {{/if}}
+    </div>
+  </div>
+  <div id="comfirmedMailModal" class="modal recoverPassModal">
+    <div class="modal-content">
+      <h5>Tu mail ha sido verificado! Felicitaciones</h5>
     </div>
   </div>
 </template>

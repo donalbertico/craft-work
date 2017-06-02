@@ -14,6 +14,10 @@
     }
     div.login{
       width: 20rem;
+      margin-bottom: 1rem;
+    }
+    div.login .modal-content{
+      margin-bottom: 0.5rem;
     }
     li.account-li{
       height: 3rem;
@@ -63,7 +67,16 @@
          <li><a href="/register">Registrarse</a></li>
        {{/if}}
        <li><a href="/account/newItem">Publicar un producto</a></li>
-       <li><a href="sass.html">Buscar<i class="material-icons right">search</i></a></li>
+       <li class="search">
+         <form class="search-form">
+          <div class="input-field">
+            <input id="search" type="search" required placeholder="buscar" name="searchInput">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button type="submit" name="button" hidden></button>
+         </form>
+       </li>
      </ul>
      <ul class="side-nav" id="mobile-nav">
        {{#if currentUser}}

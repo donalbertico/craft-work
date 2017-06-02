@@ -87,3 +87,14 @@ div.on-sale{
   top: 2rem;
   transform: rotate(45deg);
 }
+h5.ribbon-header{
+  position: relative;
+  top: -0.3rem;
+  left: -1rem;
+}
+div.small-promo{
+  font-size: x-small;
+}
+li.search{
+  height: 4.1rem;
+}

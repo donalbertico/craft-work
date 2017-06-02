@@ -1,4 +1,21 @@
 <template name="forbidden">
-  <h3>No puedes ver esta informacion</h3>
-  {{ > login }}
+  <div class="row main">
+    <div class="parallax-container">
+      <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
+    </div>
+    <div class="section white">
+      <div class="row container">
+        <h2 class="header col m12">Logeate o registrate para acceder a este lugar</h2>
+        <div class="col m4 card">
+          {{> login}}
+        </div>
+        <div class="col m6">
+          {{> register}}
+        </div>
+      </div>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="https://image.shutterstock.com/z/stock-photo-hard-working-craftsman-working-with-planer-in-a-workshop-for-woodwork-handsome-man-with-tattoo-and-327061454.jpg"></div>
+    </div>
+  </div>
 </template>

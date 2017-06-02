@@ -96,3 +96,11 @@ Template.post.onRendered(function(){
 Template.search.onRendered(function(){
   $('select').material_select();
 });
+
+Template.forbidden.onRendered(function(){
+  $('.parallax').parallax();
+});
+
+Template.registerView.onRendered(function(){
+  $('.parallax').parallax();
+});

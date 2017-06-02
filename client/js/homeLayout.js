@@ -6,6 +6,12 @@ Template.homeLayout.onRendered(function(){
     $('#recoverPassModal').modal('open');
     recoverToken = this.data.recoverPassToken;
     tokenDep.changed();
+  };
+  if(this.data && this.data.confirmMailToken){
+    Accounts.verifyEmail(this.data.confirmMailToken,function(err){
+      if(err)return Materialize.toast('Error al verificar mail',4000);
+      $('#comfirmedMailModal').modal('open');
+    });
   }
 });
 

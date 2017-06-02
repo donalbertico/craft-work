@@ -233,6 +233,13 @@ Template.productThirdForm.events({
   },
   'click a.publish' : function(e){
     if(this.post.photos && this.post.photos.length > 0) {
+      if(this.post.type == 'p'){
+        posts.update({_id : this.post._id},{ $set : {publish : true}});
+        return Router.go('/account/posts');
+      }else{
+        posts.update({_id : this.post._id},{ $set : {publish : true , link : $('#link')[0].value, link1: $('#link1')[0].value}});
+        return Router.go('/account/posts');
+      }
       posts.update({_id : this.post._id},{ $set : {publish : true , link : $('#link')[0].value, link1: $('#link1')[0].value}});
       return Router.go('/account/posts');
     }

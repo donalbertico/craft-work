@@ -1,49 +1,69 @@
+<template name="registerView">
+  <div class="row main">
+    <div class="parallax-container">
+      <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
+    </div>
+    <div class="section white">
+      <div class="row container">
+        <h2 clas="header col m12">Bienvenid@</h2>
+        <h3 class="header col m12">Registrate para entrar al mundo Craft!</h3>
+        <p>Puedes usar Facebook para hacerlo mas rápido</p>
+        <div class="col m6">
+          {{> register}}
+        </div>
+        <div class="col m4 card">
+          {{> login}}
+        </div>
+      </div>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="https://image.shutterstock.com/z/stock-photo-hard-working-craftsman-working-with-planer-in-a-workshop-for-woodwork-handsome-man-with-tattoo-and-327061454.jpg"></div>
+    </div>
+  </div>
+</template>
+
 <template name="register">
   <style>
     div.card-action > div{
       margin-bottom: 0px !important
     }
   </style>
-  <div class="container">
-     <div class="row">
-       <div class="col s12 m6">
-         <div class="card white darken-1">
-           <div class="card-content">
-             <span class="card-title">Registro</span>
-             <form>
-               <div class="row">
-                 <div class="input-field col s12">
-                   <input id="email" type="email" class="validate" required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                   <label for="email">Email</label>
-                   <label for="email" data-error="wrong" data-success="right">Email</label>
-                 </div>
-               </div>
-               <div class="row">
-                 <div class="input-field col s12">
-                   <input id="password" type="password" class="validate" required name="password">
-                   <label for="password">Contraseña</label>
-                 </div>
-               </div>
-               <div class="row">
-                 <div class="input-field col s12">
-                   <input type="password" class="validate" required name="repeatPass">
-                   <label for="password">Repita contraseña</label>
-                 </div>
-               </div>
-               <div class="">
-                 {{> reCAPTCHA}}
-               </div>
-               <button id="formButton" hidden type="submit" name="action">Submit</button>
-             </form>
-           </div>
-           <div class="card-action">
-             <div class="row">
-               <a class="btn waves-effect waves-teal col registerButton btn-flat" name="action">Ingresar</a>
-               <a class="btn waves-effect waves-teal col btn-flat facebook" name="action">USAR FACEBOOK</a>
-             </div>
+ <div class="row col m12">
+   <div class="card white darken-1">
+     <div class="card-content">
+       <span class="card-title">Registro</span>
+       <form>
+         <div class="row">
+           <div class="input-field col s12">
+             <input id="email" type="email" class="validate" required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+             <label for="email">Email</label>
+             <label for="email" data-error="wrong" data-success="right">Email</label>
            </div>
          </div>
+         <div class="row">
+           <div class="input-field col s12">
+             <input id="password" type="password" class="validate" required name="password">
+             <label for="password">Contraseña</label>
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s12">
+             <input type="password" class="validate" required name="repeatPass">
+             <label for="password">Repita contraseña</label>
+           </div>
+         </div>
+         <div class="">
+           {{> reCAPTCHA}}
+         </div>
+         <button id="formButton" hidden type="submit" name="action">Submit</button>
+       </form>
+     </div>
+     <div class="card-action">
+       <div class="row">
+         <a class="btn waves-effect waves-teal col registerButton btn-flat" name="action">Ingresar</a>
+         <a class="btn waves-effect waves-teal col btn-flat facebook blue-text text-darken-2" name="action">USAR FACEBOOK</a>
        </div>
      </div>
-  </div>
+   </div>
+ </div>
 </template>

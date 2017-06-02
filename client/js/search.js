@@ -81,9 +81,27 @@ Template.search.events({
 Template.searchBar.events({
   'submit form.search-form' : function(e){
     e.preventDefault();
-    Router.go('/search?criteria='+e.target.searchInput.value);
+    redirectSearch(e.target.searchInput.value);
   }
 });
+
+Template.mainLayout.events({
+  'submit form.search-form' : function(e){
+    e.preventDefault();
+    redirectSearch(e.target.searchInput.value);
+  }
+});
+
+Template.account.events({
+  'submit form.search-form' : function(e){
+    e.preventDefault();
+    redirectSearch(e.target.searchInput.value);
+  }
+});
+
+var redirectSearch = function(criteria){
+  Router.go('/search?criteria='+criteria);
+}
 
 var initChipsAutoComplete = function(selectedLabels){
   $('.chips-autocomplete').material_chip({

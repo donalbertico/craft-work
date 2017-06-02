@@ -78,7 +78,7 @@ Template.userInfo.events({
         'profile.telephone' : form.telephone.value
       }},function(err){
         if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-        Materialize.toast('Información actualizada');
+        Materialize.toast('Información actualizada',4000);
       });
     },
 
@@ -116,7 +116,7 @@ Template.userInfo.events({
           'profile.photo' : downloadUrl
         }},function(err){
           if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-          Materialize.toast('foto actualizada');
+          Materialize.toast('foto actualizada',4000);
           uploadComplete = true;
           progBarDep.changed();
         });
@@ -125,7 +125,6 @@ Template.userInfo.events({
 
     'change input#craftPhotoInput' : function(e){
       uploadComplete = false;
-      console.log('craft');
       craftProgBarDep.changed();
       craftUploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {
@@ -137,7 +136,7 @@ Template.userInfo.events({
           'profile.craft.photo' : downloadUrl
         }},function(err){
           if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-          Materialize.toast('foto actualizada');
+          Materialize.toast('foto actualizada',4000);
           uploadComplete = true;
           craftProgBarDep.changed();
         });

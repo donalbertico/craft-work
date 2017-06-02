@@ -23,14 +23,10 @@ const unSeenRooms = function(){
 };
 
 const userServices = function(){
-  console.log('la notash');
-  console.log(posts.find({type : 's' }).fetch());
   return posts.find({type : 's' });
 };
 
 const userProducts = function(){
-  console.log('la notash');
-  console.log(posts.find({type : 'p' }).fetch());
   return posts.find({type : 'p' });
 };
 
