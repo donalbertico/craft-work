@@ -1,18 +1,4 @@
 <template name="userInfo">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjTF6xXTHgzP9UoIcq_abU1Gb8smcybbA&libraries=places&callback=initAutocomplete"
-    async defer></script>
-  <script type="text/javascript">
-    var placeSearch, autocomplete;
-    function initAutocomplete() {
-      autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),{types: ['(cities)'],componentRestrictions: {country: "ec"}});
-      autocomplete.addListener('place_changed', fillInAddress);
-    }
-    function fillInAddress() {
-      var place = autocomplete.getPlace();
-      if(!place.geometry)return document.getElementById('placeId').value = null;
-      document.getElementById('placeId').value = place.place_id;
-    }
-  </script>
   <style >
     .card-icon {
       position : absolute;
@@ -20,12 +6,6 @@
     }
     .card {
       margin-top: 2rem;
-    }
-    div.craft-card .card-content {
-      margin-left: 3rem;
-    }
-    .card-action a.crafterInfoButton{
-      margin-left: 0.5rem;
     }
     .to-delete{
       filter: blur(6px);
@@ -69,14 +49,6 @@
     }
     span.photo{
       font-size: 86%;
-    }
-    div.craft-photo{
-      margin-top: -1rem;
-      margin-bottom: -1.5rem;
-    }
-    div.craft-photo div.upload-craftPhoto{
-      margin-top: -1.1rem;
-      height: 2.5rem;
     }
     a.verify{
       color : inherit;
@@ -143,92 +115,6 @@
         </div>
         <div class="card-action">
           <a class="userInfoButton waves-effect waves-teal btn-flat">Actualizar</a>
-        </div>
-      </div>
-      <div class="switch col l12">
-        <span>Soy artesano</span>
-        <label>
-          No
-          <input class="switch" type="checkbox" checked="{{craftMan}}">
-          <span class="lever"></span>
-          Si
-        </label>
-      </div>
-      <div id="craft" class="card white craft-card col s12 m12 l7 xl6" >
-        <div class="card-content white darken-1">
-          <i class="card-icon small material-icons">work</i><h4>Informacion de Artesano</h4>
-          <form id="craftInfoForm">
-            <div class="row">
-              <div class="input-field ">
-                <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
-                <label class="active" for="name">Nombre artesanal / empresa</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <textarea id="description" type="text" class="materialize-textarea" required name="description" data-length="120" value="{{currentUser.profile.craft.description}}"></textarea>
-                <label class="active" for="description">Describelo</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
-                <label class="active" for="city">Ciudad</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
-                <label class="active" for="address">Direccion</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <input id="movil" type="tel" class="validate" required name="movil" value="{{currentUser.profile.craft.movil}}" pattern="[0-9]{1,10}">
-                <label class="active" for="movil" data-error="solo números" data-success="correcto">Teléfono</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <input id="telephone" type="tel" class="validate" name="telephone" value="{{currentUser.profile.craft.telephone}}" pattern="[0-9]{1,10}">
-                <label class="active" for="telephone" data-error="solo números" data-success="correcto">Teléfono secundario</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field ">
-                <input id="webPage" type="tel" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
-                <label class="active" for="webPage">P@gina web</label>
-              </div>
-            </div>
-            <div class="row craft-photo">
-              <span class="ligth grey-text photo">Foto</span>
-              <div class="col s12 craft-img center-align" style="background-image : url('{{currentUser.profile.craft.photo}}')"></div>
-              {{#if uploadCraftProgress}}
-                <div class="progress class s12">
-                  <div class="determinate" style="width: {{uploadCraftProgress}}%"></div>
-                </div>
-              {{/if}}
-              <div class="row s12">
-                <div class="file-field input-field col s4">
-                   <div class="btn col upload-craftPhoto">
-                     <span>Cambiar</span>
-                     <input  type="file" id="craftPhotoInput" name="photo">
-                   </div>
-                   <div class="file-path-wrapper col" hidden>
-                     <input class="file-path validate" type="text">
-                   </div>
-                </div>
-                {{#if canDeleteCraft}}
-                  <a class="waves-effect waves-light orange darken-3 btn col s3 delete-craftPhoto">borrar</a>
-                {{/if}}
-              </div>
-            </div>
-            <input type="text" name="placeId" hidden id="placeId" class="validate" value="{{currentUser.profile.craft.placeId}}">
-            <button id="crafterInfoFormButton" hidden type="submit" name="action">Submit</button>
-          </form>
-        </div>
-        <div class="card-action">
-          <a class="crafterInfoButton waves-effect waves-teal btn-flat">Actualizar</a>
         </div>
       </div>
   </div>

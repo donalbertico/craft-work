@@ -63,6 +63,7 @@ Template.messages.helpers({
     return Meteor.users.findOne({_id : Router.current().params.id });
   },
   sameUser : function(){
+    console.log(Meteor.userId() == Router.current().params.id);
     return Meteor.userId() == Router.current().params.id ;
   }
 });
