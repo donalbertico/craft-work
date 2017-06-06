@@ -1,6 +1,5 @@
 Meteor.subscribe('rooms');
 Meteor.subscribe('messages');
-Meteor.subscribe('posts');
 ShareIt.configure({
   sites: {                // nested object for extra configurations
       'facebook': {
