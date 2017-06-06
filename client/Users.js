@@ -23,7 +23,14 @@ const unSeenRooms = function(){
 };
 
 const userServices = function(){
-  return posts.find({type : 's' });
+  var userServices = posts.find({type : 's' }).fetch();
+  for(var s in userServices){
+    userServices[s]['title'] = userServices[s].name;
+    userServices[s]['type'] = 'website';
+    userServices[s]['url'] = 'https://craft-work-staging.herokuapp.com/post/'+userServices[s]._id;
+    userServices[s]['img'] = userServices[s].photos[0];
+  }
+  return userServices;
 };
 
 const userProducts = function(){
