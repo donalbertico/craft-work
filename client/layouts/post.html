@@ -34,18 +34,19 @@
 		}
 	</style>
 	<div class="row main">
-	  <div class="col m6">
-		  <div class="slider">
-		    <ul class="slides">
-		      {{#each post.photos}}
-	  		      <li>
-			        <img src="{{this}}">
-			      </li>
-		      {{/each}}
-		    </ul>
+		{{#if post}}
+		  <div class="col m6">
+			  <div class="slider">
+			    <ul class="slides">
+			      {{#each post.photos}}
+		  		      <li>
+				        <img src="{{this}}">
+				      </li>
+			      {{/each}}
+			    </ul>
+			  </div>
 		  </div>
-	  </div>
-	  <div class="col m6 row">
+		  <div class="col m6 row">
 	  	{{#if checkOnSale post.onSale 1}}
 	  		<div class="card col m11 blue-grey darken-1 white-text row">
 	  			<span class="card-title col m11"><i class="mdi mdi-gift medium left"></i>Promocion:</span>
@@ -134,5 +135,8 @@
 	  	</div>
 
 	  </div>
+		{{else}}
+			<h4 class="col m6 offset-m3">La publicación que buscas no existe =(</h4>
+		{{/if}}
 	</div>
 </template>
