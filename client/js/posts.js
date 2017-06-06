@@ -14,9 +14,5 @@ Template.posts.events({
 		Meteor.call('deletePost',e.target.id);
 	},
 	'click a.share' : function(e){
-		FB.ui({
-		  method: 'share',
-		  href: 'https://craft-work-staging.herokuapp.com/post/'+e.target.id,
-		});
 	}
 });

@@ -1,6 +1,3 @@
-Template.post.onCreated(function(){
-});
-
 Template.post.helpers({
 	owner : function(){
 		var post = this.post;
