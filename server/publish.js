@@ -22,6 +22,10 @@ Meteor.publish('post',(id)=>{
 	return posts.find({_id : id});
 });
 
+Meteor.publish('posts',()=>{
+	return posts.find();
+});
+
 Meteor.publish('postSearch',(criteria,tags)=>{
   if(!criteria&&!tags)return [];
   var query = {publish : true};
