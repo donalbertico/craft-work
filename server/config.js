@@ -24,6 +24,7 @@ Meteor.startup(() => {
 
   posts._ensureIndex({
     'name': 'text',
-    'description' : 'text'
+    'description' : 'text',
+    'city' : 'text'
   });
 });

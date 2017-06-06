@@ -37,6 +37,10 @@ Template.userInfo.helpers({
   },
   actualDate : function(){
     return new Date();
+  },
+  canDelete : function(){
+    canDeleteDep.depend();
+    return canDelete;
   }
 });
 
@@ -74,6 +78,7 @@ Template.userInfo.events({
           alert (error);
           return Materialize.toast('Hubo un error al subir la imagen', 4000);
         }
+        deleteImage();
         Meteor.users.update({_id: Meteor.userId()},{ $set : {
           'profile.photo' : downloadUrl
         }},function(err){
@@ -86,10 +91,7 @@ Template.userInfo.events({
     },
 
     'click .icon-delete' : function(e){
-      Meteor.call('deleteImage',Meteor.user().profile.photo,function(err){
-        if(err)return Materialize.toast(err.reason, 4000);
-        Materialize.toast('foto eliminada', 4000);
-      });
+      deleteImage();
     },
 
     'mouseover div.img' : function(e){
@@ -105,3 +107,9 @@ Template.userInfo.events({
       $('.userPic').removeClass('to-delete');
     }
 });
+var deleteImage = function(){
+  Meteor.call('deleteImage',Meteor.user().profile.photo,function(err){
+    if(err)return Materialize.toast(err.reason, 4000);
+    Materialize.toast('foto eliminada', 4000);
+  });
+}

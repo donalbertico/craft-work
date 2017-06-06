@@ -1,6 +1,7 @@
 const room = function(){
   var transmiter = Meteor.userId();
   var reciver = Router.current().params.id;
+  console.log('tha rooms',rooms.findOne({$and : [ {users : transmiter},{users:reciver}]}));
   return rooms.findOne({$and : [ {users : transmiter},{users:reciver}]});
 };
 

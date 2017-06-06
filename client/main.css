@@ -98,3 +98,9 @@ div.small-promo{
 li.search{
   height: 4.1rem;
 }
+a{
+  color : inherit;
+}
+div.card-content{
+  margin-bottom: 0px!important;
+}

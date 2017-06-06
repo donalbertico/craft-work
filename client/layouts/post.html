@@ -23,6 +23,15 @@
 		div.slider ul.slides{
 			height: 93%!important;
 		}
+		.spaced{
+			margin-bottom: 1rem;
+		}
+		div.social{
+			margin-bottom: 0px!important;
+		}
+		div.card-content{
+			margin-bottom: 0px!important;
+		}
 	</style>
 	<div class="row main">
 	  <div class="col m6">
@@ -55,7 +64,7 @@
 			  		{{#each post.labels}}
 			  			<div class="chip col">{{this}}</div>
 			  		{{/each}}
-			  	<span class="col m12">{{post.description}}</span>
+			  	<span class="col m12 spaced">{{post.description}}</span>
 				<div class="divider col m12 row"></div>
 				<div class="section col m12 row">
 				<h5>Precio</h5>
@@ -77,33 +86,45 @@
 	  	</div>
 
 	  	<div class="card col m11 row vendor-card">
-		    <div class="card-content">
-		      <div class="row">
+		    <div class="card-content row">
+		      <div class="row col m12">
 				  	<img src="{{owner.profile.craft.photo}}" class="circle col craft-avatar">
 			      <h4 class="col">{{owner.profile.craft.name}}</h4>
-           	      {{#if owner.status.online}}
+           	  {{#if owner.status.online}}
 		            <i class="mdi mdi-octagon online"></i>
 		          {{else}}
 		            <i class="mdi mdi-octagon-outline"></i>
 		          {{/if}}
 		      </div>
-		      <h5>{{owner.profile.craft.city}}</h5>
-		      <h6>{{owner.profile.craft.address}}</h6>
-		      <div class="m12">
+		      <h5 class="col m12">{{owner.profile.craft.city}}</h5>
+		      <h6 class="col m12 spaced">{{owner.profile.craft.address}}</h6>
+					<div class="row col m4 social">
+						{{#if owner.profile.craft.facebook}}
+							<a href="{{owner.profile.craft.facebook}}">
+								<i class="mdi small mdi-facebook"></i>
+							</a>
+						{{/if}}
+						{{#if owner.profile.craft.instagram}}
+							<a href="{{owner.profile.craft.instagram}}">
+								<i class="mdi small mdi-instagram"></i>
+							</a>
+						{{/if}}
+					</div>
+		      <div class="col m12">
 		        <i class="material-icons">call</i>
 		        <span class="">{{owner.profile.craft.movil}}</span>
 		      </div>
 		      {{#if owner.profile.craft.telephone}}
-		        <div class="m12">
+		        <div class="col m12">
 		          <i class="material-icons">stay_current_portrait</i>
 		          <span class="">{{owner.profile.craft.telephone}}</span>
 		        </div>
 		      {{/if}}
 		      {{#if owner.profile.craft.webPage}}
-				<div class="m12">
-					<i class="material-icons">language</i>
-					<span class="">{{owner.profile.craft.webPage}}</span>
-				</div>
+						<a href="{{owner.profile.craft.webPage}}" class="col m12">
+							<i class="material-icons">language</i>
+							<span>{{owner.profile.craft.webPage}}</span>
+						</a>
 		      {{/if}}
 		    </div>
 	  		<div class="card-action">

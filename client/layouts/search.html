@@ -1,4 +1,18 @@
 <template name="search">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjTF6xXTHgzP9UoIcq_abU1Gb8smcybbA&libraries=places&callback=initAutocomplete"
+  async defer></script>
+  <script type="text/javascript">
+    var placeSearch, autocomplete;
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),{types: ['(cities)'],componentRestrictions: {country: "ec"}});
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+    function fillInAddress() {
+      var place = autocomplete.getPlace();
+      if(!place.geometry)return document.getElementById('placeId').value = null;
+      document.getElementById('placeId').value = place.place_id;
+    }
+  </script>
   <style>
     nav.search{
       margin-top: 1rem;
@@ -10,11 +24,19 @@
       height: 32rem;
       margin-bottom: 4rem!important;
     }
+    div.preloader-wrapper{
+      margin-top: 10rem;
+      margin-left: 15rem;
+    }
+    div.chips-autocomplete{
+      width: 92%;
+      margin-left: 0.7rem;
+    }
   </style>
   <div class="main row">
     <div class="row col m3 grey lighten-1">
       <div class="card row col m12">
-        <div class="card-content">
+        <div class="card-content row">
           <form class="filters-form" action="index.html" method="post">
             <span class="card-title m12">Filtrar</span>
             <div class="input-field col s12">
@@ -25,15 +47,23 @@
               </select>
               <label>Tipo</label>
             </div>
-            <span>Etiquetas</span>
+            <div class="input-field col m12">
+              <input id="city" type="text" class="validate" name="city" value="{{query.city}}">
+              <label class="active" for="city">Ciudad</label>
+            </div>
+            <span class="col m12 ligth">Etiquetas</span>
             <div class="chips chips-autocomplete"></div>
-            <p>
+            <p class="col m12">
               <input type="checkbox" id="onSaleCheck" name="onSale" checked="{{query.onSale}}"/>
               <label for="onSaleCheck">Solo promociones</label>
             </p>
-            <p>
+            <p class="col m12">
               <input type="checkbox" id="shippingCheck" name="shipping" checked="{{query.shipping}}"/>
               <label for="shippingCheck">Envio incluido</label>
+            </p>
+            <p class="col m12">
+              <input type="checkbox" id="negotiableCheck" name="negotiable" checked="{{query.negotiable}}"/>
+              <label for="negotiableCheck">Negociable</label>
             </p>
             <button type="submit" class="filters-form-button" hidden></button>
           </form>
@@ -50,7 +80,7 @@
           <div class="nav-wrapper row">
             <form class="search-form">
               <div class="input-field">
-                <input id="search" type="search" name="searchInput" required placeholder="busca lo que sea que necesites. Ej:reparacion de muebles">
+                <input id="search" type="search" name="searchInput" required placeholder="busca lo que sea que necesites. Ej:reparacion de muebles en Quito">
                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
               </div>
@@ -60,16 +90,34 @@
         </nav>
       </div>
       <div class="col m12 row">
-        {{#if noResults}}
-          <h5 class="col m10"> No se encontrar resultados, busca denuevo...</h5>
+        {{#if loading}}
+          {{#if noResults}}
+            <h5 class="col m10"> No se encontrar resultados, busca denuevo...</h5>
+          {{else}}
+            {{#if query.criteria}}
+              <h6 class="col m10"> Resultados de {{query.criteria}}</h6>
+            {{else}}
+              <h6 class="col m10"> Resultados de {{query.labels.[0]}}</h6>
+            {{/if}}
+          {{/if}}
+          {{#each lastSearch}}
+            <div class="row col m4 post-card">
+              {{> postCard post=this}}
+            </div>
+          {{/each}}
         {{else}}
-          <h6 class="col m10"> Resultados de {{query.criteria}}</h6>
-        {{/if}}
-        {{#each lastSearch}}
-          <div class="row col m4 post-card">
-            {{> postCard post=this}}
+          <div class="preloader-wrapper big active offset-m4">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
           </div>
-        {{/each}}
+        {{/if}}
       </div>
     </div>
   </div>

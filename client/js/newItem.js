@@ -33,10 +33,10 @@ Template.newPostForm.events({
     var form = e.target;
     e.preventDefault();
     if(Router.current().params.type == 'p'){
-      var newPost = posts.insert({type : 'p',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date()});
+      var newPost = posts.insert({type : 'p',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date(), city: Meteor.user().profile.craft.city});
       Router.go('/account/product/'+newPost+'/priceInfo');
     }else{
-      var newPost = posts.insert({type : 's',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date()});
+      var newPost = posts.insert({type : 's',name : form.name.value, description : form.description.value, labels : selectedLabels, user: Meteor.userId(), createdAt : new Date(), city: Meteor.user().profile.craft.city});
       Router.go('/account/service/'+newPost+'/priceInfo');
     }
   }

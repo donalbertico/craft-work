@@ -8,14 +8,13 @@ var uploadComplete = false;
 Template.craftInfo.onRendered(function(){
   $('input#input_text, textarea#textarea1').characterCounter();
   this.autorun(function(c) {
-    var user = Meteor.user()
+    var user = Meteor.user();
     var craftMan = user && user.profile && user.profile.craft && user.profile.craft.name;
     if(user){
       if(!craftMan){
         $('#craft').removeClass('animated bounceInLeft');
         $('#craft').addClass('animated bounceOutLeft');
       }
-      canDeleteDep.depend();
       c.stop();
     }
   });
@@ -49,6 +48,7 @@ Template.craftInfo.events({
     'submit form#craftInfoForm': function(e){
       e.preventDefault();
       var form = e.target;
+      console.log('yas');
       Meteor.setTimeout(function(){
         if(!form.placeId.value)return Materialize.toast('Vuelva a seleccionar la ciudad', 4000);
         Meteor.users.update({_id: Meteor.userId()},{ $set : {
@@ -60,6 +60,8 @@ Template.craftInfo.events({
           'profile.craft.movil' : form.movil.value,
           'profile.craft.telephone' : form.telephone.value,
           'profile.craft.webPage' : form.webPage.value,
+          'profile.craft.instagram' : form.instagram.value,
+          'profile.craft.facebook' : form.facebook.value,
         }},function(err){
           if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
           Materialize.toast('Información actualizada');
@@ -72,10 +74,11 @@ Template.craftInfo.events({
       craftProgBarDep.changed();
       craftUploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {
-          console.error('Error uploading', uploader.xhr.response);
+          console.error('Error uploading', craftUploader.xhr.response);
           alert (error);
           return Materialize.toast('Hubo un error al subir la imagen', 4000);
         }
+        deleteImage();
         Meteor.users.update({_id: Meteor.userId()},{ $set : {
           'profile.craft.photo' : downloadUrl
         }},function(err){
@@ -88,11 +91,8 @@ Template.craftInfo.events({
     },
 
     'click a.delete-craftPhoto' : function(e){
-        Meteor.call('deleteCraftImage',Meteor.user().profile.craft.photo,function(err){
-          if(err)return Materialize.toast(err.reason, 4000);
-          Materialize.toast('foto eliminada', 4000);
-        });
-      },
+        deleteImage();
+    },
 
     'load #switch' : function(e){
       console('loaded');
@@ -112,3 +112,10 @@ Template.craftInfo.events({
       }
     }
 });
+
+var deleteImage = function(){
+  Meteor.call('deleteCraftImage',Meteor.user().profile.craft.photo,function(err){
+    if(err)return Materialize.toast(err.reason, 4000);
+    Materialize.toast('foto eliminada', 4000);
+  });
+}

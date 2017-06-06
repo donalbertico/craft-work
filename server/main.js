@@ -53,7 +53,7 @@ Meteor.startup(() => {
       return true;
     },
     key : function(file){
-      return 'profile-'+this.userId;
+      return 'profile-'+this.userId+'-'+file.name;
     }
   });
 
@@ -73,7 +73,7 @@ Meteor.startup(() => {
       return true;
     },
     key : function(file){
-      return 'carft-'+this.userId;
+      return 'carft-'+this.userId+'-'+file.name;
     }
   });
 

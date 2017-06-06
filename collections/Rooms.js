@@ -28,7 +28,8 @@ Meteor.methods({
   },
 	markAsSeen : function(transmiter,reciver){
 		console.log(reciver,transmiter);
-		var room = rooms.findOne({$and : [ {users : transmiter},{users:reciver}]});
+		var room = rooms.findOne({$and : [{users : transmiter},{users:reciver}]});
+		// var room = rooms.findOne({users : {in : [reciver,transmiter]}});
 		if(room && room.recivedA == reciver)return rooms.update({_id : room._id},{$set : {recivedA : ''}});
 		if(room && room.recivedB == reciver)return rooms.update({_id : room._id},{$set : {recivedB : ''}});
 	}

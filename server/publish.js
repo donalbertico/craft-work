@@ -1,7 +1,3 @@
-Meteor.publish('userList', function (){
-  return Meteor.users.find({},{fields: {emails: 1, profile: 1,status:1}});
-});
-
 Meteor.publish('userProf', function (id){
   return Meteor.users.find({_id : id});
 });
@@ -11,7 +7,7 @@ Meteor.publish('rooms',function (){
 });
 
 Meteor.publish('messages',function (){
-	return messages.find();
+	return messages.find({$or : [{user : this.userId},{reciver : this.userId}]});
 });
 
 Meteor.publish('userProfPosts',(id) => {
@@ -26,11 +22,18 @@ Meteor.publish('post',(id)=>{
 	return posts.find({_id : id});
 });
 
-Meteor.publish('postSearch',(criteria)=>{
-  if(!criteria)return [];
-  return posts.find({$text : {$search : criteria} , publish : true});
+Meteor.publish('postSearch',(criteria,tags)=>{
+  if(!criteria&&!tags)return [];
+  var query = {publish : true};
+  if(criteria) query['$text'] = {$search : criteria}
+  if(tags) query['labels'] = {$in : tags}
+  return posts.find(query);
 });
 
 Meteor.publish('lastPosts',()=>{
   return posts.find({publish : true}, {sort: {$natural : -1}, limit: 3 });
+});
+
+Meteor.publish('userList',()=>{
+  return Meteor.users.find();
 });

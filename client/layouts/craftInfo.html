@@ -22,9 +22,6 @@
 	      margin-top: -1.1rem;
 	      height: 2.5rem;
 	    }
-	     div.craft-card .card-content {
-	      margin-left: 3rem;
-	    }
 	    .card-action a.crafterInfoButton{
 	      margin-left: 0.5rem;
 	    }
@@ -51,73 +48,78 @@
           Si
         </label>
       </div>
-      <div id="craft" class="card white craft-card col s12 m12 l7 xl6" >
-        <div class="card-content white darken-1">
-          <i class="card-icon small material-icons">work</i><h4>Informacion de Artesano</h4>
+      <div id="craft" class="card white craft-card col s12 m12 l7 xl6 " >
+        <div class="card-content white darken-1 row">
+					<h4 class="col m12">Información de Artesano</h4>
           <form id="craftInfoForm">
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
                 <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
                 <label class="active" for="name">Nombre artesanal / empresa</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
                 <textarea id="description" type="text" class="materialize-textarea" required name="description" data-length="120" value="{{currentUser.profile.craft.description}}"></textarea>
                 <label class="active" for="description">Describelo</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
                 <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
                 <label class="active" for="city">Ciudad</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
                 <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
                 <label class="active" for="address">Direccion</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
+								<i class="material-icons prefix">call</i>
                 <input id="movil" type="tel" class="validate" required name="movil" value="{{currentUser.profile.craft.movil}}" pattern="[0-9]{1,10}">
                 <label class="active" for="movil" data-error="solo números" data-success="correcto">Teléfono</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
+								<i class="mdi mdi-cellphone-iphone prefix"></i>
                 <input id="telephone" type="tel" class="validate" name="telephone" value="{{currentUser.profile.craft.telephone}}" pattern="[0-9]{1,10}">
                 <label class="active" for="telephone" data-error="solo números" data-success="correcto">Teléfono secundario</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
+								<i class="material-icons prefix">language</i>
                 <input id="webPage" type="tel" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
                 <label class="active" for="webPage">P@gina web</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
-                <input id="webPage" type="tel" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
-                <label class="active" for="webPage">Facebook</label>
+								<i class="mdi mdi-facebook-box prefix"></i>
+                <input id="facebook" type="tel" class="validate" name="facebook" value="{{currentUser.profile.craft.facebook}}">
+                <label class="active" for="facebook">Facebook</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row col m12">
               <div class="input-field ">
-                <input id="webPage" type="tel" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
-                <label class="active" for="webPage">Instagram</label>
+								<i class="mdi mdi-instagram prefix"></i>
+                <input id="instagram" type="tel" class="validate" name="instagram" value="{{currentUser.profile.craft.instagram}}">
+                <label class="active" for="instagram">Instagram</label>
               </div>
             </div>
-            <div class="row craft-photo">
-              <span class="ligth grey-text photo">Foto</span>
+            <div class="row craft-photo col m12">
+              <span class="ligth grey-text photo col m12">Foto</span>
               <div class="col s12 craft-img center-align" style="background-image : url('{{currentUser.profile.craft.photo}}')"></div>
               {{#if uploadCraftProgress}}
-                <div class="progress class s12">
+                <div class="progress class col s12">
                   <div class="determinate" style="width: {{uploadCraftProgress}}%"></div>
                 </div>
               {{/if}}
-              <div class="row s12">
+              <div class="row s12 col m12">
                 <div class="file-field input-field col s4">
                    <div class="btn col upload-craftPhoto">
                      <span>Cambiar</span>

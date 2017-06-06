@@ -11,7 +11,7 @@ Template.register.events({
             email : form.email.value,
             password : form.password.value,
             profile : {
-              photo : 'https://craft-work.storage.googleapis.com/nouser.png'
+              photo : 'https://s3.us-east-2.amazonaws.com/craft-work/nouser.png'
             }
          },function(error){
               if(error)return Materialize.toast(error.reason, 4000); // Output error if registration fails

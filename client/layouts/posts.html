@@ -54,30 +54,35 @@
 							</div>
 							<span class="ligth col m12">{{description}}</span>
 							{{#if checkOnSale paymentType 0}}
-								<span>Pago por horas {{paymentFee}}</span>
+								<span class="col m12">Pago por horas ${{paymentFee}}/hora</span>
 							{{/if}}
 							{{#if checkOnSale paymentType 1}}
-								<span>Pago por contratp</span>
+								<span class="col m12">Pago por contrato</span>
 							{{/if}}
 							{{#if checkOnSale paymentType 2}}
-								<span>Otro metodo de pago</span>
+								<span class="col m12">Otro metodo de pago</span>
 							{{/if}}
 							{{#if negotiable}}
 								<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
 							{{/if}}
 							{{#if link}}
-								<span class="ligth">Enlace</span>
-								<a href="{{link}}">{{link}}</a>
+								<div class="col m12">
+									<span class="ligth ">Enlace</span>
+									<a href="{{link}}">{{link}}</a>
+								</div>
 							{{/if}}
 							{{#if link1}}
-								<span class="ligth">Enlace</span>
-								<a href="{{link1}}">{{link1}}</a>
+								<div class="col m12">
+									<span class="ligth">Enlace</span>
+									<a href="{{link1}}">{{link1}}</a>
+								</div>
 							{{/if}}
 						</div>
 						<div class="card-action row">
 							<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
 							<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
 							<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+							<a class="btn-flat col share" id="{{_id}}">compartir</a>
 						</div>
 					</div>
 				</div>
