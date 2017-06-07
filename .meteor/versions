@@ -86,6 +86,8 @@ modules@0.9.1
 modules-runtime@0.8.0
 mongo@1.1.18
 mongo-id@1.0.6
+mongo-livedata@1.0.12
+mrt:facebook-sdk@0.0.44
 natestrauser:animate-css@3.5.1
 npm-bcrypt@0.9.2
 npm-mongo@2.2.24
