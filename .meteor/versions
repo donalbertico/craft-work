@@ -15,7 +15,6 @@ autoupdate@1.3.12
 babel-compiler@6.19.2
 babel-runtime@1.0.1
 base64@1.0.10
-biasport:facebook-sdk@0.2.3_1
 binary-heap@1.0.10
 blaze@2.3.2
 blaze-html-templates@1.1.2
@@ -47,7 +46,6 @@ email@1.2.3
 es5-shim@4.6.15
 facebook-oauth@1.3.1
 fastclick@1.0.13
-fortawesome:fontawesome@4.2.0_2
 fourseven:scss@3.13.0
 geojson-utils@1.0.10
 handlebars@1.0.7
@@ -64,7 +62,6 @@ iron:location@1.0.11
 iron:middleware-stack@1.1.0
 iron:router@1.1.2
 iron:url@1.1.0
-joshowens:shareit@1.0.2
 jquery@1.11.10
 launch-screen@1.1.1
 less@2.7.9
