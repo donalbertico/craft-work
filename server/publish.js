@@ -23,7 +23,10 @@ Meteor.publish('post',(id)=>{
 });
 
 Meteor.publish('postSearch',(criteria,tags)=>{
-  if(!criteria&&!tags)return [];
+  if(!criteria&&!tags){
+    this.ready();
+    return [];
+  };
   var query = {publish : true};
   if(criteria) query['$text'] = {$search : criteria}
   if(tags) query['labels'] = {$in : tags}
