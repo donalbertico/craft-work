@@ -64,7 +64,7 @@ Template.craftInfo.events({
           'profile.craft.facebook' : form.facebook.value,
         }},function(err){
           if(err)return Materialize.toast(err.reason, 4000); // Output error if registration fails
-          Materialize.toast('Información actualizada');
+          Materialize.toast('Información actualizada',4000);
         });
       }, 200);
     },

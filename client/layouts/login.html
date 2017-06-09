@@ -11,6 +11,7 @@
     div.loginDiv {
       margin-bottom: 0px;
       color: black;
+      padding: 1rem;
     }
     div.loginDiv div.pass{
       height: 2rem;
@@ -22,6 +23,10 @@
     div.forgot{
       margin-top: 1rem;
       max-height: 9rem;
+      padding : 1rem;
+    }
+    div.forgot button {
+      margin-left: 0.8rem!important;
     }
   </style>
   <h4 class="col s12">Ingresar</h4>
@@ -45,16 +50,16 @@
           o usa <i class="mdi mdi-facebook-box facebook small"></i>
         </div>
       </div>
+      <a class="forgot col m12">Olvide mi contraseña?</a>
     </form>
-    <div class="col s12 forgot row">
-      <a class="forgot">Olvide mi contraseña?</a>
+    <div class="forgot">
       <div hidden class="collapsibleDiv row animated bounceOutUp">
         <form class="forgotPass">
-          <div class="input-field">
+          <div class="input-field col m12">
             <input id="passEmail" type="email" class="validate" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
             <label class="active" for="passEmail" data-error="dirección invalida" data-success="correcto">Correo</label>
           </div>
-          <button class="waves-effect waves-light btn recoverPass" type="submit">Recuperar</button>
+          <button class="waves-effect waves-light btn recoverPass col m8" type="submit">Recuperar</button>
         </form>
       </div>
     </div>

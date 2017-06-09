@@ -173,7 +173,14 @@ Template.productThirdForm.onRendered(function(){
 Template.productThirdForm.helpers({
   currentPost : function(){
     auxdep.depend();
-    return this.post;
+    var post = this.post;
+    if(!post)return {};
+    if(post.photos){
+      auxArray = post.photos.slice()
+    }else{
+      auxArray = [];
+    }
+    return post;
   },
   uploadProgress: function () {
     progBarDep.depend();
@@ -188,12 +195,14 @@ Template.productThirdForm.helpers({
 
 Template.productThirdForm.events({
   'change input.photo-input' : function(e){
-      uploadComplete = false;
-      progBarDep.changed();
+      var file = e.target.files[0];
+      if(!file)return;
       if(auxArray.length == 5){
         return Materialize.toast('has llegado al limite de fotos',4000);
       }
       var self = this;
+      uploadComplete = false;
+      progBarDep.changed();
       uploader.send(e.target.files[0], function (error, downloadUrl) {
         if (error) {
           console.error('Error uploading', uploader.xhr.response);
@@ -216,7 +225,8 @@ Template.productThirdForm.events({
     var items = $('.carousel')[0].children;
     var index = getSelectedPhotoIndex();
     var self = this;
-    Meteor.call('deletePostImage',currentPost._id,currentPost.photos[index],function(err){
+
+    Meteor.call('deletePostImage',this.post._id,this.post.photos[index],function(err){
       if(err)return Materialize.toast(err.reason, 4000);
       Materialize.toast('foto eliminada', 4000);
       auxArray.splice(index,1);

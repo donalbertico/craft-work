@@ -5,6 +5,7 @@
       width:  3rem;
       position: relative;
       top: 0.7rem;
+      margin-right: 0.5rem;
     }
     div.account-element{
       display: -webkit-box !important;
@@ -26,7 +27,8 @@
            <div class="account-label">{{currentUser.profile.name}}</div>
          </div>
        </li>
-       <li><a href="/item/new">Publicar un producto</a></li>
+       <li><a href="/account/newItem/p">Publicar un producto</a></li>
+       <li><a href="/account/newItem/s">Publicar un servicio</a></li>
        <li class="search">
          <form class="account-search-form">
           <div class="input-field">
@@ -48,7 +50,7 @@
           <a href="/account/userInfo" class="collection-item">Mi perfil</a>
           <a href="/account/craft" class="collection-item">Soy Craft (artesano)</a>
           <a href="/messages" class="collection-item">{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}Mensajes</a>
-          <a href="/account/newItem" class="collection-item">Nuevo producto</a>
+          <a href="/account/newItem" class="collection-item">Nueva publicación</a>
           <a href="/account/posts" class="collection-item">Publicaciones</a>
         </div>
       </div>

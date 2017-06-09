@@ -127,6 +127,7 @@ Meteor.methods({
   },
   deleteImage : (img) => {
     var object = img.split(".com/")[1];
+    if(object == 'craft-work/nouser.png')return;
     var s3 = new AWS.S3();
     var deleteSync = Meteor.wrapAsync(s3.deleteObject,s3);
     try{
@@ -144,6 +145,7 @@ Meteor.methods({
   },
   deleteCraftImage : (img) => {
     var object = img.split(".com/")[1];
+    if(object == 'craft-work/clem-onojeghuo-90396.jpg')return;
     var s3 = new AWS.S3();
     var deleteSync= Meteor.wrapAsync(s3.deleteObject,s3);
     try{
@@ -197,7 +199,6 @@ Meteor.methods({
   },
   search : (criteria) => {
     var results = posts.find({$text : {$search : criteria} , publish : true});
-    console.log(results.fetch());
     return 'hola';
   }
  });
