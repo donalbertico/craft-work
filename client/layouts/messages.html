@@ -23,6 +23,13 @@
   <div class="row main">
     <div class="col m3 grey lighten-1 row">
       <div class="collection">
+          {{#if userRooms}}
+            <h5 class="col white m12">Conversaciones</h5>
+          {{else}}
+            <h5 class="col white m12"> Aqui van tus conversaciones
+              <h6 class="col m12"><a href="/account">Regresar a mi cuenta</a></h6>
+            </h5>
+          {{/if}}
           {{#each userRooms}}
             <a href="/messages/{{user._id}}" class="collection-item">
             {{#if unseen}}
@@ -45,9 +52,11 @@
       {{else}}
         <div class="col m9 row">
           <div class="card m9 row">
-              <img src="{{userReciver.profile.photo}}" class="circle user-room rigth-align">
+              <a href="/user/{{userReciver._id}}">
+                <img src="{{userReciver.profile.photo}}" class="circle user-room rigth-align">
+              </a>
               <div class="col">
-                {{userReciver.profile.name}}{{userReciver.profile.lastName}}
+                {{userReciver.profile.name}} {{userReciver.profile.lastName}}
               </div>
           </div>
           <div>

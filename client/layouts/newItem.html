@@ -287,9 +287,15 @@
     <nav class="col m8 progress-nav">
       <div class="nav-wrapper">
         <div class="col s12">
-          <a href="/account/product/{{currentPost._id}}/basic" class="breadcrumb">Informacion general</a>
-          <a href="/account/product/{{currentPost._id}}/priceInfo" class="breadcrumb">Informacion del precio</a>
-          <a class="breadcrumb">Fotos</a>
+          {{#if isProduct}}
+            <a href="/account/product/{{currentPost._id}}/basic" class="breadcrumb">Informacion general</a>
+            <a href="/account/product/{{currentPost._id}}/priceInfo" class="breadcrumb">Informacion del precio</a>
+            <a class="breadcrumb">Fotos</a>
+          {{else}}
+            <a href="/account/service/{{currentPost._id}}/basic" class="breadcrumb">Informacion general</a>
+            <a href="/account/service/{{currentPost._id}}/priceInfo" class="breadcrumb">Informacion del precio</a>
+            <a class="breadcrumb">Mas informacion</a>
+          {{/if}}
         </div>
       </div>
     </nav>
@@ -332,7 +338,7 @@
                  </div>
               </div>
               {{#if currentPost.photos}}
-                <div class="row col m12 photo-buttons">
+                <div class="row col m10 photo-buttons offset-m2">
                   <a class="waves-effect waves-light orange darken-3 btn set-main rigth-margin">establecer foto principal</a>
                   <a class="waves-effect waves-light red btn delete"><i class="material-icons right">delete</i>eliminar</a>
                 </div>
@@ -354,7 +360,11 @@
         </div>
         <div class="card-action">
            <a class="waves-effect waves-light flat-btn col publish">Publicar</a>
-           <a class="waves-effect waves-light flat-btn" href="/account/product/{{currentPost._id}}/priceInfo">Atrás</a>
+           {{#if isProduct}}
+              <a class="waves-effect waves-light flat-btn" href="/account/product/{{currentPost._id}}/priceInfo">Atrás</a>
+           {{else}}
+              <a class="waves-effect waves-light flat-btn" href="/account/service/{{currentPost._id}}/priceInfo">Atrás</a>
+           {{/if}}
         </div>
       </div>
     </div>

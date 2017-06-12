@@ -22,8 +22,8 @@ Template.homeLayout.helpers({
     return true;
   },
   lastProducts : function(){
-    Meteor.subscribe('lastPosts');
-    return posts.find({type : 'p'});
+    Meteor.subscribe('lastProducts');
+    return posts.find();
   }
 });
 

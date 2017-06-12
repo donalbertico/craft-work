@@ -53,7 +53,18 @@ Template.newPostForm.onRendered(function(){
           'bebidas' : null,
           'muebles' : null,
           'medicina' : null,
-          'cuidado personal' : null
+          'cuidado personal' : null,
+          'hogar y decoracion' : null,
+          'arte' : null,
+          'objetos de coleccion' : null,
+          'impresion' : null,
+          'fotografia' : null,
+          'munecos y miniaturas' : null,
+          'targetas personalizadas' : null,
+          'costura' : null,
+          'vidrio' : null,
+          'esculturas' : null,
+          'madera' : null
         },
         limit: Infinity,
         minLength: 1
@@ -74,7 +85,15 @@ Template.newPostForm.onRendered(function(){
           'medicina' : null,
           'sfotware' : null,
           'musica' : null,
-          'auditoria' : null
+          'auditoria' : null,
+          'fotografia' : null,
+          'hogar y decoracion' : null,
+          'arte' : null,
+          'munecos y miniaturas' : null,
+          'targetas personalizadas' : null,
+          'tejido' : null,
+          'vidrio' : null,
+          'esculturas' : null
          },
         limit: Infinity,
         minLength: 1

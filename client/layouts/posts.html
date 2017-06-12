@@ -6,146 +6,181 @@
 	    div.card-content{
 	      padding: 25px!important;
 	    }
-			h4.promo{
-			  position: relative;
-			  top: -10rem;
-			  left: -5.6rem;
-			  width: 5rem;
-			}
-			span.small{
-			  font-size: 10px;
-			  margin-left: -0.7rem;
-			  width: 7rem;
-			}
-			div.promo{
-			  position: relative;
-			  top: -10rem;
-			  right: 5rem;
-			}
-			div.post-content{
-				margin-bottom: 0px!important;
-			}
-			div.card-action{
-				margin-bottom: 0px!important;
-			}
-			div.post-card{
-				height: 42rem;
-			}
+		h4.promo{
+		  position: relative;
+		  top: -10rem;
+		  left: -5.6rem;
+		  width: 5rem;
+		}
+		span.small{
+		  font-size: 10px;
+		  margin-left: -0.7rem;
+		  width: 7rem;
+		}
+		div.promo{
+		  position: relative;
+		  top: -10rem;
+		  right: 5rem;
+		}
+		div.post-content{
+			margin-bottom: 0px!important;
+		}
+		div.card-action{
+			margin-bottom: 0px!important;
+		}
+		div.post-card{
+			height: 50rem;
+		}
+		div.labels{
+			margin-bottom: 1rem;
+			margin-top: -1rem;
+		}
+	    span.no-published{
+	      font-size: 0.6rem;
+	      font-weight: bold;
+	    }
+	    div.posts-container{
+	    	overflow-y: auto;
+			max-height: 98rem;
+			width: 100%;
+	    }
 	</style>
 	<div class="main row">
 		<h4>Mis publicaciones</h4>
 		{{#unless noServices}}
 			<h5 class="col m12">Servicios</h5>
-			{{#each userServices}}
-				<div class="post-card col m5">
-					<div class="card col m12 craft-card">
-						<div class="card-image" style="background-image : url('{{photos.[0]}}')">
-						</div>
-						<div class="card-content post-content row">
-							<div class="col m12 row main-info">
-								<h4 class="col m10">{{name}}</h4>
-							</div>
-							<div class="col m12 row">
-								{{#each labels}}
-								 <div class="chip col">
-										{{this}}
+				<div class="posts-container">
+					{{#each userServices}}
+						<div class="post-card col m5">
+							<div class="card col m12 craft-card">
+								<div class="card-image" style="background-image : url('{{photos.[0]}}')">
+								</div>
+								<div class="card-content post-content row">
+									<div class="col m12 row main-info">
+										<h4 class="col m10">{{name}}
+											{{#unless publish}}
+												<span class="no-published  yellow accent-3">No publicado</span>
+											{{/unless}}
+										</h4>
 									</div>
-								{{/each}}
+									<div class="col m12 row labels">
+										{{#each labels}}
+										 <div class="chip col">
+												{{this}}
+											</div>
+										{{/each}}
+									</div>
+									<span class="ligth col m12 spaced">{{description}}</span>
+									{{#if checkOnSale paymentType 0}}
+										<span class="col m12 middle-spaced">Pago por horas ${{paymentFee}}/hora</span>
+									{{/if}}
+									{{#if checkOnSale paymentType 1}}
+										<span class="col m12 middle-spaced">Pago por contrato</span>
+									{{/if}}
+									{{#if checkOnSale paymentType 2}}
+										<span class="col m12 middle-spaced">Otro metodo de pago</span>
+									{{/if}}
+									{{#if negotiable}}
+										<span class="col m12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
+									{{/if}}
+									{{#if link}}
+										<div class="col m12">
+											<span class="ligth middle-spaced">Enlace</span>
+											<a href="{{link}}">{{link}}</a>
+										</div>
+									{{/if}}
+									{{#if link1}}
+										<div class="col m12">
+											<span class="ligth middle-spaced">Enlace</span>
+											<a href="{{link1}}">{{link1}}</a>
+										</div>
+									{{/if}}
+								</div>
+								<div class="card-action row">
+									<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
+									<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
+									<a class="btn-flat col share" id="{{_id}}">compartir</a>
+									{{#if publish}}
+										<a class="btn-flat col unPublish" id="{{_id}}">Dejar de publicar</a>
+										<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>	
+									{{else}}
+										<a class="btn-flat col publishService" id="{{_id}}">Publicar</a>
+									{{/if}}
+								</div>
 							</div>
-							<span class="ligth col m12">{{description}}</span>
-							{{#if checkOnSale paymentType 0}}
-								<span class="col m12">Pago por horas ${{paymentFee}}/hora</span>
-							{{/if}}
-							{{#if checkOnSale paymentType 1}}
-								<span class="col m12">Pago por contrato</span>
-							{{/if}}
-							{{#if checkOnSale paymentType 2}}
-								<span class="col m12">Otro metodo de pago</span>
-							{{/if}}
-							{{#if negotiable}}
-								<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
-							{{/if}}
-							{{#if link}}
-								<div class="col m12">
-									<span class="ligth ">Enlace</span>
-									<a href="{{link}}">{{link}}</a>
-								</div>
-							{{/if}}
-							{{#if link1}}
-								<div class="col m12">
-									<span class="ligth">Enlace</span>
-									<a href="{{link1}}">{{link1}}</a>
-								</div>
-							{{/if}}
 						</div>
-						<div class="card-action row">
-							<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
-							<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
-							<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
-							<a class="btn-flat col share" id="{{_id}}">compartir</a>
-						</div>
-					</div>
+					{{/each}}
 				</div>
-			{{/each}}
 		{{/unless}}
 
 		{{#unless noProducts}}
 			<h5 class="col m12">Productos</h5>
-			{{#each userProducts}}
-				<div class="col m5 row post-card">
-					<div class="card col m12 craft-card">
-						<div class="card-image" style="background-image : url('{{photos.[0]}}')">
-							{{#if checkOnSale onSale 2}}
-			            <div class="ribbon ribbon-top-right"><span><h5 class="ribbon-header">{{saleGet}} * {{salePay}}</h5></span></div>
-			        {{/if}}
-			        {{#if checkOnSale onSale 1}}
-			          <div class="ribbon ribbon-top-right row">
-			            <span>
-			              <div class="ribbon-header">
-			                  {{percentage}}%
-			              </div>
-			              <div class="small-promo">
-			                en compras mayaores a ${{minValue}}
-			              </div>
-			            </span>
-			          </div>
-			        {{/if}}
-						</div>
-						<div class="card-content post-content row">
-							<div class="col m12 row main-info">
-								<h4 class="col m10">{{name}}</h4>
-								<h5 class="col m2">${{price}}</h5>
+			<div class="posts-container">
+				{{#each userProducts}}
+					<div class="col m5 row post-card">
+						<div class="card col m12 craft-card">
+							<div class="card-image" style="background-image : url('{{photos.[0]}}')">
+								{{#if checkOnSale onSale 2}}
+					            	<div class="ribbon ribbon-top-right"><span><h5 class="ribbon-header">{{saleGet}} * {{salePay}}</h5></span></div>
+					       		{{/if}}
+						        {{#if checkOnSale onSale 1}}
+						          <div class="ribbon ribbon-top-right row">
+						            <span>
+						              <div class="ribbon-header">
+						                  {{percentage}}%
+						              </div>
+						              <div class="small-promo">
+						                en compras mayaores a ${{minValue}}
+						              </div>
+						            </span>
+						          </div>
+						        {{/if}}
 							</div>
-							<div class="col m12 row">
-								{{#each labels}}
-								 <div class="chip col">
-								    {{this}}
-								  </div>
-								{{/each}}
-							</div>
-							<span class="ligth col m12">{{description}}</span>
-							{{#if negotiable}}
-								<span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
-							{{/if}}
-							{{#if shipping}}
-								{{#if shippingIncluded}}
-									<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
-								{{else}}
-									<span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
+							<div class="card-content post-content row">
+								<div class="col m12 row main-info">
+									<h4 class="col m10">{{name}}
+										{{#unless publish}}
+											<span class="no-published  yellow accent-3">No publicado</span>
+										{{/unless}}
+									</h4>
+									<h5 class="col m2">${{price}}</h5>
+								</div>
+								<div class="col m12 row labels">
+									{{#each labels}}
+									 <div class="chip col">
+									    {{this}}
+									  </div>
+									{{/each}}
+								</div>
+								<span class="ligth col m12 spaced">{{description}}</span>
+								{{#if negotiable}}
+									<span class="col m12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
 								{{/if}}
-							{{else}}
-								<span class="col"><i class="material-icons left">not_interested</i>No se realizan envios</span>
-							{{/if}}
-						</div>
-						<div class="card-action row">
-							<a class="btn-flat col" href="/account/product/{{_id}}/basic">Editar</a>
-							<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
-							<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+								{{#if shipping}}
+									{{#if shippingIncluded}}
+										<span class="col m12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+									{{else}}
+										<span class="col m12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
+									{{/if}}
+								{{else}}
+									<span class="col m12"><i class="material-icons left">not_interested</i>No se realizan envios</span>
+								{{/if}}
+							</div>
+							<div class="card-action row">
+								<a class="btn-flat col" href="/account/product/{{_id}}/basic">Editar</a>
+								<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
+								<a class="btn-flat col share" id="{{_id}}">Compartir</a>
+								{{#if publish}}
+									<a class="btn-flat col unPublish" id="{{_id}}">Dejar de publicar</a>
+									<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+								{{else}}
+									<a class="btn-flat col publishProduct" id="{{_id}}">Publicar</a>
+								{{/if}}
+							</div>
 						</div>
 					</div>
-				</div>
-			{{/each}}
+				{{/each}}
+			</div>
 		{{/unless}}
-
 	</div>
 </template>

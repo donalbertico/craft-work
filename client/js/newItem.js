@@ -97,6 +97,7 @@ Template.productSecondForm.onRendered(function(){
     $('#salePaySelect')[0].value = post.salePay||1;
     $('#saleGetSelect')[0].value = post.saleGet||2;
     $('select').material_select();
+    Materialize.updateTextFields();
 });
 
 Template.productSecondForm.helpers({
@@ -168,6 +169,7 @@ Template.productThirdForm.onRendered(function(){
   }else{
     auxArray = [];
   }
+  Materialize.updateTextFields();
 });
 
 Template.productThirdForm.helpers({

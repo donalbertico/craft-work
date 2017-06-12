@@ -173,7 +173,7 @@
     }
   </style>
   <a class="post" href="/post/{{post._id}}">
-    <div class="card col m12 craft-card">
+    <div class="card col m12 craft-card hoverable">
       <div class="card-image" style="background-image : url('{{post.photos.[0]}}')">
         {{#if checkOnSale post.onSale 2}}
             <div class="ribbon ribbon-top-right"><span><h5 class="ribbon-header">{{post.saleGet}} * {{post.salePay}}</h5></span></div>
@@ -206,25 +206,26 @@
         {{/if}}
         <div class="col m12 row labels">
           {{#each post.labels}}
-           <div class="chip col">
-              {{this}}
-            </div>
+              <a class="no-color" href="/search?labels[]={{this}}"><div class="chip col">{{this}}</div></a>
           {{/each}}
         </div>
         {{#if checkOnSale post.paymentType 0}}
-          <span>Pago por horas {{paymentFee}}</span>
+          <span class="col m12"><i class="mdi mdi-square-inc-cash left align-pay-forms"></i>Pago por horas ${{post.hourFee}}/hora</span>
         {{/if}}
         {{#if checkOnSale post.paymentType 1}}
           <span class="col m12"><i class="mdi mdi-square-inc-cash left align-pay-forms"></i>Por contrato</span>
         {{/if}}
         {{#if checkOnSale post.paymentType 2}}
-          <span>Otro metodo de pago</span>
+          <span class="col m12"><i class="mdi mdi-square-inc-cash left align-pay-forms"></i>Otro metodo de pago</span>
         {{/if}}
         <!-- <span class="ligth col m12 description">{{post.description}}</span> -->
         {{#if post.negotiable}}
           <span class="col m12"><i class="material-icons left">swap_vert</i>Negociable</span>
         {{/if}}
-        <!-- {{#if post.shipping}}
+        {{#if post.shippingIncluded}}
+          <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+        {{/if}}
+<!--         {{#if post.shipping}}
           {{#if post.shippingIncluded}}
             <span class="col m12"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
           {{else}}

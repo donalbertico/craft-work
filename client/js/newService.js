@@ -61,6 +61,7 @@ Template.serviceSecondForm.onRendered(function(){
   }
   $('select').material_select();
   currentPost = post;
+  Materialize.updateTextFields();
 });
 
 Template.serviceSecondForm.events({

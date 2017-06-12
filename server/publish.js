@@ -33,8 +33,8 @@ Meteor.publish('postSearch',(criteria,tags)=>{
   return posts.find(query);
 });
 
-Meteor.publish('lastPosts',()=>{
-  return posts.find({publish : true}, {sort: {$natural : -1}, limit: 3 });
+Meteor.publish('lastProducts',()=>{
+  return posts.find({type: 'p',publish : true}, {sort: {$natural : -1}, limit: 3 });
 });
 
 Meteor.publish('userList',()=>{
