@@ -42,45 +42,65 @@
     div.search-section div.container{
       margin-top: 5rem;
     }
+    div.post-card{
+      height: 37rem;
+    }
   </style>
   <div class="slider">
     <ul class="slides">
       <li>
         <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/jam.jpeg">
-        <div class="caption center-align">
+        <div class="caption center-align hide-on-med-and-down">
           <h1 class="main-title">CRAFT.EC</h1>
           <h2 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h2>
           <a href="/register" class="waves-effect waves-light btn-flat register-button"><h4>Ingresa ya</h4></a>
         </div>
+        <div class="caption center-align hide-on-large-only">
+          <h2 class="main-title">CRAFT.EC</h2>
+          <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
+          <a href="/register" class="waves-effect waves-light btn-flat register-button">Ingresa ya</a>
+        </div>
       </li>
       <li>
         <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/gina-zee-192280.jpg">
-        <div class="caption right-align slides-promo">
+        <div class="caption right-align slides-promo  hide-on-med-and-down">
           <h1>Incrementa tus ventas</h1>
           <h3 class="light grey-text text-lighten-3">Hazte conocer a travez de esta pltaforma</h3>
+        </div>
+        <div class="caption right-align slides-promo hide-on-large-only">
+          <h2>Incrementa tus ventas</h2>
+          <h4 class="light grey-text text-lighten-3">Hazte conocer a travez de esta pltaforma</h4>
         </div>
       </li>
       <li>
         <img src="https://s3.us-east-2.amazonaws.com/craft-work/shane-albuquerque-120447.jpg">
-        <div class="caption left-align">
+        <div class="caption left-align hide-on-med-and-down">
           <h1>Escoge la mejor opción</h1>
           <h3 class="light grey-text text-lighten-3">Elije entre cientos de productos y sirvicios artesanales</h3>
+        </div>
+        <div class="caption left-align hide-on-large-only">
+          <h2>Escoge la mejor opción</h2>
+          <h4 class="light grey-text text-lighten-3">Elije entre cientos de productos y sirvicios artesanales</h4>
         </div>
       </li>
     </ul>
   </div>
   <div class="section white search-section">
     <div class="row container">
-      <h2 class="header">Busca productos y servicios</h2>
+      <h2 class="header hide-on-med-and-down">Busca productos y servicios</h2>
+      <h4 class="header hide-on-large-only">Busca productos y servicios</h4>
       {{> searchBar}}
     </div>
   </div>
   <div class="section orange lighten-4 last-products">
     <div class="row container">
-      <h2 class="header m12 white-text">Ultimos productos</h2>
+      <h2 class="header m12 white-text hide-on-med-and-down">Ultimos productos</h2>
+      <h3 class="header m12 white-text hide-on-large-only">Ultimos productos</h3>
       {{#each lastProducts}}
-        <div class="col m4">
-          {{> postCard post=this}}
+        <div class="col l4 m5 s12">
+          <div class="post-card">
+            {{> postCard post=this}}          
+          </div>
         </div>
       {{/each}}
     </div>

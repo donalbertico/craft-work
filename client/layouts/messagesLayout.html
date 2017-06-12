@@ -1,4 +1,4 @@
-<template name="account">
+<template name="messagesLayout">
   <style>
     img.nav{
       height: 3rem;
@@ -14,6 +14,9 @@
     }
     a.logout{
       margin-bottom: 0px;
+    }
+    i.tiny{
+    	font-size: 1rem!important;
     }
   </style>
   <nav>
@@ -42,19 +45,43 @@
        <li ><a href="/logout" class="row logout">Salir<i class="material-icons col right small">input</i></a></li>
      </ul>
       <ul class="side-nav" id="mobile-nav">
-        <li>
-          <a href="/account">
-            <div class="account-element">
-             <img class="circle nav" src="{{currentUser.profile.photo}}">
-             <div class="account-label">{{currentUser.profile.name}}</div>
-           </div>
-          </a>
-        </li>
-        <li><a href="/account/userInfo" class="collection-item">Mi perfil</a></li>
-        <li><a href="/account/craft" class="collection-item">Soy Craft (artesano)</a></li>
-        <li><a href="/messages" class="collection-item">{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}Mensajes</a></li>
-        <li><a href="/account/newItem" class="collection-item">Nueva publicación</a></li>
-        <li><a href="/account/posts" class="collection-item">Mis Publicaciones</a></li>
+		    <li>
+	          <a href="/account">
+	            <div class="account-element">
+	             <img class="circle nav" src="{{currentUser.profile.photo}}">
+	             <div class="account-label">{{currentUser.profile.name}}</div>
+	           </div>
+	          </a>
+	        </li>
+          {{#if userRooms}}
+            <li><h5 class="col m12 black-text">Conversaciones</h5></li>
+          {{else}}
+          	<li>
+          		<h5 class="col m12"> Aqui van tus conversaciones
+	              <h6 class="col m12"><a href="/account">Regresar a mi cuenta</a></h6>
+	            </h5>	
+          	</li>
+          {{/if}}
+          <div class="collection">
+          	{{#each userRooms}}
+	            <a href="/messages/{{user._id}}" class="collection-item row">
+	            	<div class="col">
+			            {{#if unseen}}
+				          <span class="new badge"></span>
+				        {{/if}}
+				          <img src="{{user.profile.photo}}" class="circle user-room">
+				        {{user.profile.name}} {{user.profile.lastName}}
+	            	</div>
+		            {{#if user.status.online}}
+		              <i class="tiny mdi mdi-octagon online col"></i>
+		            {{else}}
+		              <i class="tiny mdi mdi-octagon-outline col"></i>
+		            {{/if}}
+	            </a>
+       		{{/each}}
+          </div>
+       	  <li ><a href="/logout" class="row logout">Salir<i class="material-icons col right small">input</i></a></li>
+
      </ul>
    </div>
   </nav>
@@ -71,7 +98,7 @@
       </div>
     </div>
     <div class="col s12 m8 l9 offset-l1">
-      {{> yield "section"}}
+      {{> yield}}
     </div>
   </div>
   {{> footer}}

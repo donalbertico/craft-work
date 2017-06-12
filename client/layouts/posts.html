@@ -98,13 +98,15 @@
 								</div>
 								<div class="card-action row">
 									<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
-									<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
-									<a class="btn-flat col share" id="{{_id}}">compartir</a>
 									{{#if publish}}
-										<a class="btn-flat col unPublish" id="{{_id}}">Dejar de publicar</a>
-										<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>	
+										<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>									
+									{{/if}}
+									<a class="btn-flat delete col s4 m2 red-text text-darken-3" id="{{_id}}">Eliminar</a>
+									<a class="btn-flat col s4 m3 share indigo-text text-darken-1" id="{{_id}}">Compartir</a>
+									{{#if publish}}
+										<a class="btn-flat col unPublish orange-text text-darken-3" id="{{_id}}">Dejar de publicar</a>
 									{{else}}
-										<a class="btn-flat col publishService" id="{{_id}}">Publicar</a>
+										<a class="btn-flat col publishService red-text text-lighten-1" id="{{_id}}">Publicar</a>
 									{{/if}}
 								</div>
 							</div>
@@ -168,13 +170,15 @@
 							</div>
 							<div class="card-action row">
 								<a class="btn-flat col" href="/account/product/{{_id}}/basic">Editar</a>
-								<a class="btn-flat delete col" id="{{_id}}">Eliminar</a>
-								<a class="btn-flat col share" id="{{_id}}">Compartir</a>
 								{{#if publish}}
-									<a class="btn-flat col unPublish" id="{{_id}}">Dejar de publicar</a>
-									<a class="btn-flat col" href="/post/{{_id}}">Vista previa</a>
+									<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>									
+								{{/if}}
+								<a class="btn-flat delete col s4 m2 red-text text-darken-3" id="{{_id}}">Eliminar</a>
+								<a class="btn-flat col s4 m3 share indigo-text text-darken-1" id="{{_id}}">Compartir</a>
+								{{#if publish}}
+									<a class="btn-flat col unPublish orange-text text-darken-3" id="{{_id}}">Dejar de publicar</a>
 								{{else}}
-									<a class="btn-flat col publishProduct" id="{{_id}}">Publicar</a>
+									<a class="btn-flat col publishProduct red-text text-lighten-1" id="{{_id}}">Publicar</a>
 								{{/if}}
 							</div>
 						</div>

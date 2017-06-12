@@ -66,7 +66,7 @@
          <li><a href="#loginModal">Ingresar</a></li>
          <li><a href="/register">Registrarse</a></li>
        {{/if}}
-       <li><a href="/account/newItem">Publicar un producto</a></li>
+       <li><a href="/account/newItem">Nueva publicacion</a></li>
        <li class="search">
          <form class="mainLayout-search-form">
           <div class="input-field">
@@ -93,9 +93,20 @@
          <li><a href="#loginModal">Ingresar</a></li>
          <li><a href="/register">Registrarse</a></li>
        {{/if}}
-       <li><a href="sass.html"><i class="material-icons left">search</i>Buscar</a></li>
-       <li><a href="sass.html">Publicar un producto</a></li>
-       <li><a href="/logout">Salir</a></li>
+        <li class="search teal accent-4">
+         <form class="mainLayout-search-form">
+          <div class="input-field">
+            <input id="search" type="search" required placeholder="buscar" name="searchInput">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button type="submit" name="button" hidden></button>
+         </form>
+       </li>
+       <li><a href="/account/newItem">Nueva publicacion</a></li>
+       {{#if currentUser}}
+        <li><a href="/logout">Salir</a></li>
+       {{/if}}
      </ul>
    </div>
   </nav>

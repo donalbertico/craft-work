@@ -114,3 +114,6 @@ nav.progress-nav{
 .middle-spaced{
   margin-bottom: 0.5rem;
 }
+.before{
+  z-index: 5;
+}

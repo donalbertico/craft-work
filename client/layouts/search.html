@@ -171,6 +171,9 @@
     div.post-content{
       margin-bottom: 0px!important;
     }
+    h5.price{
+      margin-top: 0rem
+    }
   </style>
   <a class="post" href="/post/{{post._id}}">
     <div class="card col m12 craft-card hoverable">
@@ -198,10 +201,10 @@
           </h5>
         {{else}}
           <div class="col m12 row">
-            <h5 class="col m10 name">{{post.name}}
+            <h5 class="col m9 s9 name">{{post.name}}
                 <span class="post-type  yellow accent-3">producto</span>
             </h5>
-            <h5 class="col m2">${{post.price}}</h5>
+            <h5 class="col m2 s2 price">${{post.price}}</h5>
           </div>
         {{/if}}
         <div class="col m12 row labels">

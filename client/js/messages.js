@@ -68,3 +68,25 @@ Template.messages.helpers({
     return Meteor.userId() == Router.current().params.id ;
   }
 });
+
+Template.messagesLayout.helpers({
+  userRooms : function(){
+    var userRooms = [];
+    rooms.find({users : Meteor.userId()}).forEach((room)=>{
+      var current = {
+        id :room._id,
+        users : room.users
+      }
+      if(room.users[0]==Meteor.userId()){
+        current['user'] = Meteor.users.findOne({_id: room.users[1]});
+      }else if(room.users[1]==Meteor.userId()){
+        current['user'] = Meteor.users.findOne({_id: room.users[0]});
+      }
+      console.log(Meteor.users.findOne({_id: room.users[1]}));
+      if(room.recivedA == Meteor.userId() || room.recivedB == Meteor.userId())current['unseen'] = true;
+      console.log(current);
+      userRooms.push(current);
+    });
+    return userRooms;
+  }
+});

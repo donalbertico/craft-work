@@ -102,7 +102,7 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-content row">
-          <form id="postForm" class="col s12 first-form">
+          <form id="postForm" class="first-form">
             <span class="col s5 ligth">Etiqueta/as</span>
             <div class="col s12 labels"><div class="chips chips-autocomplete"></div></div>
             <div class="input-field col s12">
@@ -170,11 +170,11 @@
         <div class="card-content row">
             <span class="card-title">Informacion del precio</span>
           <form class="col m12 product-second-form">
-            <span class="ligth col m12">Precio unitario</span>
-            <p class="range-field col m10 spaced">
+            <span class="ligth col m12 s12">Precio unitario</span>
+            <p class="range-field col m10 s10 spaced">
               <input class="price-range" type="range" min="0" name="price" max="300" value="{{currentPost.price}}"/>
             </p>
-            <span class="col m1 price-label">${{currentPost.price}}</span>
+            <span class="col m1 s1 price-label">${{currentPost.price}}</span>
             <p class="col m12 spaced">
               <input type="checkbox" id="negotiable" name="negotiable" checked="{{currentPost.negotiable}}"/>
               <label for="negotiable">Es negociable</label>
@@ -188,14 +188,14 @@
               <label>Esta en promocion?</label>
             </div>
             <div id="percentageDiv"  hidden class="row animated col m12 spaced">
-              <div class="input-field col m3">
+              <div class="input-field col m3 s10">
                 <input id="percentage" type="text" class="validate" name="percentage"  pattern="[0-9]{1,2}" value="{{currentPost.percentage}}">
                 <label for="percentage" data-error="el valor es incorrecto" data-success="correcto">porcentaje</label>
               </div>
               <h5 class="col percentaje-indicator">%</h5>
-              <span class="col m4 percentage-label">de descuento en compras mayores a</span>
+              <span class="col m4 s12 percentage-label">de descuento en compras mayores a</span>
               <h5 class="col value-indicator">$</h5>
-              <div class="input-field col m3 row">
+              <div class="input-field col m3 s10 row">
                 <input id="minValue" type="text" class="validate" name="minValue" pattern="[0-9]{1,4}" value="{{currentPost.percentage}}">
                 <label for="minValue" data-error="el valor es incorrecto" data-success="correcto">valor</label>
               </div>
@@ -239,7 +239,7 @@
               </div>
             </div>
             <span class="ligth col m12">Se realizan envios?</span>
-            <div class="switch col m12 spaced">
+            <div class="switch col m12 spaced before">
               <label>
                 No
                 <input id="shippingInput" type="checkbox" checked="{{currentPost.shipping}}" name="shipping">
@@ -247,7 +247,7 @@
                 Si
               </label>
             </div>
-            <div id="shippingDiv" class="col m12 animated">
+            <div id="shippingDiv" class="col m12 animated before">
               <p class="col m6">
                 <input type="checkbox" id="shippingIncludedInput" name="shippingIncluded" checked="{{currentPost.shippingIncluded}}" />
                 <label for="shippingIncludedInput">El precio incluye envio</label>
@@ -262,7 +262,7 @@
             <button id="productSecondFormButton" type="submit" hidden></button>
           </form>
         </div>
-        <div class="card-action">
+        <div class="card-action before">
           <a class="waves-effect waves-teal btn-flat next"><i class="material-icons right">label</i>Siguiente</a>
           <a class="waves-effect waves-teal btn-flat" href="/account/product/{{currentPost._id}}/basic">Atrás</a>
         </div>
