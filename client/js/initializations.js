@@ -6,7 +6,7 @@ Template.homeLayout.onRendered(function(){
 
 Template.mainLayout.onRendered(function(){
   $('.modal').modal();
-  $(".button-collapse").sideNav();
+  $('.button-collapse').sideNav();
   $('.dropdown-button').dropdown();
   $('.register-button').addClass('bordered');
 });
@@ -21,6 +21,11 @@ Template.messagesLayout.onRendered(function(){
 
 Template.accountButtonTemplate.onRendered(function(){
    $('.dropdown-button').dropdown();
+});
+
+Template.searchLayout.onRendered(function(){
+  $('.button-collapse').sideNav();
+  $('.modal').modal();
 });
 
 function messagesGet(){
@@ -120,7 +125,7 @@ Template.post.onRendered(function(){
   }, 500);
 });
 
-Template.search.onRendered(function(){
+Template.searchLayout.onRendered(function(){
   $('select').material_select();
 });
 

@@ -2,20 +2,11 @@ var lastSearch;
 var routeQuery = {};
 var resultDep = new Tracker.Dependency;
 
-Template.search.onRendered(function(){
-  var labels = routeQuery.labels;
-  var selectedLabels = [];
-  for(var label in labels){
-    selectedLabels.push({tag : labels[label]});
-  };
-  initChipsAutoComplete(selectedLabels);
-  $('#typeSelect')[0].value = routeQuery.type;
-  $('select').material_select();
-});
 
 Template.search.helpers({
   loading : function(){
-    return Meteor.subscribe('postSearch',routeQuery.criteria,routeQuery.labels).ready();
+    var query = Router.current().params.query;
+    return Meteor.subscribe('postSearch',query.criteria,query.labels).ready();
   },
   query : function(){
     routeQuery = Router.current().params.query;
@@ -55,14 +46,62 @@ Template.search.events({
     routeQuery['criteria'] = e.target.searchInput.value;
     var uri = '/search?'+$.param(routeQuery);
     Router.go(uri,{replaceState: true});
+  }
+});
+
+Template.searchLayout.onRendered(function(){
+  var labels = routeQuery.labels;
+  var selectedLabels = [];
+  for(var label in labels){
+    selectedLabels.push({tag : labels[label]});
+  };
+  initChipsAutoComplete(selectedLabels);
+  $('#typeSelect')[0].value = routeQuery.type;
+  $('select').material_select();
+});
+
+Template.searchLayout.helpers({
+  query : function(){
+    routeQuery = Router.current().params.query;
+    switch (routeQuery.type) {
+      case '1':
+        routeQuery.onlyProducts = true;
+        break;
+      case '2':
+        routeQuery.onlyServices = true;
+        break;
+    }
+    return routeQuery;
   },
+});
+
+Template.searchLayout.events({
   'click a.filters-search' : function(e){
     $('.filters-form-button').click();
+  },
+  'click a.nav-filters-search' : function(e){
+    $('.nav-filters-form-button').click();
+  },
+  'submit form.nav-filters-form' : function(e){
+    e.preventDefault();
+    var form = e.target;
+    var autcomplete = $('.nav-chips-autocomplete');
+    var selectedLabels = autcomplete[0].textContent.split('close');
+    selectedLabels.pop();
+    routeQuery = { criteria : routeQuery.criteria};
+    if(selectedLabels.length != 0)routeQuery['labels'] = selectedLabels;
+    if(form.onlyServices.checked&&!form.onlyProducts.checked)routeQuery['type'] = '2';
+    if(form.onlyProducts.checked&&!form.onlyServices.checked)routeQuery['type'] = '1';
+    if(form.onSale.checked)routeQuery['onSale'] = true;
+    if(form.shipping.checked)routeQuery['shipping'] = true;
+    if(form.negotiable.checked)routeQuery['negotiable'] = true;
+    if(form.city.value)routeQuery['city'] = form.city.value;
+    Router.go('/search?'+$.param(routeQuery),{replaceState: true});
   },
   'submit form.filters-form' : function(e){
     e.preventDefault();
     var form = e.target;
-    var autcomplete = $('.chips-autocomplete');
+    var autcomplete = $('.side-chips-autocomplete');
     var selectedLabels = autcomplete[0].textContent.split('close');
     selectedLabels.pop();
     routeQuery = { criteria : routeQuery.criteria};
@@ -75,13 +114,7 @@ Template.search.events({
     Router.go('/search?'+$.param(routeQuery),{replaceState: true});
   },
   'click a.clear' : function(e){
-    routeQuery = {criteria : routeQuery.criteria};
-    $('#onSaleCheck').checked = false;
-    $('#shippingCheck').checked = false;
-    $('#typeSelect')[0].value = 0;
-    $('select').material_select();
-    initChipsAutoComplete({});
-    Router.go('/search?criteria='+routeQuery.criteria, {replaceState: true});
+    clearFilters();
   }
 });
 
@@ -107,7 +140,6 @@ Template.account.events({
 });
 
 var redirectSearch = function(criteria){
-  console.log('redirected');
   Router.go('/search?criteria='+criteria);
 }
 
@@ -128,4 +160,18 @@ var initChipsAutoComplete = function(selectedLabels){
     },
     data:selectedLabels
   });
+}
+
+var _formSubmtied = function(e){
+
+};
+
+var clearFilters = function(){
+  routeQuery = {criteria : routeQuery.criteria};
+  $('#onSaleCheck').checked = false;
+  $('#shippingCheck').checked = false;
+  $('#typeSelect')[0].value = 0;
+  $('select').material_select();
+  initChipsAutoComplete({});
+  Router.go('/search?criteria='+routeQuery.criteria, {replaceState: true});
 }

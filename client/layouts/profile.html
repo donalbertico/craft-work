@@ -39,14 +39,18 @@
       margin-bottom: 0px!important;
     }
     div.posts{
-      max-height: 89rem;
+      max-height: 65rem;
       overflow-y: auto;
       overflow-x: hidden;
     }
   </style>
   <div class="row container">
       {{#if userProfile.profile.craft.name}}
-        <div class="col m6 grey lighten-1 posts">
+        <div class="col m6 hide-on-large-only">
+          {{> craftProfile}}
+          {{> userProfile}}
+        </div>
+        <div class="col m6 s12 grey lighten-1 posts">
           <h4>Productos/Servicios</h4>
           <div class="col m12 row">
             {{#each posts}}
@@ -54,7 +58,7 @@
             {{/each}}
           </div>
         </div>
-        <div class="col m6">
+        <div class="col m6 hide-on-med-and-down">
           {{> craftProfile}}
           {{> userProfile}}
         </div>
@@ -74,18 +78,18 @@
   <div class="card white darken-1 col s12 craft-card">
     <div class="card-image" style="background-image : url('{{userProfile.profile.craft.photo}}')"></div>
     <div class="card-content row">
-      <h3 class="col m12">{{userProfile.profile.craft.name}}</h3>
-      <h5 class="col m12">{{userProfile.profile.craft.city}}</h5>
-      <h6 class="col m12 spaced">{{userProfile.profile.craft.address}}</h6>
-      <span class="ligth col m12 spaced">{{userProfile.profile.craft.description}}</span>
+      <h3 class="col m12 s12">{{userProfile.profile.craft.name}}</h3>
+      <h5 class="col m12 s12">{{userProfile.profile.craft.city}}</h5>
+      <h6 class="col m12 s12 spaced">{{userProfile.profile.craft.address}}</h6>
+      <span class="ligth col m12 s12 spaced">{{userProfile.profile.craft.description}}</span>
       <div class="row col m4 social">
         {{#if userProfile.profile.craft.facebook}}
-          <a href="{{userProfile.profile.craft.facebook}}" class="m12 no-color">
+          <a href="{{userProfile.profile.craft.facebook}}" class="m12 s12 no-color">
             <i class="mdi small mdi-facebook"></i>
           </a>
         {{/if}}
         {{#if userProfile.profile.craft.instagram}}
-          <a href="{{userProfile.profile.craft.instagram}}" class="m12 no-color">
+          <a href="{{userProfile.profile.craft.instagram}}" class="m12 s12 no-color">
             <i class="mdi small mdi-instagram"></i>
           </a>
         {{/if}}
@@ -94,18 +98,18 @@
   </div>
   <div class="card white col s12">
     <div class="card-content contact row">
-      <div class="col m12">
+      <div class="col m12 s12">
         <i class="material-icons">call</i>
         <span class="">{{userProfile.profile.craft.movil}}</span>
       </div>
       {{#if userProfile.profile.craft.telephone}}
-        <div class="col m12">
+        <div class="col m12 s12">
           <i class="material-icons">stay_current_portrait</i>
           <span class="">{{userProfile.profile.craft.telephone}}</span>
         </div>
       {{/if}}
       {{#if userProfile.profile.craft.webPage}}
-        <a href="{{userProfile.profile.craft.webPage}}" class="col m12 no-color">
+        <a href="{{userProfile.profile.craft.webPage}}" class="col m12 s12 no-color">
           <i class="material-icons">language</i>
           <span class="">{{userProfile.profile.craft.webPage}}</span>
         </a>
@@ -116,7 +120,7 @@
 <template name="userProfile">
   <div class="card white darken-1 col s12">
     <div class="card-content white small row user-profile row">
-      <div class="col m9 s12" >
+      <div class="col m9 s8" >
         <div class="row">
           <span class="col card-title">{{userProfile.profile.name}}{{userProfile.profile.lastName}}</span>
           {{#if userProfile.status.online}}
@@ -125,13 +129,13 @@
             <i class="mdi mdi-octagon-outline"></i>
           {{/if}}
         </div>
-        <span class="col m12">{{userProfileEmail}}</span>
-        <span class="col m12 ligth">{{userProfile.profile.telephone}}</span>
+        <span class="col m12 s12">{{userProfileEmail}}</span>
+        <span class="col m12 s12 ligth">{{userProfile.profile.telephone}}</span>
       </div>
-      <img src="{{userProfile.profile.photo}}" class="circle  col m3 craft-user">
+      <img src="{{userProfile.profile.photo}}" class="circle  col m3 s4 craft-user">
     </div>
-    <div class="card-action">
-      <a href="/messages/{{userProfile._id}}" class="btn-flat">Enviar Mensaje</a>
+    <div class="card-action row">
+      <a href="/messages/{{userProfile._id}}" class="btn-flat col">Enviar Mensaje</a>
     </div>
   </div>
 </template>

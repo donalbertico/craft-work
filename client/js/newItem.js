@@ -238,6 +238,7 @@ Template.productThirdForm.events({
   'click a.set-main' : function(e){
     var index = getSelectedPhotoIndex();
     var aux = auxArray[0];
+    if(auxArray.length==1)return;
     auxArray[0] = auxArray[index];
     auxArray[index] = aux;
     posts.update({_id:currentPost._id},{$set : { photos : auxArray }});

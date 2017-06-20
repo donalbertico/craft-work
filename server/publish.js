@@ -24,8 +24,8 @@ Meteor.publish('post',(id)=>{
 
 Meteor.publish('postSearch',(criteria,tags)=>{
   if(!criteria&&!tags){
-    this.ready();
     return [];
+    this.ready();
   };
   var query = {publish : true};
   if(criteria) query['$text'] = {$search : criteria}
@@ -35,6 +35,14 @@ Meteor.publish('postSearch',(criteria,tags)=>{
 
 Meteor.publish('lastProducts',()=>{
   return posts.find({type: 'p',publish : true}, {sort: {$natural : -1}, limit: 3 });
+});
+
+Meteor.publish('lastServices',()=>{
+  return posts.find({type: 's',publish : true}, {sort: {$natural : -1}, limit: 2});
+});
+
+Meteor.publish('mine',()=>{
+  return posts.find({_id : 'FKEmZyaZBvvd4gjHc'});
 });
 
 Meteor.publish('userList',()=>{

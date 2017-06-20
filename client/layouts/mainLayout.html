@@ -12,20 +12,6 @@
       position: relative;
       top: 0.7rem;
     }
-    div.login{
-      width: 20rem;
-      margin-bottom: 1rem;
-    }
-    div.login .modal-content{
-      margin-bottom: 0.5rem;
-    }
-    li.account-li{
-      height: 3rem;
-    }
-    a.account-element{
-      display: -webkit-box !important;
-      height: 4.1rem;
-    }
     div.account-label{
       margin-left: 0.7rem;
     }
@@ -40,9 +26,6 @@
     li.side{
       margin-bottom: 0px;
     }
-    div.hack{
-      height:0px;
-    }
     span.unseen{
       position: relative;
       top: 1.2rem;
@@ -51,10 +34,13 @@
     li.unseen{
       margin-bottom: 0px!important;
     }
+    li.account-li{
+      height: 3rem;
+    }
   </style>
   <nav>
    <div class="nav-wrapper">
-     <a href="/" class="brand-logo right">craft.ec</a>
+     <a href="/" class="brand-logo right">craft ec</a>
      <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
      <ul id="nav-mobile" class="left hide-on-med-and-down">
        {{#if currentUser}}
@@ -89,20 +75,21 @@
              <div class="col">Mensajes{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}</div>
            </a>
          </li>
+         <li><a href="/account/posts">Mis Publicaciones</a></li>
        {{else}}
          <li><a href="#loginModal">Ingresar</a></li>
          <li><a href="/register">Registrarse</a></li>
        {{/if}}
         <li class="search teal accent-4">
-         <form class="mainLayout-search-form">
-          <div class="input-field">
-            <input id="search" type="search" required placeholder="buscar" name="searchInput">
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-          </div>
-          <button type="submit" name="button" hidden></button>
-         </form>
-       </li>
+           <form class="mainLayout-search-form">
+            <div class="input-field">
+              <input id="search" type="search" required placeholder="buscar" name="searchInput">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+            <button type="submit" name="button" hidden></button>
+           </form>
+        </li>
        <li><a href="/account/newItem">Nueva publicacion</a></li>
        {{#if currentUser}}
         <li><a href="/logout">Salir</a></li>

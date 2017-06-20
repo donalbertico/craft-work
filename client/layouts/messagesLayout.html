@@ -57,9 +57,9 @@
             <li><h5 class="col m12 black-text">Conversaciones</h5></li>
           {{else}}
           	<li>
-          		<h5 class="col m12"> Aqui van tus conversaciones
-	              <h6 class="col m12"><a href="/account">Regresar a mi cuenta</a></h6>
-	            </h5>	
+          		<h6 class="col m12  black-text"> Aqui van tus conversaciones
+	              <h6 class="col m12  black-text"><a href="/account">Regresar a mi cuenta</a></h6>
+	            </h6>
           	</li>
           {{/if}}
           <div class="collection">
@@ -80,8 +80,10 @@
 	            </a>
        		{{/each}}
           </div>
+          <li><a href="/account">Mi cuenta</a></li>
+          <li><a href="/account/newItem">Nueva publicación</a></li>
+          <li><a href="/account/posts">Mis publicaciones</a></li>
        	  <li ><a href="/logout" class="row logout">Salir<i class="material-icons col right small">input</i></a></li>
-
      </ul>
    </div>
   </nav>

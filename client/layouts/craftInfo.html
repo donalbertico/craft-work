@@ -52,66 +52,66 @@
         <div class="card-content white darken-1 row">
 					<h4 class="col m12">Información de Artesano</h4>
           <form id="craftInfoForm">
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
                 <label class="active" for="name">Nombre artesanal / empresa</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
                 <textarea id="description" type="text" placeholder="Qué ofreces?" class="materialize-textarea" required name="description" data-length="120" value="{{currentUser.profile.craft.description}}"></textarea>
                 <label class="active" for="description">Describelo</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
                 <label class="active" for="city">Ciudad</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
                 <label class="active" for="address">Direccion</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="material-icons prefix">call</i>
                 <input id="movil" type="tel" class="validate" required name="movil" value="{{currentUser.profile.craft.movil}}" pattern="[0-9]{1,10}">
                 <label class="active" for="movil" data-error="solo números" data-success="correcto">Teléfono</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="mdi mdi-cellphone-iphone prefix"></i>
                 <input id="telephone" type="tel" class="validate" name="telephone" value="{{currentUser.profile.craft.telephone}}" pattern="[0-9]{1,10}">
                 <label class="active" for="telephone" data-error="solo números" data-success="correcto">Teléfono secundario</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="material-icons prefix">language</i>
                 <input id="webPage" type="text" class="validate" name="webPage" value="{{currentUser.profile.craft.webPage}}">
                 <label class="active" for="webPage">P@gina web</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="mdi mdi-facebook-box prefix"></i>
                 <input id="facebook" type="text" class="validate" name="facebook" value="{{currentUser.profile.craft.facebook}}">
                 <label class="active" for="facebook">Facebook</label>
               </div>
             </div>
-            <div class="row col m12">
+            <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="mdi mdi-instagram prefix"></i>
                 <input id="instagram" type="text" class="validate" name="instagram" value="{{currentUser.profile.craft.instagram}}">
                 <label class="active" for="instagram">Instagram</label>
               </div>
             </div>
-            <div class="row craft-photo col m12">
+            <div class="row craft-photo col m12 s12">
               <span class="ligth grey-text photo col m12">Foto</span>
               <div class="col s12 craft-img center-align" style="background-image : url('{{currentUser.profile.craft.photo}}')"></div>
               {{#if uploadCraftProgress}}

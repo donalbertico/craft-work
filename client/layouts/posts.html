@@ -48,7 +48,7 @@
 	<div class="main row">
 		<h4>Mis publicaciones</h4>
 		{{#unless noServices}}
-			<h5 class="col m12">Servicios</h5>
+			<h5 class="col m12 s12">Servicios</h5>
 				<div class="posts-container">
 					{{#each userServices}}
 						<div class="post-card col m5">
@@ -70,27 +70,27 @@
 											</div>
 										{{/each}}
 									</div>
-									<span class="ligth col m12 spaced">{{description}}</span>
+									<span class="ligth col m12 s12 spaced">{{description}}</span>
 									{{#if checkOnSale paymentType 0}}
-										<span class="col m12 middle-spaced">Pago por horas ${{paymentFee}}/hora</span>
+										<span class="col m12 s12 middle-spaced">Pago por horas ${{paymentFee}}/hora</span>
 									{{/if}}
 									{{#if checkOnSale paymentType 1}}
-										<span class="col m12 middle-spaced">Pago por contrato</span>
+										<span class="col m12 s12 middle-spaced">Pago por contrato</span>
 									{{/if}}
 									{{#if checkOnSale paymentType 2}}
-										<span class="col m12 middle-spaced">Otro metodo de pago</span>
+										<span class="col m12 s12 middle-spaced">Otro metodo de pago</span>
 									{{/if}}
 									{{#if negotiable}}
-										<span class="col m12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
+										<span class="col m12 s12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
 									{{/if}}
 									{{#if link}}
-										<div class="col m12">
+										<div class="col m12 s12">
 											<span class="ligth middle-spaced">Enlace</span>
 											<a href="{{link}}">{{link}}</a>
 										</div>
 									{{/if}}
 									{{#if link1}}
-										<div class="col m12">
+										<div class="col m12 s12">
 											<span class="ligth middle-spaced">Enlace</span>
 											<a href="{{link1}}">{{link1}}</a>
 										</div>
@@ -99,7 +99,7 @@
 								<div class="card-action row">
 									<a class="btn-flat col" href="/account/service/{{_id}}/basic">Editar</a>
 									{{#if publish}}
-										<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>									
+										<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>
 									{{/if}}
 									<a class="btn-flat delete col s4 m2 red-text text-darken-3" id="{{_id}}">Eliminar</a>
 									<a class="btn-flat col s4 m3 share indigo-text text-darken-1" id="{{_id}}">Compartir</a>
@@ -139,39 +139,39 @@
 						        {{/if}}
 							</div>
 							<div class="card-content post-content row">
-								<div class="col m12 row main-info">
-									<h4 class="col m10">{{name}}
+								<div class="col m12 s12 row main-info">
+									<h4 class="col m10 s10">{{name}}
 										{{#unless publish}}
 											<span class="no-published  yellow accent-3">No publicado</span>
 										{{/unless}}
 									</h4>
-									<h5 class="col m2">${{price}}</h5>
+									<h5 class="col m2 s2">${{price}}</h5>
 								</div>
-								<div class="col m12 row labels">
+								<div class="col m12 s12 row labels">
 									{{#each labels}}
 									 <div class="chip col">
 									    {{this}}
 									  </div>
 									{{/each}}
 								</div>
-								<span class="ligth col m12 spaced">{{description}}</span>
+								<span class="ligth col m12 s12 spaced">{{description}}</span>
 								{{#if negotiable}}
-									<span class="col m12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
+									<span class="col m12 s12 middle-spaced"><i class="material-icons left">swap_vert</i>Negociable</span>
 								{{/if}}
 								{{#if shipping}}
 									{{#if shippingIncluded}}
-										<span class="col m12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
+										<span class="col m12 s12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Envio incluido</span>
 									{{else}}
-										<span class="col m12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
+										<span class="col m12 s12 middle-spaced"><i class="mdi mdi-truck-delivery left small"></i>Precio del envio ${{shippingCost}}</span>
 									{{/if}}
 								{{else}}
-									<span class="col m12"><i class="material-icons left">not_interested</i>No se realizan envios</span>
+									<span class="col m12 s12"><i class="material-icons left">not_interested</i>No se realizan envios</span>
 								{{/if}}
 							</div>
 							<div class="card-action row">
 								<a class="btn-flat col" href="/account/product/{{_id}}/basic">Editar</a>
 								{{#if publish}}
-									<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>									
+									<a class="btn-flat col teal-text text-accent-4" href="/post/{{_id}}">Vista previa</a>
 								{{/if}}
 								<a class="btn-flat delete col s4 m2 red-text text-darken-3" id="{{_id}}">Eliminar</a>
 								<a class="btn-flat col s4 m3 share indigo-text text-darken-1" id="{{_id}}">Compartir</a>

@@ -1,4 +1,13 @@
 <template name="searchLayout">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjTF6xXTHgzP9UoIcq_abU1Gb8smcybbA&libraries=places&callback=initAutocomplete"
+  async defer></script>
+  <script type="text/javascript">
+    var placeSearch, autocomplete1, autocomplete;
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),{types: ['(cities)'],componentRestrictions: {country: "ec"}});
+      autocomplete1 = new google.maps.places.Autocomplete((document.getElementById('cityNav')),{types: ['(cities)'],componentRestrictions: {country: "ec"}});
+    }
+  </script>
   <style>
     img.nav{
       height: 3rem;
@@ -18,20 +27,42 @@
     i.tiny{
     	font-size: 1rem!important;
     }
+    label.side-nav-city-label{
+      margin-top: 3rem;
+    }
+    input#cityNav{
+      padding: 0px;
+      font-size: 1rem;
+    }
+    div.divider{
+      margin-left: 0.7rem!important;
+      position: relative;
+      margin-top: -0.3rem!important;
+    }
+    span.labels{
+      font-size: 0.87rem!important;
+    }
+    div.city-nav{
+      margin-top: 1rem;
+    }
+    ul.nav{
+      height: 3rem;
+    }
   </style>
   <nav>
    <div class="nav-wrapper">
      <a href="/" class="brand-logo right">Craft Work</a>
      <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-     <ul id="nav-mobile" class="left hide-on-med-and-down">
-       <li>
-         <div class="account-element">
-           <img class="circle nav" src="{{currentUser.profile.photo}}">
-           <div class="account-label">{{currentUser.profile.name}}</div>
-         </div>
-       </li>
-       <li><a href="/account/newItem/p">Publicar un producto</a></li>
-       <li><a href="/account/newItem/s">Publicar un servicio</a></li>
+     <ul id="nav-mobile" class="left hide-on-med-and-down nav">
+       {{#if currentUser}}
+         <li>
+          {{> accountButtonTemplate}}
+         </li>
+         <li class="row unseen"><a href="/messages" ><i class="large material-icons col ">email</i>{{#if unSeenRooms}}<span class="new badge col unseen pulse">{{unSeenRooms.length}}</span>{{/if}}</a></li>
+       {{else}}
+         <li><a href="#loginModal">Ingresar</a></li>
+         <li><a href="/register">Registrarse</a></li>
+       {{/if}}
        <li class="search">
          <form class="account-search-form">
           <div class="input-field">
@@ -44,65 +75,124 @@
        </li>
        <li ><a href="/logout" class="row logout">Salir<i class="material-icons col right small">input</i></a></li>
      </ul>
-      <ul class="side-nav" id="mobile-nav">
+    <ul class="side-nav" id="mobile-nav">
+      {{#if currentUser}}
+        <li>
+          <a href="/account">
+            <div class="account-element">
+             <img class="circle nav" src="{{currentUser.profile.photo}}">
+             <div class="account-label">{{currentUser.profile.name}}</div>
+            </div>
+          </a>
+        </li>
+        <li class="row unseen"><a href="/messages" >Mensajes<i class="large material-icons col right">email</i>{{#if unSeenRooms}}<span class="new badge col unseen pulse">{{unSeenRooms.length}}</span>{{/if}}</a></li>
+      {{else}}
+        <li><a href="/register">Registrarse</a></li>
+      {{/if}}
+
 		    <li>
-          <div class="card row col m12">
+          <div class="card col m12">
             <div class="card-content row">
-              <form class="filters-form" action="index.html" method="post">
-                <span class="card-title m12">Filtrar</span>
-                <div class="input-field col s12">
-                  <select id="typeSelect" value="{{query.type}}" name="type">
-                    <option value="0">Todo</option>
-                    <option value="1">Productos</option>
-                    <option value="2">Servicio</option>
-                  </select>
-                  <label>Tipo</label>
+              <form class="nav-filters-form" action="index.html" method="post">
+                <span class="card-title m12 black-text">Filtros de búsqueda</span>
+                <p class="col m12 s12">
+                  <input type="checkbox" id="onlyProductsCheck" name="onlyProducts" checked="{{query.onlyProducts}}"/>
+                  <label for="onlyProductsCheck">Solo Productos</label>
+                </p>
+                <p class="col m12 s12">
+                  <input type="checkbox" id="onlyServicesCheck" name="onlyServices" checked="{{query.onlyServices}}"/>
+                  <label for="onlyServicesCheck">Solo Servicios</label>
+                </p>
+                <div class="input-field col m12 s12 black-text city-nav">
+                  <input id="cityNav" type="text" class="validate" name="city" value="{{query.city}}">
+                  <label for="cityNav" class="side-nav-city-label active">Ciudad</label>
                 </div>
-                <div class="input-field col m12">
-                  <input id="city" type="text" class="validate" name="city" value="{{query.city}}">
-                  <label class="active" for="city">Ciudad</label>
-                </div>
-                <span class="col m12 ligth">Etiquetas</span>
-                <div class="chips chips-autocomplete"></div>
-                <p class="col m12">
-                  <input type="checkbox" id="onSaleCheck" name="onSale" checked="{{query.onSale}}"/>
-                  <label for="onSaleCheck">Solo promociones</label>
+                <div class="divider col s11 row grey"></div>
+                <span class="col m12 s12 ligth labels">Etiquetas</span>
+                <div class="chips chips-autocomplete nav-chips-autocomplete"></div>
+                <p class="col m12 s12">
+                  <input type="checkbox" id="onSaleCheck1" name="onSale" checked="{{query.onSale}}"/>
+                  <label for="onSaleCheck1">Solo promociones</label>
                 </p>
-                <p class="col m12">
-                  <input type="checkbox" id="shippingCheck" name="shipping" checked="{{query.shipping}}"/>
-                  <label for="shippingCheck">Envio incluido</label>
+                <p class="col m12 s12">
+                  <input type="checkbox" id="shippingCheck1" name="shipping" checked="{{query.shipping}}"/>
+                  <label for="shippingCheck1">Envio incluido</label>
                 </p>
-                <p class="col m12">
-                  <input type="checkbox" id="negotiableCheck" name="negotiable" checked="{{query.negotiable}}"/>
-                  <label for="negotiableCheck">Negociable</label>
+                <p class="col m12 s12">
+                  <input type="checkbox" id="negotiableCheck1" name="negotiable" checked="{{query.negotiable}}"/>
+                  <label for="negotiableCheck1">Negociable</label>
                 </p>
-                <button type="submit" class="filters-form-button" hidden></button>
+                <button type="submit" class="nav-filters-form-button" hidden></button>
               </form>
             </div>
             <div class="card-action row filter-buttons">
-              <a class="btn-flat filters-search col">Buscar</a>
+              <a class="btn-flat nav-filters-search col">Buscar</a>
               <a class="btn-flat clear col">Limpiar</a>
             </div>
           </div>
         </li>
+        {{#if currentUser}}
+          <li><a href="/posts">Mis Publicaciones</a></li>
+          <li><a href="/account/newItem">Nueva publicación</a></li>
+          <li><a href="/logout">Salir<i class="material-icons col right small">input</i></a></li>
+        {{/if}}
      </ul>
    </div>
   </nav>
   <div class="row">
-    <div class="col s12 m4 l2 grey lighten-1 hide-on-med-and-down">
-      <div class="options">
-        <div class="collection">
-          <a href="/account/userInfo" class="collection-item">Mi perfil</a>
-          <a href="/account/craft" class="collection-item">Soy Craft (artesano)</a>
-          <a href="/messages" class="collection-item">{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}Mensajes</a>
-          <a href="/account/newItem" class="collection-item">Nueva publicación</a>
-          <a href="/account/posts" class="collection-item">Mis Publicaciones</a>
+    <div class="row col m3 grey lighten-1 hide-on-med-and-down">
+      <div class="card col m12 s12">
+        <div class="card-content row">
+          <form class="filters-form" action="index.html" method="post">
+            <span class="card-title m12 s12">Filtrar</span>
+            <div class="input-field col s12">
+              <select id="typeSelect" value="{{query.type}}" name="type">
+                <option value="0">Todo</option>
+                <option value="1">Productos</option>
+                <option value="2">Servicio</option>
+              </select>
+              <label>Tipo</label>
+            </div>
+            <div class="input-field col m12">
+              <input id="city" type="text" class="validate" name="city" value="{{query.city}}">
+              <label class="active" for="city">Ciudad</label>
+            </div>
+            <span class="col m12 s12 ligth labels">Etiquetas</span>
+            <div class="chips chips-autocomplete side-chips-autocomplete"></div>
+            <p class="col m12 s12">
+              <input type="checkbox" id="onSaleCheck" name="onSale" checked="{{query.onSale}}"/>
+              <label for="onSaleCheck">Solo promociones</label>
+            </p>
+            <p class="col m12 s12">
+              <input type="checkbox" id="shippingCheck" name="shipping" checked="{{query.shipping}}"/>
+              <label for="shippingCheck">Envio incluido</label>
+            </p>
+            <p class="col m12 s12">
+              <input type="checkbox" id="negotiableCheck" name="negotiable" checked="{{query.negotiable}}"/>
+              <label for="negotiableCheck">Negociable</label>
+            </p>
+            <button type="submit" class="filters-form-button" hidden></button>
+          </form>
+        </div>
+        <div class="card-action row filter-buttons">
+          <a class="btn-flat filters-search col">Buscar</a>
+          <a class="btn-flat clear col">Limpiar</a>
         </div>
       </div>
     </div>
-    <div class="col s12 m8 l9 offset-l1">
+    <div class="col s12 m9 l9">
       {{> yield}}
     </div>
   </div>
+  <div id="loginModal" class="modal login">
+    <div class="modal-content">
+        {{> login}}
+    </div>
+  </div>
+  <a class="dropdown-button hack" href="#!" data-activates="accountButtonContent"></a>
+  <ul id="accountButtonContent" class="dropdown-content">
+     <li><a href="/account">mi cuenta</a></li>
+     <li><a href="/logout">salir</a></li>
+  </ul>
   {{> footer}}
 </template>

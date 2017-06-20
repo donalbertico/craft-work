@@ -23,7 +23,15 @@ Template.homeLayout.helpers({
   },
   lastProducts : function(){
     Meteor.subscribe('lastProducts');
-    return posts.find();
+    return posts.find({ type : 'p'});
+  },
+  lastServices : function(){
+    Meteor.subscribe('lastServices');
+    return posts.find({ type : 's'});
+  },
+  mine : function(){
+    Meteor.subscribe('mine');
+    return post.findOne();
   }
 });
 

@@ -17,10 +17,10 @@
       font-size: 12rem;
     }
     img.main-slides{
-      filter: opacity(0.48);
+      filter: opacity(0.8);
     }
     img.main-slides-2{
-      filter: opacity(0.6);
+      filter: opacity(0.7);
     }
     a.register-button{
       border-color: white!important;
@@ -37,39 +37,42 @@
       height: 22rem;
     }
     div.last-products{
-      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/brick-texture.jpg');
+      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/green-1846861_1920.jpg');
     }
     div.search-section div.container{
       margin-top: 5rem;
     }
     div.post-card{
-      height: 37rem;
+      height: 34rem;
+    }
+    div.common-searchs{
+      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/green-1846861_1920.jpg');
     }
   </style>
   <div class="slider">
     <ul class="slides">
       <li>
-        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/jam.jpeg">
+        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/craft-1892620_1920.jpg">
         <div class="caption center-align hide-on-med-and-down">
-          <h1 class="main-title">CRAFT.EC</h1>
+          <h1 class="main-title">CRAFT EC</h1>
           <h2 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h2>
           <a href="/register" class="waves-effect waves-light btn-flat register-button"><h4>Ingresa ya</h4></a>
         </div>
         <div class="caption center-align hide-on-large-only">
-          <h2 class="main-title">CRAFT.EC</h2>
+          <h2 class="main-title">CRAFT EC</h2>
           <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
           <a href="/register" class="waves-effect waves-light btn-flat register-button">Ingresa ya</a>
         </div>
       </li>
       <li>
-        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/gina-zee-192280.jpg">
+        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/ecuador-917049_1920.jpg">
         <div class="caption right-align slides-promo  hide-on-med-and-down">
           <h1>Incrementa tus ventas</h1>
-          <h3 class="light grey-text text-lighten-3">Hazte conocer a travez de esta pltaforma</h3>
+          <h3 class="light grey-text text-lighten-3">Hazte conocer a travez de esta plataforma</h3>
         </div>
         <div class="caption right-align slides-promo hide-on-large-only">
           <h2>Incrementa tus ventas</h2>
-          <h4 class="light grey-text text-lighten-3">Hazte conocer a travez de esta pltaforma</h4>
+          <h4 class="light grey-text text-lighten-3">Hazte conocer a travez de esta plataforma</h4>
         </div>
       </li>
       <li>
@@ -99,30 +102,44 @@
       {{#each lastProducts}}
         <div class="col l4 m5 s12">
           <div class="post-card">
-            {{> postCard post=this}}          
+            {{> postCard post=this}}
           </div>
         </div>
       {{/each}}
     </div>
   </div>
-<!--   <div class="section white">
+  <div class="section wihte ">
     <div class="row container">
-      <h2 class="header m12 white-text">Ultimos productos</h2>
-      asdfsdf
+      <h2 class="header m12 hide-on-med-and-down">Servicios Destacados</h2>
+      <h3 class="header m12 hide-on-large-only">Servicios Destacados</h3>
+      <div class="col l4 m5 s12">
+        <div class="post-card">
+          {{> postCard post=mine}}
+        </div>
+      </div>
+      {{#each lastServices}}
+        <div class="col l4 m5 s12">
+          <div class="post-card">
+            {{> postCard post=this}}
+          </div>
+        </div>
+      {{/each}}
     </div>
-  </div> -->
-  <!-- <div class="parallax-container">
-    <div class="parallax"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Beadwork_Wire_Art_and_Crafts_%2827%29.JPG"></div>
   </div>
-  <div class="section white">
+  <div class="section white-text common-searchs">
     <div class="row container">
-      <h2 class="header">Parallax</h2>
-      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+      <h2 class="header m12 hide-on-med-and-down">Búsqueda rápida</h2>
+      <h3 class="header m12 hide-on-large-only">Búsqueda rápida</h3>
+      <a class="col m3 s6 no-color" href="/search?criteria=sombrero+de+paja+toquilla&labels%5B%5D=sombrero&labels%5B%5D=paja&labels%5B%5D=toquilla">Sombreros de paja toquilla</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=joyas+artesanales&labels%5B%5D=joyas&labels%5B%5D=artesanales">Joyas artesanales</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=desodorante+artesanal&labels%5B%5D=desodorante&labels%5B%5D=artesanal">Desodorante artesanal</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=caramelos+artesanales&labels%5B%5D=caramelos&labels%5B%5D=artesanales">Caramelos artesanales</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=mermelada+artesanales&labels%5B%5D=mermelada&labels%5B%5D=artesanales">Mermelada artesanal</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=pinturas+cuadros&labels%5B%5D=arte&labels%5B%5D=pinturas">Pinturas</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=servicio+de+soluciones+informaticas&labels%5B%5D=software&labels%5B%5D=soluciones">Servicios de Soluciones Informáticas</a>
+      <a class="col m3 s6 no-color" href="/search?criteria=diseño gráfico&labels%5B%5D=diseño&labels%5B%5D=soluciones&labels%5B%5D=grafico">Servicios de Diseño Gráfico</a>
     </div>
   </div>
-  <div class="parallax-container">
-    <div class="parallax"><img src="https://image.shutterstock.com/z/stock-photo-hard-working-craftsman-working-with-planer-in-a-workshop-for-woodwork-handsome-man-with-tattoo-and-327061454.jpg"></div>
-  </div> -->
   <div id="recoverPassModal" class="modal recoverPassModal">
     <div class="modal-content row">
         {{#if tokenExpired}}

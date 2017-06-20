@@ -5,7 +5,6 @@ posts.allow({
 		return true;
 	},
 	update: function (userId, doc, fields, modifier) {
-		console.log(userId,doc)
 		if (userId && doc.user == userId) {
 		  return true;
 		}

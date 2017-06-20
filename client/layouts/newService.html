@@ -3,14 +3,11 @@
     div.chips-autocomplete{
       margin-left: 0.7rem!important;
     }
-    div.card-content{
-      height: 30rem;
-    }
     form.first-form{
       margin-top: 2rem;
     }
     div.card-content{
-      margin-bottom: -5rem!important;
+      margin-bottom: -1rem!important;
     }
     div.labels{
       margin-left: -0.77rem!important
@@ -20,16 +17,23 @@
     }
   </style>
   <div class="main row">
-    <nav class="col m8 progress-nav">
+    <nav class="col m8 progress-nav hide-on-med-and-down">
       <div class="nav-wrapper">
         <div class="col s12">
-          <a class="breadcrumb">Informacion general</a>
+          <a class="breadcrumb">Información general</a>
+        </div>
+      </div>
+    </nav>
+    <nav class="col m8 progress-nav hide-on-large-only">
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a class="breadcrumb">General</a>
         </div>
       </div>
     </nav>
     <div class="col s12 m6">
       <div class="card">
-        <div class="card-content">
+        <div class="card-content row">
           <form id="postForm" class="col s12 row first-form">
             <span class="col s5 ligth">Etiqueta/as</span>
             <div class="col s12 labels"><div class="chips chips-autocomplete"></div></div>
@@ -39,7 +43,7 @@
             </div>
             <div class="input-field col s12">
               <textarea id="description" type="text" class="validate materialize-textarea" required value="{{post.description}}"></textarea>
-              <label for="description">Descripcion</label>
+              <label for="description">Descripción</label>
             </div>
             <button class="form-button" type="submit" name="button" hidden></button>
           </form>
@@ -53,19 +57,37 @@
 </template>
 
 <template name="serviceSecondForm">
+  <style media="screen">
+    span.label-hour{
+      position: relative;
+      top: 2rem;
+      right: 1rem;
+    }
+    div#hourPaymentDiv{
+      padding: 0px;
+    }
+  </style>
   <div class="main row">
-    <nav class="col m8 progress-nav">
+    <nav class="col m8 progress-nav hide-on-med-and-down">
       <div class="nav-wrapper">
         <div class="col s12">
-          <a href="/account/service/{{post._id}}/basic" class="breadcrumb">Informacion general</a>
-          <a class="breadcrumb">Informacion del costo</a>
+          <a href="/account/service/{{post._id}}/basic" class="breadcrumb">Información general</a>
+          <a class="breadcrumb">Información del costo</a>
+        </div>
+      </div>
+    </nav>
+    <nav class="col m8 progress-nav hide-on-large-only">
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="/account/service/{{post._id}}/basic" class="breadcrumb">General</a>
+          <a class="breadcrumb">Precio</a>
         </div>
       </div>
     </nav>
     <div class="card col m6">
         <div class="card-content row">
           <form class="">
-            <div class="input-field col m6">
+            <div class="input-field col m6 s12">
               <select id="paymentType" name="paymentType" value="{{post.paymentType}}">
                 <option value="0">Hora</option>
                 <option value="1">Contrato</option>
@@ -73,11 +95,12 @@
               </select>
               <label>Tarifa de pago por</label>
             </div>
-            <div id="hourPaymentDiv" class="col m4 animated">
-              <div class="input-field">
+            <div id="hourPaymentDiv" class="col m6 animated s12">
+              <div class="input-field col m8">
                 <input id="hourFee" type="text" class="validate" pattern="[0-9]{1,2}" value="{{post.hourFee}}">
                 <label for="hourFee" data-error="solo números" data-success="correcto">Tarifa por hora</label>
               </div>
+              <span class="label-hour col m2">/hora</span>
             </div>
             <p class="col m12">
               <input type="checkbox" id="negotiable" name="negotiable" checked="{{post.negotiable}}"/>
@@ -86,11 +109,10 @@
             <button class="form-button" type="submit" name="button" hidden></button>
           </form>
         </div>
-        <div class="card-action">
-          <a class="waves-effect waves-teal btn-flat"><i class="material-icons right">label</i>Siguiente</a>
-          <a class="waves-effect waves-teal btn-flat" href="/account/service/{{post._id}}/basic">Atras</a>
+        <div class="card-action row">
+          <a class="waves-effect waves-teal btn-flat col"><i class="material-icons right">label</i>Siguiente</a>
+          <a class="waves-effect waves-teal btn-flat col" href="/account/service/{{post._id}}/basic">Atras</a>
         </div>
     </div>
   </div>
 </template>
-

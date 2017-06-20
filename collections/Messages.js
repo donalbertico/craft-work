@@ -34,10 +34,7 @@ messages.schema = new SimpleSchema({
 });
 
 messages.after.insert(function(userId,doc){
-	console.log(doc);
-	console.log('cachiiiin new message');
 	var room =  rooms.findOne({_id : doc.room});
-	console.log(room);
 	if(room.recivedA == doc.reciver || room.recivedB == doc.reciver)return;
 	if(!room.recivedA)return rooms.update({_id : room._id},{$set : {recivedA : doc.reciver}});
 	if(!room.recivedB)return rooms.update({_id : room._id},{$set : {recivedB : doc.reciver}});

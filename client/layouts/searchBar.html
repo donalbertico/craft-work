@@ -11,13 +11,16 @@
   </style>
   <nav class="teal accent-4">
     <div class="nav-wrapper row">
-      <form class="search-form">
-        <div class="input-field hide-on-med-and-down">
+      <form class="search-form hide-on-med-and-down">
+        <div class="input-field">
           <input id="search" type="search" name="searchInput" required placeholder="Búsqueda. Ej:reparación de muebles en Quito">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
-        <div class="input-field hide-on-large-only">
+        <button type="submit" hidden name="button"></button>
+      </form>
+      <form class="search-form hide-on-large-only">
+        <div class="input-field">
           <input id="search" type="search" name="searchInput" required placeholder="Busca lo que necesites">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
