@@ -20,32 +20,7 @@
       color: #9ccc65
     }
   </style>
-  <div class="row main">
-    <div class="col m3 grey lighten-1 row hide-on-med-and-down">
-      <div class="collection">
-          {{#if userRooms}}
-            <h5 class="col white m12">Conversaciones</h5>
-          {{else}}
-            <h5 class="col white m12"> Aqui van tus conversaciones
-              <h6 class="col m12"><a href="/account">Regresar a mi cuenta</a></h6>
-            </h5>
-          {{/if}}
-          {{#each userRooms}}
-            <a href="/messages/{{user._id}}" class="collection-item">
-            {{#if unseen}}
-              <span class="new badge"></span>
-            {{/if}}
-              <img src="{{user.profile.photo}}" class="circle user-room">
-            {{user.profile.name}} {{user.profile.lastName}}
-            {{#if user.status.online}}
-              <i class="mdi mdi-octagon online"></i>
-            {{else}}
-              <i class="mdi mdi-octagon-outline "></i>
-            {{/if}}
-            </a>
-        {{/each}}
-      </div>
-    </div>
+  <div class="row main col m12">
     {{#if userReciver}}
       {{#if sameUser}}
         <h5 class="col m9">No es valido enviarte mensajes a ti mismo</h5>

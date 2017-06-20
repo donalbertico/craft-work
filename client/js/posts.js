@@ -16,7 +16,7 @@ Template.posts.events({
 	'click a.share' : function(e){
 		FB.ui({
 		  method: 'share',
-		  href: 'https://craft-work-staging.herokuapp.com/post/'+e.target.id,
+		  href: 'http://www.craft-ec.com/post/'+e.target.id,
 		}, function(response){});
 	},
 	'click a.unPublish' : function(e){
