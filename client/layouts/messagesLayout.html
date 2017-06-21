@@ -25,10 +25,12 @@
      <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
      <ul id="nav-mobile" class="left hide-on-med-and-down">
        <li>
-         <div class="account-element">
-           <img class="circle nav" src="{{currentUser.profile.photo}}">
-           <div class="account-label">{{currentUser.profile.name}}</div>
-         </div>
+         <a href="/account">
+           <div class="account-element">
+               <img class="circle nav" src="{{currentUser.profile.photo}}">
+               <div class="account-label">{{currentUser.profile.name}}</div>
+           </div>
+         </a>
        </li>
        <li><a href="/account/newItem/p">Publicar un producto</a></li>
        <li><a href="/account/newItem/s">Publicar un servicio</a></li>
@@ -88,7 +90,7 @@
    </div>
   </nav>
   <div class="row">
-    <div class="col m3 l3 grey lighten-1 row hide-on-med-and-down">
+    <div class="col m4 l3 grey lighten-1 row hide-on-small-and-down">
       <div class="collection">
           {{#if userRooms}}
             <h5 class="col white m12">Conversaciones</h5>

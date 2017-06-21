@@ -1,6 +1,6 @@
 <template name="newMessage">
 	<style media="screen">
-		button.large-screen{
+		button.small-screen{
 			position: relative!important;
 			top: 4rem;
 		}
@@ -8,29 +8,30 @@
 			position: relative;
 			top: 5rem;
 		}
+		button.large-screen{
+			position: relative;
+			left: 1rem;
+			top: 4rem;
+		}
 	</style>
 	<div id="modal" class="bottom-sheet">
 	    <div class="content">
-	        <div class="row hide-on-med-and-down">
+	        <div class="row  hide-on-large-only">
 	          <form class="row new-message">
 					<div class="input-field col s8">
 			          <textarea id="message" type="text" required class="materialize-textarea validate"></textarea>
 			          <label for="message">Escribe un mensaje</label>
 			        </div>
-					<div class="col 3">
-						<button class="waves-effect waves-green btn large-screen" type="submit">Enviar</button>
-					</div>
+						<button class="waves-effect waves-green btn small-screen col" type="submit">Enviar</button>
 	          </form>
 	       </div>
-	       	<div class="row hide-on-large-only">
+	       	<div class="row hide-on-med-and-down">
 	          <form class="row new-message">
-					<div class="input-field col s12">
-			          <textarea id="message" type="text" required class="materialize-textarea validate"></textarea>
-			          <label for="message">Escribe un mensaje</label>
-			        </div>
-					<div class="col s4">
-						<button class="waves-effect waves-green btn small" type="submit">Enviar</button>
-					</div>
+							<div class="input-field col m9">
+				          <textarea id="message" type="text" required class="materialize-textarea validate"></textarea>
+				          <label for="message">Escribe un mensaje</label>
+					    </div>
+							<button class="waves-effect waves-green btn large-screen col" type="submit">Enviar</button>
 	          </form>
 	       </div>
 	    </div>

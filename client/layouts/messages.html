@@ -20,13 +20,13 @@
       color: #9ccc65
     }
   </style>
-  <div class="row main col m12">
+  <div class="row main ">
     {{#if userReciver}}
       {{#if sameUser}}
         <h5 class="col m9">No es valido enviarte mensajes a ti mismo</h5>
       {{else}}
-        <div class="col m9 row">
-          <div class="card m9 row">
+        <div class="col m10 row">
+          <div class="card m8 row">
               <a href="/user/{{userReciver._id}}">
                 <img src="{{userReciver.profile.photo}}" class="circle user-room rigth-align">
               </a>
@@ -42,18 +42,18 @@
               {{#each messages}}
                 {{#if transmiter}}
                   <div class="row col m12 s12">
-                    <div class="col m5 s2"></div>
-                    <div class="col m4 s10 card row message-card" data-tooltip="{{date}}" data-position="left">
-                      <pre class="col m10 s12">{{content}}</pre>
+                    <div class="col m5 s4"></div>
+                    <div class="col m6 s8 card row message-card" data-tooltip="{{date}}" data-position="left">
+                      <pre>{{content}}</pre>
                     </div>
                     <span class="date rigth-align" hidden id="thaspan">{{date}}</span>
                   </div>
                 {{else}}
                 <div class="row col m12 s12">
-                  <div class="col m4 s10 card message-card" data-tooltip="{{date}}" data-position="right">
+                  <div class="col m6 s8 card message-card" data-tooltip="{{date}}" data-position="right">
                     <pre>{{content}}</pre>
                   </div>
-                  <div class="col m7 s2"></div>
+                  <div class="col m7 s4"></div>
                 </div>
                 {{/if}}
               {{/each}}
