@@ -136,3 +136,15 @@ Template.forbidden.onRendered(function(){
 Template.registerView.onRendered(function(){
   $('.parallax').parallax();
 });
+
+Template.about.onRendered(function(){
+  $('.parallax').parallax();
+});
+
+Template.terms.onRendered(function(){
+  $('.parallax').parallax();
+});
+
+Template.faq.onRendered(function(){
+  $('.parallax').parallax();
+});

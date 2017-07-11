@@ -54,3 +54,13 @@ Template.homeLayout.events({
     $('.register-button').addClass('bordered');
   }
 });
+
+Template.mainLayout.onRendered(function(){
+  $(window).on('scroll', function(e) {
+    if($(this).scrollTop()>100){
+      $('nav.main-nav').removeClass('transparent');
+    }else{
+      $('nav.main-nav').addClass('transparent');
+    }
+  });
+});

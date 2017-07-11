@@ -34,12 +34,6 @@ const checkOnSale = function(section,value){
     return section == value;
 }
 
-Template.test.helpers({
-  users : function(){
-    return Meteor.users.find();
-  }
-});
-
 Template.registerHelper('unSeenRooms',unSeenRooms);
 Template.registerHelper('currentUser',currentUser);
 Template.registerHelper('email',userEmail);
