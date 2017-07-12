@@ -8,25 +8,33 @@
        color: #e0e0e0;
        opacity:  1;
     }
+    a.btn-large{
+      height: 4.3rem;
+    }
   </style>
-  <nav class="teal accent-4">
-    <div class="nav-wrapper row">
-      <form class="search-form hide-on-med-and-down">
-        <div class="input-field">
-          <input id="search" type="search" name="searchInput" required placeholder="Búsqueda. Ej:reparación de muebles en Quito">
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-        <button type="submit" hidden name="button"></button>
-      </form>
-      <form class="search-form hide-on-large-only">
-        <div class="input-field">
-          <input id="search" type="search" name="searchInput" required placeholder="Busca lo que necesites">
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-        <button type="submit" hidden name="button"></button>
-      </form>
-    </div>
-  </nav>
+  <div class="row">
+    <nav class="grey darken-3 col m10">
+      <div class="nav-wrapper row">
+        <form class="search-form hide-on-med-and-down">
+          <div class="input-field">
+            <input id="search" type="search" name="searchInput" required placeholder="Búsqueda. Ej:reparación de muebles en Quito">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button type="submit" hidden name="button"></button>
+        </form>
+        <form class="search-form hide-on-large-only">
+          <div class="input-field">
+            <input id="search" type="search" name="searchInput" required placeholder="Busca lo que necesites">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button type="submit" hidden name="button" id="searchFormButton"></button>
+        </form>
+      </div>
+    </nav>
+    {{#if button}}
+      <a class="btn-large col m2 bar-button">Buscar</a>
+    {{/if}}
+  </div>
 </template>

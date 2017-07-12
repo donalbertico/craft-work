@@ -122,6 +122,11 @@ Template.searchBar.events({
   'submit form.search-form' : function(e){
     e.preventDefault();
     redirectSearch(e.target.searchInput.value);
+  },
+  'click a.bar-button' : function(e){
+    var form = $('form.search-form.hide-on-med-and-down')[0];
+    if(!form.searchInput.value)return;
+    redirectSearch(form.searchInput.value);
   }
 });
 

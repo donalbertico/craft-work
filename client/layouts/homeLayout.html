@@ -4,7 +4,7 @@
       height: 34rem!important;
     }
     ul.slides {
-      height: 31rem!important;
+      height: 34rem!important;
     }
     form.recoverPass {
       margin-top: 2rem;
@@ -36,17 +36,27 @@
     div.search-section{
       height: 22rem;
     }
-    div.last-products{
-      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/green-1846861_1920.jpg');
-    }
     div.search-section div.container{
-      margin-top: 5rem;
+      margin-top: 3.5rem;
     }
     div.post-card{
       height: 34rem;
     }
-    div.common-searchs{
-      background-image: url('https://s3.us-east-2.amazonaws.com/craft-work/green-1846861_1920.jpg');
+    ul.indicators{
+      display : none;
+    }
+    a.quick img{
+      width: 100%;
+      height: 13vw;
+    }
+    a.quick h6{
+      position: relative;
+      height: 1.6rem;
+      bottom: 2.5rem;
+      background: rgba(0,0,0,0.5)!important;
+    }
+    img.opaque{
+      opacity : 0.8;
     }
   </style>
   <div class="slider">
@@ -88,17 +98,53 @@
       </li>
     </ul>
   </div>
-  <div class="section white search-section">
+  <div class="section grey lighten-4 search-section">
     <div class="row container">
-      <h2 class="header hide-on-med-and-down">Busca productos y servicios</h2>
-      <h4 class="header hide-on-large-only">Busca productos y servicios</h4>
-      {{> searchBar}}
+      <h2 class="header center-align col m12 hide-on-med-and-down">Busca Productos Y Servicios</h2>
+      <h4 class="header hide-on-large-only search-label">Busca Productos Y Servicios</h4>
+      <div class="col center-align m12">
+        {{> searchBar button=true}}
+      </div>
     </div>
   </div>
-  <div class="section orange lighten-4 last-products">
+  <div class="section grey lighten-4 common-searchs">
+    <div class="row">
+      <h2 class="header m12 center-align hide-on-med-and-down">Búsqueda Rápida</h2>
+      <h3 class="header m12 hide-on-large-only">Búsqueda Rápida</h3>
+      <a href="/search?criteria=joyas+artesanales&labels%5B%5D=soluciones&labels%5B%5D=software&labels%5B%5D=computadoras" class="col m3 s6 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/SOFT.jpg">
+        <h6 class="card-title white-text center-align valign-wrapper">Soluciones Teconológicas</h6>
+      </a>
+      <a href="/search?criteria=imagen+diseño&labels%5B%5D=diseño%20grafico&labels%5B%5D=imagen" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/D%26I.jpeg">
+        <h6 class="card-title white-text center-align valign-wrapper">Imagen y diseño</h6>
+      </a>
+      <a href="/search?criteria=alimentos+bebidas&labels%5B%5D=alimentos&labels%5B%5D=bebidas" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/F%26D.jpeg">
+        <h6 class="card-title white-text center-align valign-wrapper">Alimentos y bebidas</h6>
+      </a>
+      <a href="/search?criteria=joyas+accesorios&labels%5B%5D=joyas&labels%5B%5D=accesorios" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/JOYA.jpeg">
+        <h6 class="card-title white-text center-align valign-wrapper">Joyas y accesorios</h6>
+      </a>
+      <a href="/search?criteria=musica+entretenimiento&labels%5B%5D=musica&labels%5B%5D=entretenimiento" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/M%26E.jpeg">
+        <h6 class="card-title white-text center-align valign-wrapper">Música y entretenimiento</h6>
+      </a>
+      <a href="/search?criteria=vestimenta+ropa&labels%5B%5D=vestimenta&labels%5B%5D=ropa" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/ROPA.jpg">
+        <h6 class="card-title white-text center-align valign-wrapper">Vestimenta</h6>
+      </a>
+      <a href="/search?criteria=servicios+artesanales&labels%5B%5D=servicios&labels%5B%5D=artesanales" class="col m3 s4 quick">
+        <img class="opaque quick" src="https://s3.us-east-2.amazonaws.com/craft-work/S-A.jpeg">
+        <h6 class="card-title white-text center-align valign-wrapper">Serivicios Artesanales</h6>
+      </a>
+    </div>
+  </div>
+  <div class="section deep-orange lighten-2 last-products">
     <div class="row container">
-      <h2 class="header m12 white-text hide-on-med-and-down">Ultimos productos</h2>
-      <h3 class="header m12 white-text hide-on-large-only">Ultimos productos</h3>
+      <h2 class="header m12 center-align white-text hide-on-med-and-down">Últimos Productos</h2>
+      <h3 class="header m12 white-text hide-on-large-only">Últimos Productos</h3>
       {{#each lastProducts}}
         <div class="col l4 m5 s12">
           <div class="post-card">
@@ -108,9 +154,9 @@
       {{/each}}
     </div>
   </div>
-  <div class="section wihte ">
+  <div class="section grey lighten-4">
     <div class="row container">
-      <h2 class="header m12 hide-on-med-and-down">Servicios Destacados</h2>
+      <h2 class="header m12 center-align hide-on-med-and-down">Servicios Destacados</h2>
       <h3 class="header m12 hide-on-large-only">Servicios Destacados</h3>
       <!-- <div class="col l4 m5 s12">
         <div class="post-card">
@@ -124,20 +170,6 @@
           </div>
         </div>
       {{/each}}
-    </div>
-  </div>
-  <div class="section white-text common-searchs">
-    <div class="row container">
-      <h2 class="header m12 hide-on-med-and-down">Búsqueda rápida</h2>
-      <h3 class="header m12 hide-on-large-only">Búsqueda rápida</h3>
-      <a class="col m3 s6 no-color" href="/search?criteria=sombrero+de+paja+toquilla&labels%5B%5D=sombrero&labels%5B%5D=paja&labels%5B%5D=toquilla">Sombreros de paja toquilla</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=joyas+artesanales&labels%5B%5D=joyas&labels%5B%5D=artesanales">Joyas artesanales</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=desodorante+artesanal&labels%5B%5D=desodorante&labels%5B%5D=artesanal">Desodorante artesanal</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=caramelos+artesanales&labels%5B%5D=caramelos&labels%5B%5D=artesanales">Caramelos artesanales</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=mermelada+artesanales&labels%5B%5D=mermelada&labels%5B%5D=artesanales">Mermelada artesanal</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=pinturas+cuadros&labels%5B%5D=arte&labels%5B%5D=pinturas">Pinturas</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=servicio+de+soluciones+informaticas&labels%5B%5D=software&labels%5B%5D=soluciones">Servicios de Soluciones Informáticas</a>
-      <a class="col m3 s6 no-color" href="/search?criteria=diseño gráfico&labels%5B%5D=diseño&labels%5B%5D=soluciones&labels%5B%5D=grafico">Servicios de Diseño Gráfico</a>
     </div>
   </div>
   <div id="recoverPassModal" class="modal recoverPassModal">

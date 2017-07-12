@@ -1,4 +1,7 @@
 /* CSS declarations go here */
+html *{
+  font-family: 'Ubuntu', sans-serif;
+}
 .card-action a{
   color : #263238 !important
 }

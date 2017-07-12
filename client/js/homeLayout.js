@@ -52,6 +52,12 @@ Template.homeLayout.events({
   'mouseout a.register-button' : function(e){
     $('.register-button').removeClass('teal accent-4');
     $('.register-button').addClass('bordered');
+  },
+  'mouseover img.quick' : function(e){
+    $(e.target).removeClass('opaque');
+  },
+  'mouseout img.quick' : function(e){
+    $(e.target).addClass('opaque');
   }
 });
 
@@ -59,7 +65,9 @@ Template.mainLayout.onRendered(function(){
   $(window).on('scroll', function(e) {
     if($(this).scrollTop()>100){
       $('nav.main-nav').removeClass('transparent');
+      $('nav.main-nav').addClass('colored');
     }else{
+      $('nav.main-nav').removeClass('colored');
       $('nav.main-nav').addClass('transparent');
     }
   });
