@@ -52,7 +52,7 @@
      <div class="nav-wrapper">
        <a href="/" class="brand-logo right"><img class="logo" src="/icon.png"></a>
        <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-       <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <ul class="left hide-on-med-and-down">
          {{#if currentUser}}
            <li>
             {{> accountButtonTemplate}}
@@ -74,41 +74,41 @@
            </form>
          </li>
        </ul>
-       <ul class="side-nav" id="mobile-nav">
-         {{#if currentUser}}
-           <li class="row side">
-             {{> accountButtonTemplateSide}}
-           </li>
-           <li class="row unseen">
-             <a href="/messages" class="row">
-               <i class="large material-icons col left">email</i>
-               <div class="col">Mensajes{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}</div>
-             </a>
-           </li>
-           <li><a href="/account/posts">Mis Publicaciones</a></li>
-         {{else}}
-           <li><a href="#loginModal">Ingresar</a></li>
-           <li><a href="/register">Registrarse</a></li>
-         {{/if}}
-          <li class="search teal accent-4">
-             <form class="mainLayout-search-form">
-              <div class="input-field">
-                <input id="search" type="search" required placeholder="buscar" name="searchInput">
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-              <button type="submit" name="button" hidden></button>
-             </form>
-          </li>
-         <li><a href="/account/newItem">Nueva publicacion</a></li>
-         {{#if currentUser}}
-          <li><a href="/logout">Salir</a></li>
-         {{/if}}
-       </ul>
      </div>
     </nav>
   </div>
   <a class="dropdown-button hack" href="#!" data-activates="accountButtonContent"></a>
+  <ul class="side-nav" id="mobile-nav">
+    {{#if currentUser}}
+      <li class="row side">
+        {{> accountButtonTemplateSide}}
+      </li>
+      <li class="row unseen">
+        <a href="/messages" class="row">
+          <i class="material-icons col left">email</i>
+          <div class="col">Mensajes{{#if unSeenRooms}}<span class="new badge">{{unSeenRooms.length}}</span>{{/if}}</div>
+        </a>
+      </li>
+      <li><a href="/account/posts">Mis Publicaciones</a></li>
+    {{else}}
+      <li><a href="#loginModal">Ingresar</a></li>
+      <li><a href="/register">Registrarse</a></li>
+    {{/if}}
+     <li class="search teal accent-4">
+        <form class="mainLayout-search-form">
+         <div class="input-field">
+           <input id="search" type="search" required placeholder="buscar" name="searchInput">
+           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+           <i class="material-icons">close</i>
+         </div>
+         <button type="submit" name="button" hidden></button>
+        </form>
+     </li>
+    <li><a href="/account/newItem">Nueva publicacion</a></li>
+    {{#if currentUser}}
+     <li><a href="/logout">Salir</a></li>
+    {{/if}}
+  </ul>
   <ul id="accountButtonContent" class="dropdown-content account-menu">
      <li><a href="/account">mi cuenta</a></li>
      <li><a href="/logout">salir</a></li>

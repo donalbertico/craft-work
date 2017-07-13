@@ -11,6 +11,13 @@ Template.mainLayout.onRendered(function(){
   $('.register-button').addClass('bordered');
 });
 
+Template.homePageLayout.onRendered(function(){
+  $('.modal').modal();
+  $('.button-collapse').sideNav();
+  $('.dropdown-button').dropdown();
+  $('.register-button').addClass('bordered');
+});
+
 Template.account.onRendered(function(){
   $(".button-collapse").sideNav();
 });
