@@ -1,6 +1,6 @@
 var tokenDep = new Tracker.Dependency;
 var recoverToken;
-Template.homeLayout.onRendered(function(){
+Template.homeTemplate.onRendered(function(){
   $('.modal').modal();
   if(this.data && this.data.recoverPassToken){
     $('#recoverPassModal').modal('open');
@@ -15,7 +15,7 @@ Template.homeLayout.onRendered(function(){
   }
 });
 
-Template.homeLayout.helpers({
+Template.homeTemplate.helpers({
   tokenExpired : function(){
     tokenDep.depend();
     if(recoverToken)return ReactiveMethod.call('checkRecoverPassToken', recoverToken);
@@ -35,7 +35,7 @@ Template.homeLayout.helpers({
   }
 });
 
-Template.homeLayout.events({
+Template.homeTemplate.events({
   'submit form.recoverPass' : function(e){
     e.preventDefault();
     Accounts.resetPassword(recoverToken, e.target.password.value,function(err){
@@ -61,7 +61,7 @@ Template.homeLayout.events({
   }
 });
 
-Template.mainLayout.onRendered(function(){
+Template.homePageLayout.onRendered(function(){
   $(window).on('scroll', function(e) {
     if($(this).scrollTop()>100){
       $('nav.main-nav').removeClass('transparent');

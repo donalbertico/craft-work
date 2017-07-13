@@ -12,7 +12,7 @@
     <div class="row col m8 s12 item-type-buttons">
       <a id="productBtn" class="waves-effect waves-light btn-large col m4 s5" href="newItem/p"><i class="material-icons left">redeem</i>Producto</a>
       <div class="col m2 s1"></div>
-      <a id="serviceBtn" class="waves-effect deep-orange btn-large col m4 s5" href="newItem/s"><i class="material-icons right">work</i>Servicio</a>
+      <a id="serviceBtn" class="waves-effect deep-orange lighten-1 btn-large col m4 s5" href="newItem/s"><i class="material-icons right">work</i>Servicio</a>
     </div>
   </div>
 </template>
@@ -92,14 +92,14 @@
     }
   </style>
   <div class="main row">
-    <nav class="col m8 progress-nav hide-on-med-and-down">
+    <nav class="col deep-orange lighten-1 m8 progress-nav hide-on-med-and-down">
       <div class="nav-wrapper">
         <div class="col s12">
           <a href="#!" class="breadcrumb">Información general</a>
         </div>
       </div>
     </nav>
-    <nav class="col m8 progress-nav hide-on-large-only">
+    <nav class="col deep-orange lighten-1 m8 progress-nav hide-on-large-only ">
       <div class="nav-wrapper">
         <div class="col s12">
           <a href="#!" class="breadcrumb">General</a>
@@ -164,7 +164,7 @@
     }
   </style>
   <div class="main row">
-    <nav class="col m8 progress-nav hide-on-med-and-down">
+    <nav class="col deep-orange lighten-1 m8 progress-nav hide-on-med-and-down">
       <div class="nav-wrapper">
         <div class="col s12">
           <a href="/account/product/{{currentPost._id}}/basic" class="breadcrumb">Informacion general</a>
@@ -172,7 +172,7 @@
         </div>
       </div>
     </nav>
-    <nav class="col m8 progress-nav hide-on-large-only">
+    <nav class="col deep-orange lighten-1 m8 progress-nav hide-on-large-only">
       <div class="nav-wrapper">
         <div class="col s12">
           <a href="/account/product/{{currentPost._id}}/basic" class="breadcrumb">General</a>
@@ -319,7 +319,7 @@
     }
   </style>
   <div class="row main">
-    <nav class="col m8 s12 progress-nav hide-on-large-only">
+    <nav class="col deep-orange lighten-1 m8 s12 progress-nav hide-on-large-only">
       <div class="nav-wrapper">
         <div class="col s12">
           {{#if isProduct}}
@@ -334,7 +334,7 @@
         </div>
       </div>
     </nav>
-    <nav class="col m8 s12 progress-nav hide-on-med-and-down">
+    <nav class="col deep-orange lighten-1 m8 s12 progress-nav hide-on-med-and-down">
       <div class="nav-wrapper">
         <div class="col s12">
           {{#if isProduct}}
@@ -389,7 +389,7 @@
               </div>
               {{#if currentPost.photos}}
                 <a class="waves-effect waves-light red btn delete col large"><i class="material-icons right">delete</i>eliminar</a>
-                <a class="waves-effect waves-light orange darken-3 btn set-main rigth-margin col large offset-m3">establecer foto principal</a>
+                <a class="waves-effect waves-light deep-orange lighten-1 btn set-main rigth-margin col large offset-m3">establecer foto principal</a>
               {{/if}}
             </div>
             {{#unless isProduct}}

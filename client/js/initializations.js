@@ -1,4 +1,4 @@
-Template.homeLayout.onRendered(function(){
+Template.homeTemplate.onRendered(function(){
   $('.parallax').parallax();
   $('.slider').slider();
   $('.carousel.carousel-slider').carousel({fullWidth: true});
