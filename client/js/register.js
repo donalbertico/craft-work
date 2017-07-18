@@ -1,8 +1,10 @@
 Template.register.events({
     'submit form': function(e){
        e.preventDefault();
+       console.log('yas');
        const form = e.target;
        if(form.password.value !== form.repeatPass.value)return Materialize.toast('Las contraseñas no concuerdan', 4000);
+       if(!form.terms.checked)return Materialize.toast('Debes aceptar los terminos y condiciones', 4000);
        var captchaData = grecaptcha.getResponse();
        Meteor.call('checkRecaptcha',captchaData,function(err,result){
          grecaptcha.reset();
