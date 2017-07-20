@@ -7,17 +7,6 @@ var uploadComplete = false;
 
 Template.craftInfo.onRendered(function(){
   $('input#input_text, textarea#textarea1').characterCounter();
-  this.autorun(function(c) {
-    var user = Meteor.user();
-    var craftMan = user && user.profile && user.profile.craft && user.profile.craft.name;
-    if(user){
-      if(!craftMan){
-        $('#craft').removeClass('animated bounceInLeft');
-        $('#craft').addClass('animated bounceOutLeft');
-      }
-      c.stop();
-    }
-  });
 });
 
 Template.craftInfo.helpers({
@@ -92,24 +81,6 @@ Template.craftInfo.events({
 
     'click a.delete-craftPhoto' : function(e){
         deleteImage();
-    },
-
-    'load #switch' : function(e){
-      console('loaded');
-      console.log(e.target.checked)
-    },
-
-    'change input.switch' : function(e){
-      console.log('click');
-      var checked = e.target.checked;
-      console.log(e.target.checked)
-      if(checked){
-        $('#craft').removeClass('animated bounceOutLeft');
-        $('#craft').addClass('animated bounceInLeft');
-      }else{
-        $('#craft').removeClass('animated bounceInLeft');
-        $('#craft').addClass('animated bounceOutLeft');
-      }
     }
 });
 

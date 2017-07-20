@@ -78,7 +78,7 @@ Template.serviceSecondForm.events({
   'submit form' : function(e){
     e.preventDefault();
     var form = e.target;
-    if(form.paymentType.value == 0 && !form.hourFee.value) return Materialize.toast('debes proporcinar el valor');
+    if(form.paymentType.value == 0 && !form.hourFee.value) return Materialize.toast('debes proporcionar el valor',4000);
     posts.update({_id : currentPost._id},{$set : { paymentType : form.paymentType.value , negotiable : form.negotiable.checked, hourFee : form.hourFee.value}});
     Router.go('/account/service/'+currentPost._id+'/extraInfo');
   }
