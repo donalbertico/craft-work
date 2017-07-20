@@ -51,36 +51,37 @@
       <div id="craft" class="card white craft-card col s12 m12 l7 xl6 " >
         <div class="card-content white darken-1 row">
 					<h4 class="col m12">Información de Artesano</h4>
+					<span class="red-text">*campo obligatorio</span>
           <form id="craftInfoForm">
             <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="name" type="text" class="validate" required name="name" value="{{currentUser.profile.craft.name}}">
-                <label class="active" for="name">Nombre artesanal / empresa</label>
+                <label class="active" for="name">*Nombre artesanal / empresa</label>
               </div>
             </div>
             <div class="row col m12 s12">
               <div class="input-field ">
                 <textarea id="description" type="text" placeholder="Qué ofreces?" class="materialize-textarea" required name="description" data-length="120" value="{{currentUser.profile.craft.description}}"></textarea>
-                <label class="active" for="description">Describelo</label>
+                <label class="active" for="description">*Describelo</label>
               </div>
             </div>
             <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="city" type="text" class="validate" required name="city" value="{{currentUser.profile.craft.city}}">
-                <label class="active" for="city">Ciudad</label>
+                <label class="active" for="city">*Ciudad</label>
               </div>
             </div>
             <div class="row col m12 s12">
               <div class="input-field ">
                 <input id="address" type="text" class="validate" required name="address" value="{{currentUser.profile.craft.address}}">
-                <label class="active" for="address">Direccion</label>
+                <label class="active" for="address">*Direccion</label>
               </div>
             </div>
             <div class="row col m12 s12">
               <div class="input-field ">
 								<i class="material-icons prefix">call</i>
                 <input id="movil" type="tel" class="validate" required name="movil" value="{{currentUser.profile.craft.movil}}" pattern="[0-9]{1,10}">
-                <label class="active" for="movil" data-error="solo números" data-success="correcto">Teléfono</label>
+                <label class="active" for="movil" data-error="solo números" data-success="correcto">*Teléfono</label>
               </div>
             </div>
             <div class="row col m12 s12">
