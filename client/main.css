@@ -7,6 +7,7 @@ html *{
 }
 div.main{
   min-height: 66vh;
+  margin-bottom: 0rem!important;
 }
 ul.autocomplete-content{
   position: absolute;

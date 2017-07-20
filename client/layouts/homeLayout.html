@@ -1,10 +1,24 @@
 <template name="homeTemplate">
   <style media="screen">
-    div.slider {
+    div.slider-large {
       height: 34rem!important;
     }
-    ul.slides {
+    ul.slides-large {
       height: 34rem!important;
+    }
+    div.slider-small {
+      height: 25rem!important;
+    }
+    ul.slides-small {
+      height: 25rem!important;
+    }
+    li div img.large{
+      width: 52rem!important;
+      height: 35rem!important;
+    }
+    li div img.small{
+      width: 43rem!important;
+      height: 27rem!important;
     }
     form.recoverPass {
       margin-top: 2rem;
@@ -65,42 +79,86 @@
     ul.main-slider{
       margin-top: -5rem!important;
     }
+    div.slide-text-large{
+      position: relative;
+      top: -30rem;
+    }
+    div.slide-text-small{
+      position: relative;
+      top: -24rem;
+    }
+    li div img.second{
+      margin-left: 40vh;
+    }
+    li div img.third{
+      margin-left: 70vh;
+    }
   </style>
-  <div class="slider ">
-    <ul class="slides main-slider">
+  <div class="slider slider-large hide-on-med-and-down">
+    <ul class="slides slides-large main-slider white-text ">
       <li>
-        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/craft-1892620_1920.jpg">
-        <div class="caption center-align hide-on-med-and-down">
+        <div class="image-container deep-orange lighten-1">
+          <img class="main-slides large" src="/tape.png">
+        </div>
+        <div class="slide-text-large center-align">
+          <h1 class="main-title center-algine">CRAFT EC</h1>
+          <h3 class="light grey-text text-lighten-3 center-algin">La primera red artesanal de Ecuador</h3>
+          <a href="/register" class="waves-effect waves-light btn-flat register-button"><h4>Ingresa ya</h4></a>
+        </div>
+      </li>
+      <li>
+        <div class="image-container deep-orange lighten-1">
+          <img class="main-slides large second" src="/sombrero.png">
+        </div>
+        <div class="slide-text-large center-align ">
           <h1 class="main-title">CRAFT EC</h1>
           <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
           <a href="/register" class="waves-effect waves-light btn-flat register-button"><h4>Ingresa ya</h4></a>
         </div>
-        <div class="caption center-align hide-on-large-only">
+      </li>
+      <li>
+        <div class="image-container deep-orange lighten-1">
+          <img class="main-slides large third" src="/silla.png">
+        </div>
+        <div class="slide-text-large center-align">
+          <h1 class="main-title">CRAFT EC</h1>
+          <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
+          <a href="/register" class="waves-effect waves-light btn-flat register-button"><h4>Ingresa ya</h4></a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <div class="slider slider-small hide-on-large-only">
+    <ul class="slides slides-small main-slider white-text hide-on-large-only">
+      <li>
+        <div class="image-container-small deep-orange lighten-1">
+          <img class="main-slides small" src="/tape.png">
+        </div>
+        <div class="slide-text-small center-align ">
           <h2 class="main-title">CRAFT EC</h2>
           <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
           <a href="/register" class="waves-effect waves-light btn-flat register-button">Ingresa ya</a>
         </div>
       </li>
       <li>
-        <img class="main-slides" src="https://s3.us-east-2.amazonaws.com/craft-work/ecuador-917049_1920.jpg">
-        <div class="caption right-align slides-promo  hide-on-med-and-down">
-          <h1>Incrementa tus ventas</h1>
-          <h3 class="light grey-text text-lighten-3">Hazte conocer a travez de esta plataforma</h3>
+        <div class="image-container-small deep-orange lighten-1">
+          <img class="main-slides small" src="/sombrero.png">
         </div>
-        <div class="caption right-align slides-promo hide-on-large-only">
-          <h2>Incrementa tus ventas</h2>
-          <h4 class="light grey-text text-lighten-3">Hazte conocer a travez de esta plataforma</h4>
+        <div class="slide-text-small center-align ">
+          <h2 class="main-title">CRAFT EC</h2>
+          <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
+          <a href="/register" class="waves-effect waves-light btn-flat register-button">Ingresa ya</a>
         </div>
       </li>
       <li>
-        <img src="https://s3.us-east-2.amazonaws.com/craft-work/shane-albuquerque-120447.jpg">
-        <div class="caption left-align hide-on-med-and-down">
-          <h1>Escoge la mejor opción</h1>
-          <h3 class="light grey-text text-lighten-3">Elije entre cientos de productos y sirvicios artesanales</h3>
+        <div class="image-container-small deep-orange lighten-1">
+          <img class="main-slides small" src="/silla.png">
         </div>
-        <div class="caption left-align hide-on-large-only">
-          <h2>Escoge la mejor opción</h2>
-          <h4 class="light grey-text text-lighten-3">Elije entre cientos de productos y sirvicios artesanales</h4>
+        <div class="slide-text-small center-align ">
+          <h2 class="main-title">CRAFT EC</h2>
+          <h3 class="light grey-text text-lighten-3">La primera red artesanal de Ecuador</h3>
+          <a href="/register" class="waves-effect waves-light btn-flat register-button">Ingresa ya</a>
         </div>
       </li>
     </ul>
