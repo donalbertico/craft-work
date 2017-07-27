@@ -1,2 +1,2 @@
-# craft-work
+# craft-ec
 catalog app for carft workers
